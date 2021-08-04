@@ -1,3 +1,87 @@
-h1{
-    color: red;
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+
+$opensans: 'Open Sans', san-serif;
+
+$dark: #343334;
+$blue: #369FE4;
+$green: #79C54E;
+$dark-blue: #356B8A;
+$grey: #AFB1B0;
+$white: #FFFFFF;
+
+
+html{
+    font-size: 16px;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
+ul{
+    li{
+        list-style: none;
+    }
+}
+a{
+    color: $blue;
+    text-decoration: none;
+}
+nav{
+    height: 60px;
+    background-color: $dark;
+    &>div{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .logo {
+            color: $white;
+            font-size: 2rem;
+            font-weight: bolder;
+            span{
+                color: $blue;
+            }
+        }
+        .menu{
+            display: flex;
+            align-items: center;
+            padding-top: 1.5rem;
+            margin-left: 2rem;
+            font-family: $opensans;
+            &>ul {
+                display: flex;
+                align-items: center;
+
+                li {
+                    display: inline-block;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                    color: $white;
+                    a{
+                        color: $white;
+                        &:hover{
+                            color: $blue;
+                            text-decoration: none;
+                        }
+                    }
+                }
+                .active{
+                    a{
+                        color: $blue;
+                    }
+                }
+                .dropdown-menu{
+                    display: flex;
+                    flex-direction: column !important;
+                    li a{
+                        color: $dark;
+                    }
+                }
+            }
+        }
+    }
 }
