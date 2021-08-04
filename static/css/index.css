@@ -25,6 +25,10 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3, h4, h5 {
+  color: #369FE4;
+}
+
 .navbar {
   background-color: #343334 !important;
   color: #FFFFFF !important;
@@ -96,5 +100,15 @@ main .header .header-overlay p.heading {
 
 main .header .header-overlay p.heading span {
   color: #369FE4;
+}
+
+main .about-us {
+  height: 500px;
+  outline: 1px solid red;
+}
+
+main .about-us .about2 {
+  border: 5px solid rgba(54, 158, 228, 0.15);
+  height: 100%;
 }
 /*# sourceMappingURL=index.css.map */

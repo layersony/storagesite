@@ -32,6 +32,9 @@ a{
     color: $blue;
     text-decoration: none;
 }
+h1, h2, h3, h4, h5{
+    color: $blue;
+}
 
 .navbar{
     background-color: $dark !important;
@@ -94,6 +97,16 @@ main{
                     color: $blue;
                 }
             }
+        }
+    }
+
+    .about-us{
+        height: 500px;
+        outline: 1px solid red;
+
+        .about2{
+            border: 5px solid rgba(54, 158, 228, 0.15);
+            height: 100%;
         }
     }
 }
