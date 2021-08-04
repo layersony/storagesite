@@ -5,8 +5,10 @@ from django.conf import settings
 
 urlpatterns = [
   path('', views.index, name='home'),
+  path('accounts/register/', views.signup, name='register'),
+  path('accounts/login/', views.sign_in, name='login'),
+  path('accounts/logout/', views.logout_user, name='logout'),
 ]
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
   urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-  
