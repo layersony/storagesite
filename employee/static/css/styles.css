@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Yatra+One&family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+
+body {
+  background-color: #dddddd65;
+  font-family: 'Yatra One', cursive;
+}
+
+.bg-index{
+  background-image: url('/static/images/olia-gozha-J4kK8b9Fgj8-unsplash.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 46rem;
+  background-color: #3333335b;
+  background-blend-mode:darken;
+  color:white;
+  text-align: center;
+  font-family: 'Style Script', cursive;
+}
+
