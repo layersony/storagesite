@@ -6,7 +6,7 @@ from .forms import RegistrationForm
 from django.contrib import messages
 
 def index(request):
-  return HttpResponse('Am MainApp '+ str(request.user))
+  return render(request, 'index.html')
 
 def signup(request):
   if request.method == 'POST':
