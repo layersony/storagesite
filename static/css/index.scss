@@ -101,12 +101,39 @@ main{
     }
 
     .about-us{
-        height: 500px;
-        outline: 1px solid red;
-
+        .first{
+            height: 150px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            .box{
+                flex-grow: 1;
+                min-width: 200px;
+                text-align: center;
+                background-color: $blue;
+            }
+        }
         .about2{
             border: 5px solid rgba(54, 158, 228, 0.15);
             height: 100%;
+            .about-img{
+                max-height: 200px !important;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+                
+            }
+            p {
+                font-size: 14px;
+                text-align: justify;
+                text-justify: auto;
+            }
         }
     }
 }

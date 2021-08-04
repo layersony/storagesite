@@ -102,13 +102,48 @@ main .header .header-overlay p.heading span {
   color: #369FE4;
 }
 
-main .about-us {
-  height: 500px;
-  outline: 1px solid red;
+main .about-us .first {
+  height: 150px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+main .about-us .first .box {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 200px;
+  text-align: center;
+  background-color: #369FE4;
 }
 
 main .about-us .about2 {
   border: 5px solid rgba(54, 158, 228, 0.15);
   height: 100%;
+}
+
+main .about-us .about2 .about-img {
+  max-height: 200px !important;
+  overflow: hidden;
+}
+
+main .about-us .about2 .about-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .about-us .about2 p {
+  font-size: 14px;
+  text-align: justify;
+  text-justify: auto;
 }
 /*# sourceMappingURL=index.css.map */
