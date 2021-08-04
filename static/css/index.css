@@ -1,0 +1,114 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+html {
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Open Sans", san-serif;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  color: #369FE4;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #369FE4;
+}
+
+.navbar {
+  background-color: #343334 !important;
+  color: #FFFFFF !important;
+}
+
+.navbar .navbar-brand {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  font-family: "Open Sans", san-serif;
+}
+
+.navbar .navbar-brand span {
+  color: #369FE4;
+}
+
+.navbar .navbar-brand:hover {
+  color: #FFFFFF;
+}
+
+.navbar li a {
+  color: #FFFFFF !important;
+}
+
+.navbar li li a {
+  color: #343334 !important;
+}
+
+main {
+  padding: 0 !important;
+}
+
+main .header {
+  width: 100%;
+  height: 500px;
+}
+
+main .header .header-bg {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+main .header .header-bg img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .header .header-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+}
+
+main .header .header-overlay p {
+  color: #FFFFFF;
+}
+
+main .header .header-overlay p.carefree {
+  letter-spacing: .4rem;
+}
+
+main .header .header-overlay p.heading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+main .header .header-overlay p.heading span {
+  color: #369FE4;
+}
+
+main .about-us {
+  height: 500px;
+  outline: 1px solid red;
+}
+
+main .about-us .about2 {
+  border: 5px solid rgba(54, 158, 228, 0.15);
+  height: 100%;
+}
+/*# sourceMappingURL=index.css.map */
