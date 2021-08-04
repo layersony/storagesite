@@ -4,10 +4,11 @@ html {
 }
 
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Open Sans", san-serif;
 }
 
 body {
@@ -24,83 +25,49 @@ a {
   text-decoration: none;
 }
 
-nav {
-  height: 60px;
-  background-color: #343334;
+.navbar {
+  background-color: #343334 !important;
+  color: #FFFFFF !important;
 }
 
-nav > div {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-nav > div .logo {
+.navbar .navbar-brand {
+  font-weight: 800;
+  font-size: 1.5rem;
   color: #FFFFFF;
-  font-size: 2rem;
-  font-weight: bolder;
-}
-
-nav > div .logo span {
-  color: #369FE4;
-}
-
-nav > div .menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 1.5rem;
-  margin-left: 2rem;
   font-family: "Open Sans", san-serif;
 }
 
-nav > div .menu > ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-nav > div .menu > ul li {
-  display: inline-block;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  color: #FFFFFF;
-}
-
-nav > div .menu > ul li a {
-  color: #FFFFFF;
-}
-
-nav > div .menu > ul li a:hover {
-  color: #369FE4;
-  text-decoration: none;
-}
-
-nav > div .menu > ul .active a {
+.navbar .navbar-brand span {
   color: #369FE4;
 }
 
-nav > div .menu > ul .dropdown-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: column !important;
-          flex-direction: column !important;
+.navbar li a {
+  color: #FFFFFF !important;
 }
 
-nav > div .menu > ul .dropdown-menu li a {
-  color: #343334;
+.navbar li li a {
+  color: #343334 !important;
+}
+
+main {
+  padding: 0 !important;
+}
+
+main .header {
+  width: 100%;
+  height: 500px;
+}
+
+main .header .header-bg {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+main .header .header-bg img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 /*# sourceMappingURL=index.css.map */

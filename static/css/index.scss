@@ -14,9 +14,10 @@ html{
     font-size: 16px;
 }
 *{
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: $opensans;
 }
 body{
     width: 100%;
@@ -31,56 +32,46 @@ a{
     color: $blue;
     text-decoration: none;
 }
-nav{
-    height: 60px;
-    background-color: $dark;
-    &>div{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        .logo {
-            color: $white;
-            font-size: 2rem;
-            font-weight: bolder;
-            span{
-                color: $blue;
+
+.navbar{
+    background-color: $dark !important;
+    color: $white !important;
+    .navbar-brand{
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: $white;
+        font-family: $opensans;
+        span{
+            color: $blue;
+        }
+    }
+    li {
+        a {
+            color: $white !important;
+        }
+        li{
+            a{
+                color: $dark !important;
             }
         }
-        .menu{
-            display: flex;
-            align-items: center;
-            padding-top: 1.5rem;
-            margin-left: 2rem;
-            font-family: $opensans;
-            &>ul {
-                display: flex;
-                align-items: center;
+    }
+}
 
-                li {
-                    display: inline-block;
-                    margin-left: 1rem;
-                    margin-right: 1rem;
-                    color: $white;
-                    a{
-                        color: $white;
-                        &:hover{
-                            color: $blue;
-                            text-decoration: none;
-                        }
-                    }
-                }
-                .active{
-                    a{
-                        color: $blue;
-                    }
-                }
-                .dropdown-menu{
-                    display: flex;
-                    flex-direction: column !important;
-                    li a{
-                        color: $dark;
-                    }
-                }
+main{
+    padding: 0 !important;
+    .header {
+        width: 100%;
+        height: 500px;
+
+        .header-bg {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
             }
         }
     }
