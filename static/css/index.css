@@ -41,6 +41,10 @@ a {
   color: #369FE4;
 }
 
+.navbar .navbar-brand:hover {
+  color: #FFFFFF;
+}
+
 .navbar li a {
   color: #FFFFFF !important;
 }
@@ -69,5 +73,28 @@ main .header .header-bg img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+main .header .header-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+}
+
+main .header .header-overlay p {
+  color: #FFFFFF;
+}
+
+main .header .header-overlay p.carefree {
+  letter-spacing: .4rem;
+}
+
+main .header .header-overlay p.heading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+main .header .header-overlay p.heading span {
+  color: #369FE4;
 }
 /*# sourceMappingURL=index.css.map */

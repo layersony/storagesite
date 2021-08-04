@@ -44,6 +44,9 @@ a{
         span{
             color: $blue;
         }
+        &:hover{
+            color: $white;
+        }
     }
     li {
         a {
@@ -72,6 +75,24 @@ main{
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+            }
+        }
+        .header-overlay{
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100%;
+            width: 100%;
+            p{
+                color: $white;
+            }
+            p.carefree{
+                letter-spacing: .4rem;
+            }
+            p.heading{
+                font-size: 3rem;
+                font-weight: 700;
+                span{
+                    color: $blue;
+                }
             }
         }
     }
