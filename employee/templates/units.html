@@ -1,1 +1,141 @@
-<h1>maji</h1>
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Store <span>any</span> type of property in our very secure units! </h2><hr><hr>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>UNIT</th>
+            <th>SIZE</th>
+            <th>WEEKLY PRICE</th>
+            <th>MONTHLY PRICE</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1b</td>
+            <td>large</td>
+            <td>Ksh 7000</td>
+            <td>Ksh 14000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>2A</td>
+            <td>medium</td>
+            <td>Ksh 7,300</td>
+            <td>Ksh 15,000 </td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="occupied">Occupied</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="occupied">Occupied</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="occupied">Occupied</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="occupied">Occupied</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="occupied">Occupied</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h2>Book Unit Onsite</h2><hr><hr>
+      <div class="card onsite">
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Unit 1A</h3>
+            <ul>
+              <li>Volume: 4ft</li>
+              <li>Size: small</li>
+              <li>Weekly price: Ksh 3000</li>
+              <li>Monthly price: Ksh 7000</li>
+            </ul>
+
+            <form>
+              <div>
+                <label for="firstshed">Client:</label>
+                <input type="text" id="clientname" name="clientname">
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content%}

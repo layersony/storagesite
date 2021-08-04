@@ -3,7 +3,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,25 +11,25 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
-    
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">  
   <!-- Bootstrap core CSS -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
   {% if title %}
   <title>{{title}}</title>
   {% else %}
-  <title>Hood Today </title>
+  <title> </title>
   {% endif %}
+
 
   {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/employee.css' %}">
   {% endblock styles %}
 </head>
 
 <body>
-
   {% include 'navbar.html'%}
 
   {% block content %}
@@ -41,7 +40,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   {% bootstrap_javascript %}
-  <script src="../static/js/script.js"></script>
+  <script src="../static/js/main.js"></script>
   {% endblock scripts %}
 
       
