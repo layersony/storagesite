@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 MODE = config('MODE', default='dev')
 
-# AUTH_USER_MODEL = 'auction.User'
+AUTH_USER_MODEL = 'mainapp.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
