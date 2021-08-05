@@ -16,7 +16,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Yatra One', cursive;
-  background-color: #3433341f;
+  background-color: #369ee455;
   
   
 }
@@ -38,7 +38,7 @@ a {
 .navbar .navbar-brand {
   font-weight: 800;
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color:#FFFFFF;
   font-family: "Open Sans", san-serif;
 }
 
@@ -181,6 +181,14 @@ input,textarea {
 
 .unit-search {
   color: white;
+}
+
+.unitsearch ::-webkit-input-placeholder{
+  color:white;
+}
+
+::placeholder {
+  color: red;
 }
 
 
