@@ -32,10 +32,27 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
+class UserType(models.Model):
+    # is_customer = models.BooleanField(default=False)
+    # is_employee = models.BooleanField(default=False)
+    # # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_type_custom')
+
+    # def __str__(self):
+    #     if self.is_employee == True:
+    #         return User.get_email(self.user) + " - is_employee"
+    #     else:
+    #         return User.get_email(self.user) + " - is_customer"
+
+    role = models.CharField(max_length=100, blank=True, null=True)
+            
+    def __str__(self):
+        return self.role
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=254, unique=True, null=True, blank=True)
     email = models.EmailField(max_length=254, unique=True)
     name = models.CharField(max_length=254, null=True, blank=True)
+    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -53,13 +70,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_email(self):
         return self.email
 
-class user_type(models.Model):
-    is_customer = models.BooleanField(default=False)
-    is_employee = models.BooleanField(default=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_type_custom')
-
-    def __str__(self):
-        if self.is_employee == True:
-            return User.get_email(self.user) + " - is_employee"
-        else:
-            return User.get_email(self.user) + " - is_customer"

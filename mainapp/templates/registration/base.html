@@ -9,17 +9,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   {% bootstrap_css %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="{% static 'css/index.css'%}">
   <link rel="stylesheet" href="{% static 'css/login.css' %}" type='text/css'>
 </head>
 
 <body>
-
-    {% block content %} 
+    {% include 'navbar.html' %}
+    <div class="container">
+      {% block content %} 
     
-    {%endblock%}
-
-
-
+      {%endblock%}
+    </div>
   {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% bootstrap_javascript %}
