@@ -15,15 +15,9 @@ html {
 body {
   width: 100%;
   overflow-x: hidden;
-  background-color: #dddddd65;
   font-family: 'Yatra One', cursive;
-  background-image: url('../images/alex-loup-Md6_qA-BMis-unsplash.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 46rem;
+  background-color: #3433341f;
   
-  background-blend-mode: darken;
-  text-align: center;
   
 }
 
@@ -112,6 +106,10 @@ main .header .header-overlay p.heading span {
 
 
 
+
+
+
+/*************** UNITS TABLE***************/
 table{
   margin-left: 5rem;
 }
@@ -158,12 +156,35 @@ table{
 }
 
 .occupied{
-  background-color: rgb(196, 5, 5);
+  background-color: #79C54E;
 }
 
 .onsite {
-  background-color: white;
+  background-color:#2e2e2e ;
+  text-align: left;
+  color: #ffffff;
 }
+
+label {
+  display: block;
+  padding: 7px;
+}
+
+input,textarea {
+  background-color: rgb(114, 113, 113);
+}
+
+.allunits-header {
+  font-weight: 900;
+  margin-left: 15rem;
+}
+
+.unit-search {
+  color: white;
+}
+
+
+/************UNIT TABLE************/
 
 
 

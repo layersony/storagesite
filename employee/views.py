@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect,get_object_or_404
+from django.shortcuts import render 
 from django.http import HttpResponse
 
 def index(request):
@@ -7,6 +7,4 @@ def index(request):
 def units(request):
   return render (request,'units.html')
 
-def onsite(request):
-  return render (request,'onsite.html')
 
