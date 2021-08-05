@@ -230,16 +230,12 @@ main .testimonials h2 {
   font-weight: 600;
 }
 
-main .testimonials .feedback {
-  gap: 3rem;
-}
-
 main .testimonials .customer {
-  height: 300px;
-  width: 30%;
+  min-height: 300px;
   border: 1px solid #FFFFFF;
   color: #FFFFFF;
   padding: 1rem;
+  margin: 1rem;
   border-radius: .3rem;
 }
 

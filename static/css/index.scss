@@ -198,16 +198,16 @@ main{
         h2{
             font-weight: 600;
         }
-        .feedback{
-            gap: 3rem;
-        }
+        // .feedback{
+        //     gap: 3rem;
+        // }
 
         .customer{
-            height: 300px;
-            width: 30%;
+            min-height: 300px;
             border: 1px solid $white;
             color: $white;
             padding: 1rem;
+            margin: 1rem;
             border-radius: .3rem;
             .pic{
                 width: 30%;
