@@ -221,6 +221,10 @@ input::placeholder {
   object-fit: cover;
 }
 
+.add {
+  font-size: 3rem;
+}
+
 
 /************UNIT TABLE************/
 

@@ -4,9 +4,11 @@ from . forms import BookingForm
 from .models import User ,Profile,Booking,Unit
 
 
-
-
 def units(request):
+    return render (request,'employee/units.html')
+
+
+def onsite_booking(request):
     users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = BookingForm(request.POST, request.FILES)
@@ -17,4 +19,4 @@ def units(request):
             return HttpResponseRedirect(request.path_info)
     else:
         form = BookingForm()
-    return render(request, 'employee/units.html', {'form': form,'users': users,})
+    return render(request, 'employee/onsite_booking.html', {'form': form,'users': users,})

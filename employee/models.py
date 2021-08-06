@@ -8,7 +8,9 @@ from mainapp.models import Profile
 from mainapp.models import Booking
 from mainapp.models import Unit
 from mainapp.models import User
-from django.utils import timezone
+from mainapp.models import UserManager
+
+
 
 # Create your models here.
 
