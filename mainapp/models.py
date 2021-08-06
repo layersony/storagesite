@@ -58,17 +58,46 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 	def get_email(self):
 			return self.email
+
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=CASCADE, null=True)
-    phone_number = models.CharField(max_length=20, blank=True)
-    address = models.CharField(max_length=20, blank=True)
-    nok_fullname = models.CharField(max_length=100, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    address = models.CharField(max_length=20, blank=True, null=True)
+    nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
-    nok_number = models.CharField(max_length=100, blank=True)
-    nok_relationship = models.CharField(max_length=100, blank=True)
+    nok_number = models.CharField(max_length=100, blank=True, null=True)
+    nok_relationship = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self) :
-        return self.user.username
+        return str(self.user)
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+    def save_user(self):
+        self.save()
+
+    @classmethod
+    def delete_user(cls, id):
+        cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def update_user(cls, id, *args, **kwargs):
+        cls.objects.filter(id=id).update(*args, **kwargs)
+    
+    def view_all(self):
+        all_profiles = self.objects.all()
+        return all_profiles
+
+    def view_one_profile(self, id):
+        one_profile = self.objects.filter(id=id)
+        return one_profile
 
 class Unit(models.Model):
     name = models.CharField(max_length=200)
@@ -84,6 +113,26 @@ class Unit(models.Model):
     def __str__(self):
         return self.name
 
+    def save_unit(self):
+        self.save()
+
+    @classmethod
+    def delete_unit(cls, id):
+        cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def update_unit(cls, id, *args, **kwargs):
+        cls.objects.filter(id=id).update(*args, **kwargs)
+    
+    def view_all(self):
+        allunits = self.objects.all()
+        return allunits
+    
+    @classmethod
+    def view_one_unit(cls, id):
+        aunit = cls.objects.get(id=id)
+        return aunit
+
 class Booking(models.Model):
     profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)
     unit = models.ForeignKey(Unit, related_name='unit', on_delete=CASCADE)
@@ -98,3 +147,23 @@ class Booking(models.Model):
 
     def __str__(self) :
         return self.unit.name
+
+    def save_booking(self):
+        self.save()
+
+    @classmethod
+    def delete_booking(cls, id):
+        cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def update_booking(cls, id, *args, **kwargs):
+        cls.objects.filter(id=id).update(*args, **kwargs)
+    
+    def view_all_booking(self):
+        allbookings = self.objects.all()
+        return allbookings
+    
+    @classmethod
+    def view_one_booking(cls, id):
+        abooking = cls.objects.get(id=id)
+        return abooking
