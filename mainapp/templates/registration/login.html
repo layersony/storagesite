@@ -2,19 +2,19 @@
 
 {% block content %}
 <div class="container loginform d-flex justify-content-center align-items-center">
-  <div class="d-flex">
+  <div class="d-flex dflogin">
     <div class="col-md-12 p-5">
       <!-- <div class="container"> -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="text-center text-white">Sign In</h3>
+            <h3 class="text-center mb-5">Sign In</h3>
           </div>
           <div class="panel-body">
             <form class="login-form" method="POST">
               {% csrf_token %}
       
               {% for message in messages %}
-                <p class="alert alert-danger">{{ message }}</p>
+                <p class="alert alert-info">{{ message }}</p>
               {% endfor %}
               <div class="input-group mb-2">
                 <div class="input-group-append">

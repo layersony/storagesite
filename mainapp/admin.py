@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, user_type
+from .models import User, Profile, Unit, Booking
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password', 'name', 'last_login')}),
         ('Permissions', {'fields': (
+            'user_type',
             'is_active',
             'is_staff',
             'is_superuser',
@@ -23,11 +24,13 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
 
-    list_display = ('email', 'name', 'is_staff', 'is_active','last_login')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    list_display = ('email', 'name', 'user_type', 'is_staff', 'is_active','last_login')
+    list_filter = ('user_type', 'is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
 admin.site.register(User, UserAdmin)
-admin.site.register(user_type)
+admin.site.register(Profile)
+admin.site.register(Unit)
+admin.site.register(Booking)

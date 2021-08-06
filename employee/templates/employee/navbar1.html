@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:4rem;">
     <div class="container">
         <a class="navbar-brand" href="#"><span>storage</span>site</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -16,6 +16,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact Us</a>
                 </li>
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,10 +28,16 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
+        <form class="form-inline unit-search" role="search" action="">
+            <div class="md-form " style="color:white;" >
+                <input class="form-control .unitsearch" style="border-bottom:1px solid white;"type="text" placeholder="Search unit or user..." aria-label="Search" name="search">
+                <button class="btn blue-gradient btn-sm" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
     </div>
-</nav>
+    </nav>
