@@ -1,9 +1,13 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.http import Http404
+from django.contrib.auth.hashers import make_password
+
 
 class UserManager(BaseUserManager):
 
@@ -99,11 +103,22 @@ class Profile(models.Model):
         one_profile = self.objects.filter(id=id)
         return one_profile
 
+Unit_sizes = (
+    ('-----','-----'),
+    ('Small','Small'),
+    ('Medium', 'Medium'),
+    ('Large', 'Large'),
+    ('X-large', 'X-large'),
+    ('2X-large', '2X-large'),
+    ('3X=large', '3X-large'),
+)
+
 class Unit(models.Model):
     name = models.CharField(max_length=200)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
+    size = models.CharField(max_length=100, choices=Unit_sizes, default='-----')
     occupied = models.BooleanField(default=False)
     daily_charge = models.PositiveIntegerField()
     weekly_charge = models.PositiveIntegerField()
@@ -112,6 +127,11 @@ class Unit(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, **kwargs):
+        some_salt = '123454'
+        access_code = make_password(self.access_code, some_salt)
+
 
     def save_unit(self):
         self.save()
@@ -130,8 +150,10 @@ class Unit(models.Model):
     
     @classmethod
     def view_one_unit(cls, id):
-        aunit = cls.objects.get(id=id)
-        return aunit
+        try:
+            return cls.objects.get(pk=id)
+        except Unit.DoesNotExist:
+            return Http404
 
 class Booking(models.Model):
     profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)
