@@ -1,5 +1,6 @@
 {% extends 'employee/base.html'%}
 {% load static %}
+{% load bootstrap4 %}
 {% block content %}
 
 <div class="container-fluid" >
@@ -18,7 +19,7 @@
     <hr>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       
       <h2 class="allunits-header">All storagesite units </h2>
       <table class="content-table">
@@ -137,12 +138,82 @@
             <td>kSH 7000</td>
             <td><button class="available">Available</button></td>
           </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>100*3</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>100*3</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>100*3</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>100*3</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>100*3</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="available">Available</button></td>
+          </tr>
+          <tr>
+            <td>1A</td>
+            <td>Small</td>
+            <td>100*3</td>
+            <td>KSH 3000</td>
+            <td>kSH 7000</td>
+            <td><button class="occupied">Occupied</button></td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
+    <div class="col-md-5">
+      <div class="row statsrequest">
+        <div class="col-md-5 card statcard1">
+          <div class="embed-responsive embed-responsive-1by1">
+            <img class="card-img-top embed-responsive-item" width="300px"src="/static/images/stat1.jpg"  alt="" >
+          </div>
+            <div class="card-body">
+            <p> View the company's statistics</p>
+            <button>here</button>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5 card requestscard1">
+          <img src="/static/images/delivery2.jpeg" alt="">
+          <p>View current pick-up and delivery requests</p>
+          <button>here</button>
+        </div> 
+        <div class="col-md-1"></div>  
+      </div>
+      
+    </div>
+    <div class="col-md-1"></div>
     
-  </div>
 
-  
+  </div>
 </div>
 {% endblock content%}

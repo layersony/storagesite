@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Yatra+One&family=Zen+Tokyo+Zoo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
 html {
   font-size: 16px;
 }
@@ -9,14 +10,14 @@ html {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Open Sans", san-serif;
+  font-family: "Open Sans", san-serif !important;
 }
 
 body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Yatra One', cursive;
-  background-color: #369ee455;
+  background-color: white;
   
   
 }
@@ -159,10 +160,18 @@ table{
   background-color: #79C54E;
 }
 
+.onsite-header {
+  font-weight: 900;
+  text-align: center;
+  padding: 3rem;
+}
 .onsite {
   background-color:#2e2e2e ;
   text-align: left;
+  
   color: #ffffff;
+  margin-right: 5rem;
+  padding: 3rem;
 }
 
 label {
@@ -187,8 +196,33 @@ input,textarea {
   color:white;
 }
 
-::placeholder {
-  color: red;
+input::placeholder {
+  color: white !important;
+}
+
+.requestscard1{
+  height: 25rem;
+  background-color: #343334;
+  color: white;
+
+}
+
+.statcard1{
+  height: 25rem;
+  background-color: #343334;
+  color: white;
+}
+
+.statsrequest{
+  margin-top: 3rem;
+}
+
+.embed-responsive .card-img-top {
+  object-fit: cover;
+}
+
+.add {
+  font-size: 3rem;
 }
 
 
