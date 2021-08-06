@@ -1,0 +1,341 @@
+{% extends 'customadmin/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="text-left">
+    <div class="modal fade" id="myModaluser" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content p-4">
+                <h1 class="modalhead text-center">Add New User</h1>
+                <form method="post" enctype="multipart/form-data" action="{% url 'customadmin' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form  adduser%}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success text-white">Add User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalprofile" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content p-4">
+                <h1 class="modalhead text-center">Add New Profile</h1>
+                <form method="post" enctype="multipart/form-data" action="{% url 'customadmin' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form  addpro%}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success text-white">Add Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalunit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content p-4">
+                <h1 class="modalhead text-center">Add New Unit</h1>
+                <form method="post" enctype="multipart/form-data" action="{% url 'mainadminpost' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form  addunit%}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success text-white">Add Unit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalbooking" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content p-4">
+                <h1 class="modalhead text-center">Add New Booking</h1>
+                <form method="post" enctype="multipart/form-data" action="{% url 'customadmin' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form  addbook%}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success text-white">Add Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<main>
+    <div class="container-fluid px-4">
+        <div class="text-center">
+            {% for message in messages %}
+            <sub class="alert alert-info">{{ message }}</sub>
+            {% endfor %}
+        </div>
+
+        <h1 class="mt-5 mb-4 text-center">Dashboard</h1>
+
+        <div class="row">
+            <div class="col-xl-4  col-md-4">
+                <div class="card statdis text-white mb-4">
+                    <div class="card-body unitstats text-center">{{ allunits.count }}</div>
+                    <div class="text-center">
+                        <p class="labelsunits">ALL UNITS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4  col-md-4">
+                <div class="card statdis text-white mb-4">
+                    <div class="card-body unitstats text-center">{{ available_units.count }}</div>
+                    <div class="text-center">
+                        <p class="labelsunits">AVAILABLE UNITS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4  col-md-4">
+                <div class="card statdis text-white mb-4">
+                    <div class="card-body unitstats text-center">{{ occupied_units.count }}</div>
+                    <div class="text-center">
+                        <p class="labelsunits">OCCUPIED UNITS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="card mb-4 mt-5">
+            <div class="card-header bg-dark text-center tableheaders d-flex justify-content-between align-items-center">
+                <span class="text-white"><i class="fas fa-users me-1 "></i><span>Users</span></span>
+                <span><a class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#myModaluser"><i class="fas fa-plus"></i> Add User</a></span>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimpleusers">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Email</th>
+                            <th>User Type</th>
+                            <th>Is_Staff</th>
+                            <th>Is_Superuser</th>
+                            <th>Is_Active</th>
+                            <th>Last Login</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr class="text-center">
+                            <th>Email</th>
+                            <th>User Type</th>
+                            <th>Is_Staff</th>
+                            <th>Is_Superuser</th>
+                            <th>Is_Active</th>
+                            <th>Last Login</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for user in allusers %}
+                        <tr>
+                            <td>{{user.email}}</td>
+                            <td>{{user.user_type}}</td>
+                            <td>{{user.is_staff}}</td>
+                            <td>{{user.is_superuser}}</td>
+                            <td>{{user.is_active}}</td>
+                            <td>{{user.last_login}}</td>
+                            <td><a class="text-success" href="#">Update</a></td>
+                        </tr>
+                        {% empty %}
+                        <p class="alert alert-info text-center">No Users in the Database</p>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4 mt-5">
+            <div class="card-header bg-dark text-center tableheaders d-flex justify-content-between align-items-center">
+                <span class="text-white"><i class="fas fa-id-card me-1 "></i><span>Profiles</span></span>
+                <span><a class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#myModalprofile"><i class="fas fa-plus"></i> Add Profile</a></span>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimpleprofile">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            <th>Next of Kin Name</th>
+                            <th>Next of Kin Email</th>
+                            <th>Next of Kin Number</th>
+                            <th>Next of Kin Relationship</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr class="text-center">
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            <th>Next of Kin Name</th>
+                            <th>Next of Kin Email</th>
+                            <th>Next of Kin Number</th>
+                            <th>Next of Kin Relationship</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for user in allprofiles %}
+                        {% if user.user.username == None %}
+                        <p class="alert alert-info text-center">Current User has no Profile</p>
+                        {% else %}
+                        <tr>
+                            <td>{{user.user.username}}</td>
+                            <td>{{user.user}}</td>
+                            <td>{{user.phone_number}}</td>
+                            <td>{{user.address}}</td>
+                            <td>{{user.nok_fullname}}</td>
+                            <td>{{user.nok_email}}</td>
+                            <td>{{user.nok_number}}</td>
+                            <td>{{user.nok_relationship}}</td>
+                            <td><a class="text-success" href="#">Update</a></td>
+                        </tr>
+                        {% endif %}
+                        {% empty %}
+                        <p class="alert alert-info text-center">No Profiles in the Database</p>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4 mt-5">
+            <div class="card-header bg-dark text-center tableheaders d-flex justify-content-between align-items-center">
+                <span class="text-white"><i class="fas fa-table me-1 "></i><span>Units</span></span>
+                <span><a class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#myModalunit"><i class="fas fa-plus"></i> Add Unit</a></span>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Width</th>
+                            <th>Height</th>
+                            <th>Length</th>
+                            <th>Size</th>
+                            <th>Occupied</th>
+                            <th>Daily Charge</th>
+                            <th>Weekly Charge</th>
+                            <th>Monthly Charge</th>
+                            <th>Access Code</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Width</th>
+                            <th>Height</th>
+                            <th>Length</th>
+                            <th>Size</th>
+                            <th>Occupied</th>
+                            <th>Daily Charge</th>
+                            <th>Weekly Charge</th>
+                            <th>Monthly Charge</th>
+                            <th>Access Code</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for unit in allunits %}
+                        <tr>
+                            <td>{{unit.name}}</td>
+                            <td>{{unit.width}}</td>
+                            <td>{{unit.height}}</td>
+                            <td>{{unit.length}}</td>
+                            <td>{{unit.size}}</td>
+                            {% if unit.occupied %}
+                            <td><span class="text-danger">Occupied</span></td>
+                            {% else %}
+                            <td><span class="text-success">Available</span></td>
+                            {% endif %}
+                            <td>{{unit.daily_charge}}</td>
+                            <td>{{unit.weekly_charge}}</td>
+                            <td>{{unit.monthly_charge}}</td>
+                            <td>{{unit.access_code}}</td>
+                            <td><a class="text-success" href="#">Update</a></td>
+                        </tr>
+                        {% empty %}
+                        <p class="alert alert-info text-center">No Units in the Database</p>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4 mt-5">
+            <div class="card-header bg-dark text-center tableheaders d-flex justify-content-between align-items-center">
+                <span class="text-white"><i class="fas fa-book-open me-1 "></i><span>Bookings</span></span>
+                <span><a class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#myModalbooking"><i class="fas fa-plus"></i> Add Booking</a></span>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimpleBooking">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Unit</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Address</th>
+                            <th>Pick Up</th>
+                            <th>Payment Mode</th>
+                            <th>A/c</th>
+                            <th>Total Cost</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>User</th>
+                            <th>Unit</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Address</th>
+                            <th>Pick Up</th>
+                            <th>Payment Mode</th>
+                            <th>A/c</th>
+                            <th>Total Cost</th>
+                            <th><i class="far fa-edit"></i></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for book in allbooks %}
+                        <tr>
+                            <td>{{book.user}}</td>
+                            <td>{{book.unit}}</td>
+                            <td>{{book.start_date}}</td>
+                            <td>{{book.end_date}}</td>
+                            <td>{{book.address}}</td>
+                            {% if book.pickup %}
+                            <td><span class="text-success">Pick Up</span></td>
+                            {% else %}
+                            <td><span class="text-info">No PickUp</span></td>
+                            {% endif %}
+                            <td>{{book.payment_mode}}</td>
+                            <td>{{book.account_number}}</td>
+                            <td>{{book.total_cost}}</td>
+                            <td><a class="text-success" href="#">Update</a></td>
+                        </tr>
+                        {% empty %}
+                        <p class="alert alert-info text-center">No Bookings in the Database</p>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

@@ -120,7 +120,7 @@ class Unit(models.Model):
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
     size = models.CharField(max_length=100, choices=Unit_sizes, default='-----')
-    occupied = models.BooleanField(default=False)
+    occupied = models.BooleanField(default=False, null=True, blank=True)
     daily_charge = models.PositiveIntegerField()
     weekly_charge = models.PositiveIntegerField()
     monthly_charge = models.PositiveIntegerField()

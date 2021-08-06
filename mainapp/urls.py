@@ -9,7 +9,9 @@ urlpatterns = [
   path('accounts/login/', views.sign_in, name='login'),
   path('accounts/logout/', views.logout_user, name='logout'),
   path('api/allunits/', views.AllUnits.as_view(),),
-  path('api/aUnit/<int:id>', views.OneUnit.as_view(),)
+  path('api/aUnit/<int:id>', views.OneUnit.as_view(),),
+  path('mainadmin/', views.customadmin, name='customadmin'),
+  path('mainadminpost/', views.mainadminpost, name='mainadminpost')
 ]
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
