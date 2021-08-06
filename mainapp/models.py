@@ -65,6 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address = models.CharField(max_length=20, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
@@ -163,6 +164,7 @@ class Booking(models.Model):
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField(null=True)
     address = models.CharField(max_length=200)
+    pickup = models.BooleanField(default=False)
     payment_mode = models.CharField(max_length=200)
     account_number = models.CharField(max_length=30)
     total_cost = models.PositiveIntegerField(null=True)
