@@ -1,6 +1,7 @@
 envprodev/
 .env
 *.pyc
+virtual/
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
