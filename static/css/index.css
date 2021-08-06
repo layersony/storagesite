@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+@import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
 html {
   font-size: 16px;
 }
@@ -102,13 +103,172 @@ main .header .header-overlay p.heading span {
   color: #369FE4;
 }
 
-main .about-us {
-  height: 500px;
-  outline: 1px solid red;
+main .about-us .first {
+  height: 150px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+main .about-us .first .box {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 200px;
+  text-align: center;
+  background-color: #369FE4;
 }
 
 main .about-us .about2 {
   border: 5px solid rgba(54, 158, 228, 0.15);
   height: 100%;
+}
+
+main .about-us .about2 .about-img {
+  max-height: 200px !important;
+  overflow: hidden;
+}
+
+main .about-us .about2 .about-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .about-us .about2 p {
+  font-size: 14px;
+  text-align: justify;
+  text-justify: auto;
+}
+
+main .contact-us .contact-img {
+  width: 100%;
+  overflow: hidden;
+  height: 600px;
+}
+
+main .contact-us .contact-img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  opacity: .9;
+  background-blend-mode: darken;
+}
+
+main .contact-us .contact-form {
+  height: 100%;
+  width: 100%;
+  color: white;
+  background-color: #369FE4 !important;
+}
+
+main .contact-us .contact-form form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: .3rem;
+}
+
+main .contact-us .contact-form h2 {
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+main .contact-us .contact-form .input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #356B8A;
+  width: 100%;
+  color: #FFFFFF;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+main .contact-us .contact-form .input::-webkit-input-placeholder {
+  color: #356B8A;
+}
+
+main .contact-us .contact-form .input:-ms-input-placeholder {
+  color: #356B8A;
+}
+
+main .contact-us .contact-form .input::-ms-input-placeholder {
+  color: #356B8A;
+}
+
+main .contact-us .contact-form .input::placeholder {
+  color: #356B8A;
+}
+
+main .contact-us .contact-form .btn {
+  color: #356B8A;
+  margin-top: 1rem;
+  border: 1px solid #356B8A;
+  outline: none;
+}
+
+main .contact-us .contact-form .btn:hover {
+  background-color: #356B8A;
+  color: white;
+}
+
+main .testimonials {
+  margin-top: 600px;
+  background-color: #343334 !important;
+}
+
+main .testimonials h2 {
+  font-weight: 600;
+}
+
+main .testimonials .customer {
+  min-height: 300px;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: .3rem;
+}
+
+main .testimonials .customer .pic {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .testimonials .customer .pic .pic-holder {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+main .testimonials .customer .pic .pic-holder img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .testimonials .customer .text {
+  width: 70%;
+  padding-left: 1rem;
+}
+
+main .testimonials .customer .text strong {
+  color: #369FE4;
 }
 /*# sourceMappingURL=index.css.map */

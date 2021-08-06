@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+@import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
 
 $opensans: 'Open Sans', san-serif;
 
@@ -101,12 +102,136 @@ main{
     }
 
     .about-us{
-        height: 500px;
-        outline: 1px solid red;
-
+        .first{
+            height: 150px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            .box{
+                flex-grow: 1;
+                min-width: 200px;
+                text-align: center;
+                background-color: $blue;
+            }
+        }
         .about2{
             border: 5px solid rgba(54, 158, 228, 0.15);
             height: 100%;
+            .about-img{
+                max-height: 200px !important;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+                
+            }
+            p {
+                font-size: 14px;
+                text-align: justify;
+                text-justify: auto;
+            }
+        }
+    }
+
+    .contact-us{
+        .contact-img{
+            width: 100%;
+            overflow: hidden;
+            height: 600px;
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                opacity: .9;
+                background-blend-mode: darken;
+            }
+        }
+        .contact-form{
+            height: 100%;
+            width: 100%;
+            color: white;
+            background-color: $blue !important;
+            form{
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 1.5rem;
+                border-radius: .3rem;
+            }
+            h2{
+                color: $white;
+                font-weight: 800;
+            }
+            .input{
+                background-color: transparent;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid $dark-blue;
+                width: 100%;
+                color: $white;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                margin-top: 1rem;
+                &::placeholder{
+                    color: $dark-blue;
+                }
+            }
+            .btn{
+                color: $dark-blue;
+                margin-top: 1rem;
+                border: 1px solid $dark-blue;
+                outline: none;
+                &:hover{
+                    background-color: $dark-blue;
+                    color: white;
+                }
+            }
+        }
+
+    }
+    .testimonials{
+        margin-top: 600px;
+        background-color: $dark !important;
+        h2{
+            font-weight: 600;
+        }
+        // .feedback{
+        //     gap: 3rem;
+        // }
+
+        .customer{
+            min-height: 300px;
+            border: 1px solid $white;
+            color: $white;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: .3rem;
+            .pic{
+                width: 30%;
+                display: flex;
+                justify-content: center;
+                .pic-holder{
+                    height: 90px;
+                    width: 90px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+            .text{
+                width: 70%;
+                padding-left: 1rem;
+                strong{
+                    color: $blue;
+                }
+            }
         }
     }
 }

@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Yatra+One&family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+html {
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Open Sans", san-serif;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Yatra One', cursive;
+  background-color: #369ee455;
+  
+  
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  color: #369FE4;
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: #343334 !important;
+  color: #FFFFFF !important;
+}
+
+.navbar .navbar-brand {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color:#FFFFFF;
+  font-family: "Open Sans", san-serif;
+}
+
+.navbar .navbar-brand span {
+  color: #369FE4;
+}
+
+.navbar .navbar-brand:hover {
+  color: #FFFFFF;
+}
+
+.navbar li a {
+  color: #FFFFFF !important;
+}
+
+.navbar li li a {
+  color: #343334 !important;
+}
+
+main {
+  padding: 0 !important;
+}
+
+main .header {
+  width: 100%;
+  height: 500px;
+}
+
+main .header .header-bg {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+main .header .header-bg img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+    object-fit: cover;
+}
+
+main .header .header-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+}
+
+main .header .header-overlay p {
+  color: #FFFFFF;
+}
+
+main .header .header-overlay p.carefree {
+  letter-spacing: .4rem;
+}
+
+main .header .header-overlay p.heading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+main .header .header-overlay p.heading span {
+  color: #369FE4;
+}
+/*# sourceMappingURL=index.css.map */
+
+
+
+
+
+
+/*************** UNITS TABLE***************/
+table{
+  margin-left: 5rem;
+}
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  margin-left: 5rem;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #343334;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.content-table tbody tr{
+  background-color: rgb(114, 113, 113);
+}
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #369FE4;
+}
+
+.available{
+  background-color: #369FE4;
+}
+
+.occupied{
+  background-color: #79C54E;
+}
+
+.onsite {
+  background-color:#2e2e2e ;
+  text-align: left;
+  color: #ffffff;
+}
+
+label {
+  display: block;
+  padding: 7px;
+}
+
+input,textarea {
+  background-color: rgb(114, 113, 113);
+}
+
+.allunits-header {
+  font-weight: 900;
+  margin-left: 15rem;
+}
+
+.unit-search {
+  color: white;
+}
+
+.unitsearch ::-webkit-input-placeholder{
+  color:white;
+}
+
+::placeholder {
+  color: red;
+}
+
+
+/************UNIT TABLE************/
+
+
+
+
