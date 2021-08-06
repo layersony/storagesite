@@ -1,0 +1,29 @@
+.loginform{
+  min-height: 80vh;
+}
+.dflogin{
+  width: 50%;
+
+}
+
+.col-md-12{
+  background-color: #343334;
+  box-shadow: 0px 0px 5px black;
+  border-radius: 4px;
+}
+
+.allbtn{
+  background-color: #369FE4;
+  color: #fff;
+  font-size: 14px;
+}
+.allbtn:hover{
+  background-color: #fff;
+  color: #369FE4;
+}
+
+@media screen and (max-width:500px){
+  .dflogin{
+    width: 100%;
+  }
+}

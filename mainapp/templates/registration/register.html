@@ -1,0 +1,103 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="container loginform d-flex justify-content-center align-items-center mt-5">
+  <div class="d-flex dflogin">
+    <div class="col-md-12 p-5">
+      <div class="panel panel-default text-white">
+        <div class="panel-heading">
+          <h3 class="text-center">Sign Up</h3>
+        </div>
+
+        <div class="panel-body p-2">
+          <form class="login-form " method="POST">
+            {% csrf_token %}
+          
+            <div class="">
+              <div class="form-group">
+                <label>Username</label>
+                {{form.username}}
+              </div>
+              
+              {% if form.username.errors %}
+              {% for error in form.username.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+        
+            <div class="">
+              <div class="form-group position-relative">
+                <label>Full name</label>
+                {{form.name}}
+              </div>
+              {% if form.name.errors %}
+              {% for error in form.name.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+        
+            <div class="">
+              <div class="form-group position-relative">
+                <label>Your Email</label>
+                {{form.email}}
+              </div>
+              {% if form.email.errors %}
+              {% for error in form.email.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+        
+            <div class="">
+              <div class="form-group position-relative">
+                <label>Password</label>
+                {{form.password1}}
+              </div>
+              {% if form.password1.errors %}
+              {% for error in form.password1.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+        
+            <div class="">
+              <div class="form-group position-relative">
+                <label>Confirm Password</label>
+                {{form.password2}}
+              </div>
+              {% if form.password2.errors %}
+              {% for error in form.password2.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+        
+            <div class="text-center">
+              <button class="btn allbtn" type="submit">Register</button>
+            </div>
+            <div class="mx-auto">
+              <p class="mb-0 mt-3"><small class="mr-2">Already have an account ?</small> <a href="{% url 'login' %}" class="text-white font-weight-bold">Sign in</a></p>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
