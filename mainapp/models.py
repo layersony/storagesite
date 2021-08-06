@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -57,3 +58,43 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 	def get_email(self):
 			return self.email
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=CASCADE, null=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+    address = models.CharField(max_length=20, blank=True)
+    nok_fullname = models.CharField(max_length=100, blank=True)
+    nok_email = models.EmailField(blank=True, null=True)
+    nok_number = models.CharField(max_length=100, blank=True)
+    nok_relationship = models.CharField(max_length=100, blank=True)
+
+    def __str__(self) :
+        return self.user.username
+
+class Unit(models.Model):
+    name = models.CharField(max_length=200)
+    width = models.PositiveIntegerField()
+    height = models.PositiveIntegerField()
+    length = models.PositiveIntegerField()
+    occupied = models.BooleanField(default=False)
+    daily_charge = models.PositiveIntegerField()
+    weekly_charge = models.PositiveIntegerField()
+    monthly_charge = models.PositiveIntegerField()
+    access_code = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
+
+class Booking(models.Model):
+    profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)
+    unit = models.ForeignKey(Unit, related_name='unit', on_delete=CASCADE)
+
+    description = models.CharField(max_length=200)
+    start_date = models.DateTimeField(auto_now=True)
+    end_date = models.DateTimeField(null=True)
+    address = models.CharField(max_length=200)
+    payment_mode = models.CharField(max_length=200)
+    account_number = models.CharField(max_length=30)
+    total_cost = models.PositiveIntegerField(null=True)
+
+    def __str__(self) :
+        return self.unit.name
