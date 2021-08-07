@@ -1,23 +1,21 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import logout, login, authenticate
-from .models import user_type, User
-from .forms import RegistrationForm
 from django.contrib import messages
 
 from .forms import UpdateProfileForm
+from customer.forms import RegistrationForm
 from django.contrib.auth.models import User
-from mainapp.models import Profile
+from django.contrib.auth.decorators import login_required
+from mainapp.models import Profile, User
 from . import views
 from django.conf import settings
 
-User = settings.AUTH_USER_MODEL
+@login_required(login_url='login')
+def index(request):...
 
-def index(request):
-  return HttpResponse('Am Customer')
-
-def updateProfile(request, username):
-    user = User.objects.get(username=username)
+def updateProfile(request):
+    user = request.user
     if request.method == 'POST':
         form = UpdateProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -28,6 +26,6 @@ def updateProfile(request, username):
     return render(request, 'updateProfile.html', {'form': form})
 
 
-def profile(request, username):
+def profile(request):
     return render(request, 'profile.html')
 
