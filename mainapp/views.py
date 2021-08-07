@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
@@ -11,7 +10,6 @@ from .models import Booking
 from .serializer import BookingSerializer
 from rest_framework import status
 from .permissions import IsAuthenticatedOrReadOnly
-=======
 from django.db.models.query_utils import select_related_descend
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
@@ -25,7 +23,6 @@ from rest_framework import status
 from django.http import Http404
 import hashlib
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
->>>>>>> master
 
 def index(request):
   return render(request, 'index.html')
