@@ -16,14 +16,14 @@ def updateProfile(request):
         form = UpdateProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('profile', user.username)
+            return redirect('all_customer/profile', user.username)
     else:
         form = UpdateProfileForm()
-    return render(request, 'updateProfile.html', {'form': form})
+    return render(request, 'all_customer/updateProfile.html', {'form': form})
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'all_customer/profile.html')
 
 def available(request):
       return render(request, 'all_customer/available_units.html', )

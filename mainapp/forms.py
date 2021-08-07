@@ -14,9 +14,12 @@ class RegistrationForm(UserCreationForm):
     fields = ['username', 'email', 'name', 'password1', 'password2']
 
 class AddUserForm(forms.ModelForm):
+  password1 = forms.CharField(label = "Password", required=True, widget=forms.TextInput(attrs={'placeholder':'Password', 'class': 'form-control', 'type':'password'}))
+
   class Meta:
     model = User
-    fields = '__all__'
+    fields = ['username', 'email', 'name', 'user_type', 'is_staff', 'is_superuser', 'is_active', 'password1']
+    
 
 class AddProfileForm(forms.ModelForm):
   address = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Address', 'id':'profileaddress'}))
