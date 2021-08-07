@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
-from rest_framework import serializers
+from rest_framework import permissions, serializers
 from .forms import RegistrationForm
 from django.contrib import messages
 from rest_framework.response import Response
@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from .models import Booking
 from .serializer import BookingSerializer
 from rest_framework import status
+from .permissions import IsAuthenticatedOrReadOnly
 
 def index(request):
   return render(request, 'index.html')
@@ -81,6 +82,7 @@ class BookingList(APIView):
 
     def post(self, request, format=None):
         serializers = BookingSerializer(data=request.data)
+        permission_classes = (IsAuthenticatedOrReadOnly,)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
