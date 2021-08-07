@@ -161,7 +161,7 @@ class BookingItem(APIView):
 def customadmin(request):
   if request.method == 'POST':
     adduser = AddUserForm(request.POST or None)
-    addpro = AddProfileForm(request.POST or None)
+    addpro = AddProfileForm(request.POST or None, request.FILES)
     addunit = AddUnitForm(request.POST)
     addbook = AddBookingForm(request.POST)
 
