@@ -1,7 +1,16 @@
+from django.db.models.query_utils import select_related_descend
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
-from .forms import RegistrationForm
+from .forms import RegistrationForm, AddUserForm, AddProfileForm, AddUnitForm, AddBookingForm
 from django.contrib import messages
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializer import UnitSerializer
+from .models import Unit, User, Profile, Booking
+from rest_framework import status
+from django.http import Http404
+import hashlib
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 def index(request):
   return render(request, 'index.html')
@@ -51,7 +60,7 @@ def sign_in(request):
       if user is not None:
           login(request, user)
           if user.is_authenticated and user.is_superuser:
-            return redirect('admin:index')
+            return redirect('customadmin')
           elif user.is_authenticated and (user.user_type=='employee'):
             return redirect('emphome') 
           elif user.is_authenticated and (user.user_type=='client'):
@@ -64,3 +73,119 @@ def sign_in(request):
 def logout_user(request):
   logout(request)
   return redirect('home')
+
+def customadmin(request):
+  if request.method == 'POST':
+    adduser = AddUserForm(request.POST or None, instance=request.user)
+    addpro = AddProfileForm(request.POST or None, instance=request.user)
+    addunit = AddUnitForm(request.POST)
+    addbook = AddBookingForm(request.POST)
+    print(request.POST)
+
+    if adduser.is_valid():
+      adduser.save()
+      messages.success(request, 'User Added successfully')
+
+    if addpro.is_valid():
+      addpro.save()
+      messages.success(request, 'Profile Added successfully')
+
+    if addunit.is_valid():
+      addunit.save()
+      messages.success(request, 'Unit Added successfully')
+
+    if addbook.is_valid():
+      addbook.save()
+      messages.success(request, 'Booking Added successfully')
+
+
+  allusers = User.objects.all()
+  allprofiles = Profile.objects.all()
+  allunits = Unit.objects.all()
+  allBooking = Booking.objects.all()
+
+  available_units = Unit.objects.filter(occupied=False)
+  occupied_units = Unit.objects.filter(occupied=True)
+
+  adduser = AddUserForm()
+  addpro = AddProfileForm()
+  addunit = AddUnitForm()
+  addbook = AddBookingForm()
+
+  params = {
+    'allusers':allusers,
+    'allprofiles':allprofiles,
+    'allunits':allunits,
+    'allBooking':allBooking,
+    'available_units':available_units,
+    'occupied_units':occupied_units,
+    'adduser':adduser,
+    'addpro':addpro,
+    'addunit':addunit,
+    'addbook':addbook,
+  }
+  return render(request, 'customadmin/index.html', params)
+
+def mainadminpost(request):
+  if request.method == 'POST':
+    adduser = AddUserForm(request.POST or None)
+    addpro = AddProfileForm(request.POST or None)
+    addunit = AddUnitForm(request.POST)
+    addbook = AddBookingForm(request.POST)
+    print(request.POST)
+
+    if adduser.is_valid():
+      adduser.save()
+      messages.success(request, 'User Added successfully')
+      return redirect('customadmin')
+
+    if addpro.is_valid():
+      addpro.save()
+      messages.success(request, 'Profile Added successfully')
+      return redirect('customadmin')
+
+    if addunit.is_valid():
+      addunit.save()
+      messages.success(request, 'Unit Added successfully')
+      return redirect('customadmin')
+
+    if addbook.is_valid():
+      addbook.save()
+      messages.success(request, 'Booking Added successfully')
+      return redirect('customadmin')
+
+class AllUnits(APIView):
+  permission_classes = (IsAuthenticated,)
+  def get(self, request, format=None):
+    allunits = Unit.objects.all()
+    serializer = UnitSerializer(allunits, many=True)
+    return Response(serializer.data)
+
+  def post(self, request, format=None):
+    serializer = UnitSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      # print(hashlib.md5(serializer.data['access_code']).hexdigest())
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OneUnit(APIView):
+  permission_classes = (IsAuthenticated,)
+  def get(self, request, id, format=None):
+    one_unit = Unit.view_one_unit(id)
+    serializer = UnitSerializer(one_unit, many=False)
+    return Response(serializer.data)
+
+  def put(self, request, id, format=None):
+    one_unit = Unit.view_one_unit(id)
+    serializers = UnitSerializer(one_unit, request.data)
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data)
+    else:
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+  def delete(self, request, id, format=None):
+    one_unit = Unit.view_one_unit(id)
+    one_unit.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
