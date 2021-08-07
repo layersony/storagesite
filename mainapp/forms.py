@@ -19,11 +19,13 @@ class AddUserForm(forms.ModelForm):
     fields = '__all__'
 
 class AddProfileForm(forms.ModelForm):
+  address = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Address', 'id':'profileaddress'}))
   class Meta:
     model = Profile
     fields = '__all__'
 
 class AddUnitForm(forms.ModelForm):
+  name = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'UnitName', 'id':'unitname'}))
   class Meta:
     model = Unit
     fields = '__all__'

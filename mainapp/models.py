@@ -120,7 +120,7 @@ class Unit(models.Model):
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
     size = models.CharField(max_length=100, choices=Unit_sizes, default='-----')
-    occupied = models.BooleanField(default=False, null=True, blank=True)
+    occupied = models.BooleanField(default=False, null=True)
     daily_charge = models.PositiveIntegerField()
     weekly_charge = models.PositiveIntegerField()
     monthly_charge = models.PositiveIntegerField()
@@ -128,10 +128,6 @@ class Unit(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, **kwargs):
-        some_salt = '123454'
-        access_code = make_password(self.access_code, some_salt)
 
 
     def save_unit(self):
@@ -170,7 +166,7 @@ class Booking(models.Model):
     total_cost = models.PositiveIntegerField(null=True)
 
     def __str__(self) :
-        return self.unit.name
+        return f'{self.unit.name} Booked By {self.profile.user.username}'
 
     def save_booking(self):
         self.save()
