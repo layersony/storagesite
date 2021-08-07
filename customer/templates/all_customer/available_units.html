@@ -1,0 +1,64 @@
+{% extends 'all_customer/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}
+    <div class="available">
+        <table class="container table table-active ">
+      <thead>
+    <tr>
+      <th scope="col">UNIT</th>
+      <th scope="col">SIZE</th>
+      <th scope="col">VOLUME</th>
+      <th scope="col">WEEKLY PRICE</th>
+      <th scope="col">MONTHLY PRICE</th>
+      <th scope="col">STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>20</td>
+      <td>3*4*6</td>
+      <td>Ksh3000</td>
+      <td>Ksh9000</td>
+      <td><button type="button" class="btn btn-info">available</button></td>
+    </tr>
+    <br>
+    <br>
+    <tr>
+      <th scope="row">2</th>
+      <td>20</td>
+      <td>3*4*6</td>
+      <td>Ksh3000</td>
+      <td>Ksh9000</td>
+      <td><button type="button" class="btn btn-danger">occupied</button></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>20</td>
+      <td>3*4*6</td>
+      <td>Ksh3000</td>
+      <td>Ksh9000</td>
+      <td><button type="button" class="btn btn-info">available</button></td>
+    </tr>
+    <br>
+    <br>
+    <tr>
+        <th scope="row">3</th>
+        <td>20</td>
+        <td>3*4*6</td>
+        <td>Ksh3000</td>
+        <td>Ksh9000</td>
+        <td><button type="button" class="btn btn-danger">occupied</button></td>
+      </tr>
+  </tbody>
+
+  </table>
+</div>
+
+
+
+{%endblock%}
