@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
+from rest_framework import serializers
 from .forms import RegistrationForm
 from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Booking
+from .serializer import BookingSerializer
 
 def index(request):
   return render(request, 'index.html')
@@ -64,3 +69,11 @@ def sign_in(request):
 def logout_user(request):
   logout(request)
   return redirect('home')
+
+
+# Bookings API
+class BookingList(APIView):
+    def get(self, request, format=None):
+        all_bookings = Booking.objects.all()
+        serializers = BookingSerializer(all_bookings, many=True)
+        return Response(serializers.data)

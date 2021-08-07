@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'customer',
     'employee',
     'bootstrap4',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
