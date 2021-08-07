@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
 from rest_framework import permissions, serializers
@@ -75,6 +76,8 @@ def logout_user(request):
 
 # Bookings API
 class BookingList(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
     def get(self, request, format=None):
         all_bookings = Booking.objects.all()
         serializers = BookingSerializer(all_bookings, many=True)
@@ -82,9 +85,22 @@ class BookingList(APIView):
 
     def post(self, request, format=None):
         serializers = BookingSerializer(data=request.data)
-        permission_classes = (IsAuthenticatedOrReadOnly,)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class BookingItem(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get_booking(self, booking_id):
+        try:
+            return Booking.objects.get(pk=booking_id)
+        except Booking.DoesNotExist:
+            return Http404
+
+    def get(self, request, booking_id, format=None):
+        booking = self.get_booking(booking_id)
+        serializers = BookingSerializer(booking)
+        return Response(serializers.data)
