@@ -4,15 +4,11 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib import messages
 
 from .forms import UpdateProfileForm
-from customer.forms import RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from mainapp.models import Profile, User
 from . import views
 from django.conf import settings
-
-@login_required(login_url='login')
-def index(request):...
 
 def updateProfile(request):
     user = request.user
@@ -29,3 +25,13 @@ def updateProfile(request):
 def profile(request):
     return render(request, 'profile.html')
 
+def available(request):
+      return render(request, 'all_customer/available_units.html', )
+
+
+def book(request):
+      return render(request, 'all_customer/book.html', )
+
+
+def payment(request):
+      return render(request, 'all_customer/payment.html', )
