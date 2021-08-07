@@ -104,3 +104,17 @@ class BookingItem(APIView):
         booking = self.get_booking(booking_id)
         serializers = BookingSerializer(booking)
         return Response(serializers.data)
+
+    def put(self, request, booking_id, format=None):
+        booking = self.get_booking(booking_id)
+        serializers = BookingSerializer(booking, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, booking_id, format=None):
+        booking = self.get_booking(booking_id)
+        booking.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
