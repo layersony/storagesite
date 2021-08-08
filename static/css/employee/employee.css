@@ -118,7 +118,7 @@ table{
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
-  margin-left: 5rem;
+  margin-left: 9rem;
   font-size: 0.9em;
   min-width: 400px;
   border-radius: 5px 5px 0 0;
@@ -179,7 +179,7 @@ input,textarea {
 
 .allunits-header {
   font-weight: 900;
-  margin-left: 15rem;
+  text-align: center;
 }
 
 .unit-search {

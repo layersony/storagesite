@@ -12,13 +12,15 @@
                 <p style="color:white; font-size: 20px;"class="mx-5 mb-5">View a list of all available units<br>
                 Help an onsite client book storage<br>
                 View the company's statistics</p>
-                <a class="btn btn-success" href="#" role="button">View Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="#" role="button">View My Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="#" role="button">View Statistics <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="#" role="button"> Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
     <hr>
 
-  <div class="row">
+  <div class=" container-fluid">
     <div class="col-md-12">  
       <h2 class="allunits-header">All storagesite units </h2>
       
@@ -26,14 +28,14 @@
         <thead>
           <tr>
             <th>UNIT</th>
-            <th>WIDTH</th>
-            <th>HEIGHT</th>
-            <th>LENGTH</th>
+            <th>WIDTH (m)</th>
+            <th>HEIGHT (m)</th>
+            <th>LENGTH (m)</th>
             <th>SIZE</th>
             <th>OCCUPIED</th>
-            <th>DAILY CHARGE</th>
-            <th>WEEKLY CHARGE</th>
-            <th>MONTHLY CHARGE</th>
+            <th>DAILY CHARGE (Ksh)</th>
+            <th>WEEKLY CHARGE (Ksh)</th>
+            <th>MONTHLY CHARGE (Ksh)</th>
             <th></th>
             
 
@@ -52,7 +54,7 @@
             <td>{{ unit.daily_charge}}</td>
             <td>{{ unit.weekly_charge}}</td>
             <td>{{ unit.monthly_charge}}</td>
-            <td><a><button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#myModalunit">Edit Unit</button></a></td>
+            <td><a><button class="btn btn-outline-success btn-sm" style="font-weight:900;" data-toggle="modal" data-target="#myModalunit">Edit Unit</button></a></td>
           </tr>
           </tbody>
 
@@ -88,32 +90,6 @@
       </table>
     </div>  
   </div>
-    <div class="col-md-2">
-      <div class="row statsrequest">
-        <div class="col-md-12 card statcard1">
-          <div>
-            <img class="card-img-top " width="300px"src="/static/images/stat1.jpg"  alt="" >
-          </div>
-            <div class="card-body">
-            <p> View the company's statistics</p>
-            <button>here</button>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 card requestscard1">
-          <img src="/static/images/delivery2.jpeg" alt="">
-          <p>View current pick-up and delivery requests</p>
-          <button>here</button>
-        </div> 
-        
-      </div>
-    </div>
-      
-    
-    
-    
 
-  
 </div>
 {% endblock content%}

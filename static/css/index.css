@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 * {
