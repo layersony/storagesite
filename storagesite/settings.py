@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 MODE = config('MODE', default='dev')
 
-# AUTH_USER_MODEL = 'auction.User'
+AUTH_USER_MODEL = 'mainapp.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -58,13 +58,13 @@ WSGI_APPLICATION = 'storagesite.wsgi.application'
 if config('MODE')=='dev':
     DATABASES = {
         'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': config('DB_NAME'),
-           'USER': config('DB_USER'),
-           'PASSWORD': config('DB_PASSWORD'),
-           'HOST': config('DB_HOST'),
-           'PORT': '',
-       }
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': '',
+        }
     }
 else:
     DATABASES = {

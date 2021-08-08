@@ -1,0 +1,31 @@
+*{
+  font-size: 20px;
+  font-family: Ubuntu;
+}
+.navbar {
+  background-color: #343334 !important;
+  color: #FFFFFF !important;
+}
+
+.navbar .navbar-brand {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  /* font-family: "Open Sans", san-serif; */
+}
+
+.navbar .navbar-brand span {
+  color: #369FE4;
+}
+
+.navbar .navbar-brand:hover {
+  color: #FFFFFF;
+}
+
+.navbar li a {
+  color: #FFFFFF !important;
+}
+
+.navbar li li a {
+  color: #343334 !important;
+}
