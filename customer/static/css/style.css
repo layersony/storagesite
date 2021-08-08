@@ -1,3 +1,6 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js');
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' );
 
 *{
     margin: 0;
@@ -86,7 +89,7 @@ body{
     position: absolute;
     display: flex;
     margin-left: 350px;
-    margin-top: 200px;
+    margin-top: 220px;
     font-size:larger;
     
 }
