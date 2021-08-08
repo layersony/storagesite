@@ -77,7 +77,7 @@ main .header .header-bg img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+      object-fit: cover;
 }
 
 main .header .header-overlay {

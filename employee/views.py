@@ -5,20 +5,22 @@ from .models import User ,Profile,Booking,Unit
 from mainapp import views
 
 def units(request):
-    return render (request,'employee/units.html')
+    units = Unit.objects.all()
+
+    return render (request,'employee/units.html' ,{'units':units})
 
 
 def onsite_booking(request):
     users = User.objects.exclude(id=request.user.id)
+
     if request.method == 'POST':
         form = BookingForm(request.POST, request.FILES)
         user_form = AddUserForm(request.POST)
 
         if form.is_valid():
-            upload = form.save(commit=False)
-            upload.user = request.user.profile
-            upload.save()
-            return HttpResponseRedirect(request.path_info)
+            book_unit = form.save(commit=False)
+            book_unit.save()
+            return redirect('onsite_booking')
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
@@ -29,5 +31,5 @@ def onsite_booking(request):
         form = BookingForm()
         views.customadmin
         user_form = AddUserForm()
-    return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users,})
+    return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users})
 

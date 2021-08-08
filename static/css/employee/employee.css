@@ -113,6 +113,7 @@ main .header .header-overlay p.heading span {
 /*************** UNITS TABLE***************/
 table{
   margin-left: 5rem;
+  color: white;
 }
 .content-table {
   border-collapse: collapse;
@@ -135,6 +136,7 @@ table{
 .content-table th,
 .content-table td {
   padding: 12px 15px;
+  
 }
 
 .content-table tbody tr {
@@ -149,15 +151,7 @@ table{
 }
 
 .content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #369FE4;
-}
-
-.available{
-  background-color: #369FE4;
-}
-
-.occupied{
-  background-color: #79C54E;
+  border-bottom: 2px solid white;
 }
 
 .onsite-header {
