@@ -1,18 +1,96 @@
-{% extends 'base.html' %}
+{% extends 'all_customer/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
 
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 mt-4 bg-white prof mr-2 ml-2">
-      <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.profile_picture.url }}"
-        height="125px" width="125px">
-      <h5 class="text-center mt-3">{{user.username}}</h5>
-	  <p class="text-center"> {{user.phone_number}}</p>
-      <p class="text-center"> {{user.email}}</p>
-	  <p class="text-center"> {{user.address}}</p>
+    <div class="wrapper">
+        <div class="left">
+            <img src="/static/user.png" alt="userPic" style = "width: 100px;">
+            <h2>Full name</h2>
+            <p><i class="fa fa-phone info"></i>Phone_Number</p>
+            <p><i class="fa fa-envelope info"></i>Email adress</p>
+            <p><i class="fa fa-map-marker info"></i>Location</p>
+            <p><button type="button" class="btn btn-success">Update Profile</button></p>
+        </div>
+        <div class="right">
+            <div class="info">
+                <h3>Address</h3>
+                <div class="info-data">
+                    <div class="data">
+                        <p>House number</p>
+                        <p>Estate</p>
+                        <p>Avenue</p>
+                        <p>Street</p>
+                        <p>Town</p>
+                        <p>City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right2">
+            <div class="payment">
+                <h3>Payment</h3>
+                <div class="payment-data">
+                    <p>Payment Method</p>
+                    <p>Phone Number</p>
+                </div>
+            </div>
+        </div>
+        <div class="table1">
+            <table class="table caption-top, table-striped">
+                <caption style="text-align:center;"><h3>My Units</h3></caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Units</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">End</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Cost(KES)</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">A1</th>
+                    <td>19/07</td>
+                    <td>27/09</td>
+                    <td>small</td>
+                    <td>4,000</td>
+                    <td><button style="background-color:red; border:red; border-radius:2px; ">check out</button></td>
+                    <td><button style="background-color:blue; border:blue; border-radius:2px; ">view</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">A1</th>
+                    <td>19/07</td>
+                    <td>27/09</td>
+                    <td>small</td>
+                    <td>4,000</td>
+                    <td><button style="background-color:red; border:red; border-radius:2px; ">check out</button></td>
+                    <td><button style="background-color:blue; border:blue; border-radius:2px; ">view</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">A1</th>
+                    <td>19/07</td>
+                    <td>27/09</td>
+                    <td>small</td>
+                    <td>4,000</td>
+                    <td><button style="background-color:red; border:red; border-radius:2px; ">check out</button></td>
+                    <td><button style="background-color:blue; border:blue; border-radius:2px; ">view</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">A1</th>
+                    <td>19/07</td>
+                    <td>27/09</td>
+                    <td>small</td>
+                    <td>4,000</td>
+                    <td><button style="background-color:red; border:red; border-radius:2px; padding:0.3px ">check out</button></td>
+                    <td><button style="background-color:blue; border:blue; border-radius:2px; ">view</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div> 
     </div>
-    <div class="col-md-3"></div>
-  </div>
-</div>
-{% endblock %}
+{%endblock%}
