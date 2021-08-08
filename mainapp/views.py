@@ -179,10 +179,14 @@ def customadmin(request):
       addunit.save()
       messages.success(request, 'Unit Added successfully')
 
-    if addbook.is_valid():
-      addbook.save()
-      messages.success(request, 'Booking Added successfully')
-
+    if addbook.is_valid():      
+      if Unit.objects.get(id=addbook.cleaned_data['unit'].id).occupied == False:
+        Unit.objects.filter(id=addbook.cleaned_data['unit'].id).update(occupied=True)
+        addbook.save()
+        messages.success(request, 'Booking Added successfully')
+        return redirect('customadmin')
+      else:
+        messages.error(request, f'Sorry {addbook.cleaned_data["unit"]} Has Already Being Booked')
 
   allusers = User.objects.all()
   allprofiles = Profile.objects.all()
@@ -299,7 +303,8 @@ def deletebook(request, id):
   book = Booking.objects.get(id=id)
   if request.method == 'POST':
     book.delete()
-    print('deleting')
+    Unit.objects.filter(id=book.unit.id).update(occupied=False)
+    messages.success(request, f'{book} Deleted Successfully')
     return redirect('customadmin')
 
 class AllUnits(APIView):
