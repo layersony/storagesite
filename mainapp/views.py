@@ -247,7 +247,7 @@ def mainadminpost(request):
       return redirect('customadmin')
 
 class AllUnits(APIView):
-  permission_classes = (IsAuthenticated,)
+  permission_classes = (IsAuthenticatedOrReadOnly,)
   def get(self, request, format=None):
     allunits = Unit.objects.all()
     serializer = UnitSerializer(allunits, many=True)
