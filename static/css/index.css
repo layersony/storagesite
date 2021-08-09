@@ -148,7 +148,6 @@ main .about-us .first .box .icon, main .about-us .second .box .icon {
 main .about-us .about2 {
   border: 5px solid rgba(54, 158, 228, 0.1);
   border-radius: .25rem;
-  height: 100%;
 }
 
 main .about-us .about2 .about-img {
