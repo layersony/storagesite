@@ -106,6 +106,46 @@ main .header .header-overlay p.heading span {
   color: #369FE4;
 }
 
+main .header .header-overlay form {
+  width: 100%;
+}
+
+main .header .header-overlay form input, main .header .header-overlay form textarea, main .header .header-overlay form .btn {
+  margin-top: 2rem;
+}
+
+main .header .header-overlay form input, main .header .header-overlay form textarea {
+  width: 100%;
+  padding-top: .5rem;
+  color: white;
+  padding-bottom: .5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+main .header .header-overlay form input::-webkit-input-placeholder, main .header .header-overlay form textarea::-webkit-input-placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input:-ms-input-placeholder, main .header .header-overlay form textarea:-ms-input-placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input::-ms-input-placeholder, main .header .header-overlay form textarea::-ms-input-placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input::placeholder, main .header .header-overlay form textarea::placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input:focus, main .header .header-overlay form textarea:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #e2e2e2;
+}
+
 main .about-us {
   padding-top: 5rem;
 }

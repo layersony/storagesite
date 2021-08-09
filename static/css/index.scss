@@ -100,6 +100,31 @@ main{
                     color: $blue;
                 }
             }
+
+            // Contact Page form.
+            form{
+                width: 100%;
+                input, textarea, .btn{
+                    margin-top: 2rem;
+                }
+                input, textarea{
+                    width: 100%;
+                    padding-top: .5rem;
+                    color: white;
+                    padding-bottom: .5rem;
+                    background:transparent;
+                    border: none;
+                    border-bottom: 1px solid rgb(226, 226, 226);
+                    &::placeholder{
+                        color: #AFB1B0;
+                    }
+                    &:focus{
+                        border: none;
+                        outline: none;
+                        border-bottom: 1px solid rgb(226, 226, 226);
+                    }
+                }
+            }
         }
     }
 
