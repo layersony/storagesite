@@ -6,6 +6,8 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
   path('', views.index, name='home'),
+  path('about/', views.about, name='about'),
+  path('contact/', views.contact, name='contact'),
   path('accounts/register/', views.signup, name='register'),
   path('accounts/login/', views.sign_in, name='login'),
   path('accounts/logout/', views.logout_user, name='logout'),
@@ -14,8 +16,15 @@ urlpatterns = [
   path('api/booking/<booking_id>', views.BookingItem.as_view()),
   path('api/allunits/', views.AllUnits.as_view(),),
   path('api/aUnit/<int:id>', views.OneUnit.as_view(),),
-  path('mainadmin/', views.customadmin, name='customadmin'),
-  path('mainadminpost/', views.mainadminpost, name='mainadminpost')
+  path('admin/', views.customadmin, name='customadmin'),
+  path('admin/user/<str:id>/', views.mainadminupdateuser, name='mainadminupdateuser'),
+  path('admin/user/delete/<str:id>', views.deleteuser, name='deleteuser'),
+  path('admin/userprofile/<str:id>/', views.mainadminupdateprofile, name='mainadminupdateprofile'),
+  path('admin/userprofile/delete/<str:id>', views.deleteprofile, name='deleteprofile'),
+  path('admin/userunit/<str:id>/', views.mainadminupdateunit, name='mainadminupdateunit'),
+  path('admin/userunit/delete/<str:id>', views.deleteunit, name='deleteunit'),
+  path('admin/userbook/<str:id>/', views.mainadminupdatebook, name='mainadminupdatebook'),
+  path('admin/userbook/delete/<str:id>', views.deletebook, name='deletebook'),
 ]
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

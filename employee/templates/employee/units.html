@@ -12,208 +12,86 @@ li
                 <p style="color:white; font-size: 20px;"class="mx-5 mb-5">View a list of all available units<br>
                 Help an onsite client book storage<br>
                 View the company's statistics</p>
-                <a class="btn btn-success" href="#" role="button">View Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="#" role="button">View My Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="#" role="button">View Statistics <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="#" role="button"> Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
     <hr>
 
-  <div class="row">
-    <div class="col-md-6">
-      
+  <div class=" container-fluid">
+    <div class="col-md-12">  
       <h2 class="allunits-header">All storagesite units </h2>
+      
       <table class="content-table">
         <thead>
           <tr>
             <th>UNIT</th>
+            <th>WIDTH (m)</th>
+            <th>HEIGHT (m)</th>
+            <th>LENGTH (m)</th>
             <th>SIZE</th>
-            <th>VOLUME</th>
-            <th>WEEKLY PRICE</th>
-            <th>MONTHLY PRICE</th>
-            <th>STATUS</th>
+            <th>OCCUPIED</th>
+            <th>DAILY CHARGE (Ksh)</th>
+            <th>WEEKLY CHARGE (Ksh)</th>
+            <th>MONTHLY CHARGE (Ksh)</th>
+            <th></th>
+            
+
           </tr>
         </thead>
+        {% if units %}
+        {% for unit in units %}
         <tbody>
           <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
+            <td>{{ unit.name}}</td>
+            <td>{{ unit.width}}</td>
+            <td>{{ unit.height}}</td>
+            <td>{{ unit.length}}</td>
+            <td>{{ unit.size}}</td>
+            <td>{{ unit.occupied}}</td>
+            <td>{{ unit.daily_charge}}</td>
+            <td>{{ unit.weekly_charge}}</td>
+            <td>{{ unit.monthly_charge}}</td>
+            <td><a><button class="btn btn-outline-success btn-sm" style="font-weight:900;" data-toggle="modal" data-target="#myModalunit">Edit Unit</button></a></td>
           </tr>
-          <tr>
-            <td>1b</td>
-            <td>large</td>
-            <td>100*3</td>
-            <td>Ksh 7000</td>
-            <td>Ksh 14000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>2A</td>
-            <td>medium</td>
-            <td>100*3</td>
-            <td>Ksh 7,300</td>
-            <td>Ksh 15,000 </td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="occupied">Occupied</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="occupied">Occupied</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="occupied">Occupied</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="occupied">Occupied</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="occupied">Occupied</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="available">Available</button></td>
-          </tr>
-          <tr>
-            <td>1A</td>
-            <td>Small</td>
-            <td>100*3</td>
-            <td>KSH 3000</td>
-            <td>kSH 7000</td>
-            <td><button class="occupied">Occupied</button></td>
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-5">
-      <div class="row statsrequest">
-        <div class="col-md-5 card statcard1">
-          <div class="embed-responsive embed-responsive-1by1">
-            <img class="card-img-top embed-responsive-item" width="300px"src="/static/images/stat1.jpg"  alt="" >
-          </div>
-            <div class="card-body">
-            <p> View the company's statistics</p>
-            <button>here</button>
-          </div>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5 card requestscard1">
-          <img src="/static/images/delivery2.jpeg" alt="">
-          <p>View current pick-up and delivery requests</p>
-          <button>here</button>
-        </div> 
-        <div class="col-md-1"></div>  
-      </div>
-      
-    </div>
-    <div class="col-md-1"></div>
-    
+          </tbody>
 
+  
+          <div class="modal fade text-dark" id="myModalunit" role="dialog" >
+            <div class="modal-dialog" >
+                <div class="modal-content p-4"  style="width:40rem;">
+                    <h1 class="modalhead text-center" style="margin-bottom: 3rem;">Unit {{unit.name}}</h1>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p>Name of the unit:  {{ unit.width}}</p><hr>
+                        <p>Height of the unit:  {{ unit.height}}</p><hr>
+                        <p>Length of the unit:  {{ unit.length}}</p><hr>
+                        <p>General size:  {{ unit.size}}</p><hr>
+                        <p>Availability status:  {{ unit.occupied}}</p><hr>
+                      </div>
+                      <div class="col-md-6">
+                        <p>Charges per day:  {{ unit.daily_charge}}</p><hr>
+                        <p>Charges per week:  {{ unit.weekly_charge}}</p><hr>
+                        <p>Charges per month:  {{ unit.monthly_charge}}</p><hr>
+                        <p>Most suitable goods to be stored : </p><hr>
+                        <p>Average temperatures:</p>
+                      </div>
+                    </div>
+                    <a class="btn btn-outline " style="float:right; background-color: #79C54E;;">Update Availability Status </a>
+                    <a href="onsite_booking" class="btn btn-outline" style="background-color: #369FE4; color: white;" >Book Unit</a>
+                    <a href="{% url 'delete_unit' unit.id %}" class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
+  
+                </div>
+            </div>
+          </div>
+
+        {% endfor %}
+        {% endif %}
+      </table>
+    </div>  
   </div>
+
 </div>
 {% endblock content%}

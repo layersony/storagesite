@@ -9,7 +9,8 @@ urlpatterns = [
   path('bookingdatail/', views.bookingDetails, name = 'boolingdetials'),
   path('profile/update', views.ProfileUpdate, name='update_profile'),
   path('available/', views.available, name='available'),
-  path('book/', views.book, name='book'),
+  path('book/<str:pk>', views.book, name='book'),
   path('payment/', views.payment, name='payment'),
 ]
+
 

@@ -39,7 +39,7 @@ html {
 .card {
     padding: 30px 25px 35px 50px;
     border-radius: 30px;
-    box-shadow: 0px 4px 8px 0px #B71C1C;
+    box-shadow: 0px 4px 8px 0px white;
     margin-top: 50px;
     margin-bottom: 50px
 }
@@ -91,7 +91,7 @@ input:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border-bottom: 1px solid #EF5350;
+    border-bottom: 1px solid white;
     outline-width: 0
 }
 
@@ -103,7 +103,7 @@ button:focus {
 }
 
 .btn-red {
-    background-color: #EF5350;
+    background-color: white;
     color: #fff;
     padding: 8px 25px;
     border-radius: 50px;
@@ -113,15 +113,15 @@ button:focus {
 }
 
 .btn-red:hover {
-    box-shadow: 0 0 0 2px #EF5350
+    box-shadow: 0 0 0 2px white
 }
 
 .btn-red:focus {
-    box-shadow: 0 0 0 2px #EF5350 !important
+    box-shadow: 0 0 0 2px white !important
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #EF5350
+    background-color: white
 }
 
 @media screen and (max-width: 575px) {
