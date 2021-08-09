@@ -1,6 +1,12 @@
 envprodev/
 .env
+<<<<<<< HEAD
 virtual/
+=======
+*.pyc
+virtual/]
+requirements.txtsource
+>>>>>>> 27725880428572534e87e360930c07484ee094b0
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django

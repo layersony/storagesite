@@ -1,3 +1,4 @@
 {
-    "html-to-css-autocompletion.autocompletionFilesScope": "linked-files"
+    "html-to-css-autocompletion.autocompletionFilesScope": "linked-files",
+    "python.pythonPath": "envprodev/bin/python"
 }
