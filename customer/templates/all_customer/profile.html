@@ -12,24 +12,17 @@
 <div class="wrapper">
   <div class="left">
       <img src="/static/css/customer/img/prpf.jpeg" alt="userPic" style = "width: 100px;">
-      <h2>Full name</h2>
-      <p><i class="fa fa-phone info"></i>Phone_Number</p>
-      <p><i class="fa fa-envelope info"></i>Email adress</p>
-      <p><i class="fa fa-map-marker info"></i>Location</p>
-      <p><button type="button" class="btn btn-success">Update Profile</button></p>
+      <h2>{{user.profile.fullname}}</h2>
+      <p><i class="fa fa-phone info"></i>{{user.profile.phone_number}}</p>
+      <p><i class="fa fa-envelope info"></i>{{user.profile.adress}}</p>
+      <p><i class="fa fa-map-marker info"></i>{{user.nok_fullname}}</p>
+      <a class="btn btn-warning" href = "{% url 'update_profile' %}">Edit Profile</a>
   </div>
   <div class="right">
       <div class="info">
           <h3>Address</h3>
           <div class="info-data">
-              <div class="data">
-                  <p>House number</p>
-                  <p>Estate</p>
-                  <p>Avenue</p>
-                  <p>Street</p>
-                  <p>Town</p>
-                  <p>City</p>
-              </div>
+              {{user.adress}}
           </div>
       </div>
   </div>
@@ -57,8 +50,9 @@
             </tr>
           </thead>
           <tbody>
+            {% for data in MyUnits%}
             <tr>
-              <th scope="row">A1</th>
+              <th scope="row">{{data.}}</th>
               <td>19/07</td>
               <td>27/09</td>
               <td>small</td>
