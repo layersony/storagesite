@@ -7,11 +7,13 @@ from mainapp import views
 def employee(request):
     pickup=Booking.objects.filter(pickup=True)
     delivery=Booking.objects.filter(pickup=True)
-    return render(request,'employee.html' ,{'pickup' :pickup,'delivery' :delivery}) 
+    available=Unit.objects.filter(occupied=False)
+    occupied_units=Unit.objects.filter(occupied=True)
+    users=User.objects.all
+    return render(request,'employee.html' ,{'pickup' :pickup,'delivery' :delivery, 'available' :available, 'occupied_units' :occupied_units, 'users' :users}) 
 
 def units(request):
     units = Unit.objects.all()
-
     return render (request,'employee/units.html' ,{'units':units})
 
 
