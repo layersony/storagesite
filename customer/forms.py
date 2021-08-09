@@ -33,5 +33,5 @@ class PaymentForm(ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('pic','user', 'phone_number', 'address', 'nok_fullname',
-                  'nok_number', 'nok_email', 'nok_relationship',)
+        fields = ['pic','user', 'phone_number', 'address', 'nok_fullname',
+                  'nok_number', 'nok_email', 'nok_relationship',]

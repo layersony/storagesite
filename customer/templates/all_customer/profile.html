@@ -11,10 +11,11 @@
 
 <div class="wrapper">
   <div class="left">
-      <img src="/static/css/customer/img/prpf.jpeg" alt="userPic" style = "width: 100px;">
-      <h2>{{user.profile.fullname}}</h2>
-      <p><i class="fa fa-phone info"></i>{{user.profile.phone_number}}</p>
-      <p><i class="fa fa-envelope info"></i>{{user.profile.adress}}</p>
+    <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.profile_picture.url }}"
+    height="125px" width="125px">
+      <h2>{{user.name}}</h2>
+      <p><i class="fa fa-phone info"></i>{{user.name}}</p>
+      <p><i class="fa fa-envelope info"></i>{{user.adress}}</p>
       <p><i class="fa fa-map-marker info"></i>{{user.nok_fullname}}</p>
       <a class="btn btn-warning" href = "{% url 'update_profile' %}">Edit Profile</a>
   </div>
@@ -50,7 +51,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for data in MyUnits%}
+
             <tr>
               <th scope="row">{{data.}}</th>
               <td>19/07</td>
