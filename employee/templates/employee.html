@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="col-sm"
-    style='background-image:url("https://images.unsplash.com/photo-1623441569387-025265e5846c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80");background-size: cover;background-repeat: no-repeat;background-position: center;height: 100%;padding-bottom: 500px;'>
+<div class="container col-sm" style='background-image:url("https://images.unsplash.com/photo-1623441569387-025265e5846c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80");background-size: cover;background-repeat: no-repeat;background-position: center;height: 100%;padding-bottom: 500px;'>
     <div class="row">
-        <div class="col-sm">
+        <div class="col-md-4">
             <div class=" card col-sm mt-4">
                 <div class="well well-lg p-3"
                     style="text-align: center; box-shadow: 0 7px 8px 0 rgba(0,0,0,0.8), 0 10px 10px 0 rgba(0,0,0,0.8); background-color: grey;">
@@ -15,10 +14,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm">
+        <div class="col-md-4">
             <div class=" card col-sm mt-4">
-                <div class="well well-lg p-3 "
-                    style="text-align: center;padding-bottom: 70px; box-shadow: 0 7px 8px 0 rgba(0,0,0,0.8), 0 10px 10px 0 rgba(0,0,0,0.8); background-color: grey;">
+                <div class="well well-lg p-3" style="text-align: center; box-shadow: 0 7px 8px 0 rgba(0,0,0,0.8), 0 10px 10px 0 rgba(0,0,0,0.8); background-color: grey;">
                     <h3>Users</h3>
                     <p>44</p>
                     <hr>
@@ -29,10 +27,9 @@
 
 
 
-        <div class="col-sm">
-            <div class=" card col-sm mt-4">
-                <div class="well well-lg p-3"
-                    style="text-align: center; box-shadow: 0 7px 8px 0 rgba(0,0,0,0.8), 0 10px 10px 0 rgba(0,0,0,0.8); background-color: grey;">
+        <div class="col-md-4">
+            <div class=" card  col-sm mt-4">
+                <div class="well well-lg p-3" style="text-align: center; box-shadow: 0 7px 8px 0 rgba(0,0,0,0.8), 0 10px 10px 0 rgba(0,0,0,0.8); background-color: grey;">
                     <h3>Occupied units</h3>
                     <p>22</p>
                     <hr>
@@ -44,10 +41,9 @@
         </div>
     </div>
 
-    <div class="row m-3">
-        <div class=" card col-md-6 mt-4;">
-            <div class="" style="text-align: left;">
-                <div class="pickup">
+    <div class="row">
+        <div class="col-md">
+            <div class=" card mt-44" style="text-align: left;">
                     <div class="delivery" style="background-color: azure;">
                         <h3>Pick up requests</h3>
                         <p>Username:John Doe</p>
@@ -58,13 +54,10 @@
                         <p>Type of property:Private</p>
                         <hr>
                     </div>
-
-
-                </div>
             </div>
         </div>
-        <div class=" card col-md-6 mt-4">
-            <div class="" style="text-align: left;">
+        <div class="col-md">
+            <div class="card mt-4  " style="text-align: left;">
                 <div class="delivery" style="background-color: azure;">
                     <h3>Delivery requests</h3>
                     <p>Username:John Doe</p>
@@ -74,20 +67,13 @@
                     <p>Date:You guess</p>
                     <p>Type of property:Private</p>
                     <hr>
-
                 </div>
-
                 <hr>
-
             </div>
         </div>
-
-
-
-
     </div>
 </div>
-</div>
+
 
 
 {% endblock %}
