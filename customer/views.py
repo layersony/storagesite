@@ -1,3 +1,9 @@
+from django.shortcuts import render ,redirect,get_object_or_404
+from django.http import HttpResponseRedirect
+from .forms import BookingForm,PaymentForm
+
+
+from .models import User ,Profile,Booking,Unit
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import logout, login, authenticate
@@ -26,12 +32,43 @@ def profile(request):
     return render(request, 'all_customer/profile.html')
 
 def available(request):
-      return render(request, 'all_customer/available_units.html', )
+      units=Unit.objects.all()
+      return render(request, 'all_customer/available_units.html', {"units":units})
 
 
-def book(request):
-      return render(request, 'all_customer/book.html', )
+
+def book(request, pk):
+      if pk:
+            unit=Unit.objects.get(pk=pk)
+      else:
+            unit = request.user
+      
+      form_class = BookingForm()
+      form = BookingForm()
+
+      if request.method == 'POST':
+            form = BookingForm(request.POST)
+            if form.is_valid():
+                  form.save()
+
+      context = {'form': form}
+      return render(request, 'all_customer/book.html',  context)
 
 
 def payment(request):
-      return render(request, 'all_customer/payment.html', )
+      form_class = PaymentForm()
+      form = PaymentForm()
+
+      if request.method == 'POST':
+            form = PaymentForm(request.POST)
+            if form.is_valid():
+                  form.save()
+
+      context = {'form': form}
+      return render(request, 'all_customer/payment.html', context)
+
+
+
+
+      
+      

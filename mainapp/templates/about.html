@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}
+<main class="container-fluid">
+
+    <!-- ABOUT US -->
+    <div class="about-us">
+        <div class="container py-5">
+            <h2 class="mb-5">About Us</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="about1">
+                        On relocation to another location, importation of goods for business/sale, or due to the lack of
+                        sufficient space for items, one might need extra storage space to keep them. Our services can
+                        either be for storing personal belongings or business goods.
+
+                    </div>
+                    <div class="sellpoints">
+                        <div class="first">
+                            <div class="box">
+                                <div class="icon">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="ft">
+                                    Save time by reducing the amount of time your logistics take by taking advantage of our semi-automated system works.
+                                </div>
+                            </div>
+
+                            <div class="box">
+                                <div class="icon">
+                                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                </div>
+                                <div class="ft">
+                                    Rest easy knowing that in addition to our 24/7 guarded facilities, your unit is only accessible through an access code that you set.
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="second">
+                            <div class="box">
+                                <div class="icon">
+                                    <i class="fa fa-database" aria-hidden="true"></i>
+                                </div>
+                                <div class="ft">
+                                    We have many sizes of storage units ranging from whether you just want to store a secret document or whether you bought Titanic II and would like to have it rest for a while.
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="icon">
+                                    <i class="fa fa-truck" aria-hidden="true"></i>
+                                </div>
+                                <div class="ft">
+                                    Enjoy our fast and efficient pickup and delivery services so you do not have to worry about transit logistics at all.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about2 p-3">
+                        <div class="about-img mb-2">
+                            <img src="{% static 'img/about-img.jpg'%}" alt="" class="img-fluid">
+                        </div>
+                        <div class="about-subtext">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, eum. Suscipit
+                                corrupti sit odio asperiores atque nesciunt, cupiditate cumque ipsum. Nesciunt
+                                perspiciatis maxime iste totam cumque. Consequatur nobis dolor sit. Lorem, ipsum dolor
+                                sit amet consectetur adipisicing elit. Distinctio ex magnam officia eum laborum iste
+                                aliquid tempora. </p>
+                        </div>
+                        <div class="about-btn">
+                            <a class="btn btn-success " href="{% url 'contact'%}" role="button"> Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ABOUT US -->
+
+    <!-- TESTIMONIALS -->
+    <div class="testimonials py-5">
+        <div class="">
+            <h2 class="text-center pb-5">Our Clients Say</h2>
+            <div class="feedback mx-5 d-flex row">
+                <div class="col-lg-4">
+                    <div class="customer d-flex">
+                        <div class="pic">
+                            <div class="pic-holder">
+                                <img src="{% static 'img/contact-img.jpg' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque ex dolor
+                                consectetur
+                                hic rem totam recusandae quia, reprehenderit doloribus accusantium delectus labore?
+                                Harum
+                                quidem sequi magnam sit voluptatum quos?</p>
+                            <p class="mt-5"><strong>John Doe</strong></p>
+                            <p><em>Businessman</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="customer d-flex">
+                        <div class="pic">
+                            <div class="pic-holder">
+                                <img src="{% static 'img/contact-img.jpg' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque ex dolor
+                                consectetur
+                                hic rem totam recusandae quia, reprehenderit doloribus accusantium delectus labore?
+                                Harum
+                                quidem sequi magnam sit voluptatum quos?</p>
+                            <p class="mt-5"><strong>John Doe</strong></p>
+                            <p><em>Businessman</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="customer d-flex">
+                        <div class="pic">
+                            <div class="pic-holder">
+                                <img src="{% static 'img/contact-img.jpg' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque ex dolor
+                                consectetur
+                                hic rem totam recusandae quia, reprehenderit doloribus accusantium delectus labore?
+                                Harum
+                                quidem sequi magnam sit voluptatum quos?</p>
+                            <p class="mt-5"><strong>John Doe</strong></p>
+                            <p><em>Businessman</em></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /TESTIMONIALS -->
+</main>
+{% endblock %}

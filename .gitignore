@@ -1,7 +1,8 @@
 envprodev/
 .env
+virtual/
+migrations/
 *.pyc
-virtual/]
 requirements.txtsource
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
@@ -130,6 +131,9 @@ ENV/
 env.bak/
 venv.bak/
 virtual/
+virtualenv/
+virtualstorage/
+virtualsite
 
 # Spyder project settings
 .spyderproject

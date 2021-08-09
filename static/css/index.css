@@ -2,7 +2,6 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
 }
 
 * {
@@ -34,6 +33,9 @@ h1, h2, h3, h4, h5 {
 .navbar {
   background-color: #343334 !important;
   color: #FFFFFF !important;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
 }
 
 .navbar .navbar-brand {
@@ -65,7 +67,7 @@ main {
 
 main .header {
   width: 100%;
-  height: 500px;
+  height: 100vh;
 }
 
 main .header .header-bg {
@@ -78,7 +80,7 @@ main .header .header-bg img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+      object-fit: cover;
 }
 
 main .header .header-overlay {
@@ -96,7 +98,7 @@ main .header .header-overlay p.carefree {
 }
 
 main .header .header-overlay p.heading {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
 }
 
@@ -104,31 +106,86 @@ main .header .header-overlay p.heading span {
   color: #369FE4;
 }
 
-main .about-us .first {
-  height: 150px;
+main .header .header-overlay form {
   width: 100%;
+}
+
+main .header .header-overlay form input, main .header .header-overlay form textarea, main .header .header-overlay form .btn {
+  margin-top: 2rem;
+}
+
+main .header .header-overlay form input, main .header .header-overlay form textarea {
+  width: 100%;
+  padding-top: .5rem;
+  color: white;
+  padding-bottom: .5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+main .header .header-overlay form input::-webkit-input-placeholder, main .header .header-overlay form textarea::-webkit-input-placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input:-ms-input-placeholder, main .header .header-overlay form textarea:-ms-input-placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input::-ms-input-placeholder, main .header .header-overlay form textarea::-ms-input-placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input::placeholder, main .header .header-overlay form textarea::placeholder {
+  color: #AFB1B0;
+}
+
+main .header .header-overlay form input:focus, main .header .header-overlay form textarea:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+main .about-us {
+  padding-top: 5rem;
+}
+
+main .about-us .first, main .about-us .second {
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-main .about-us .first .box {
+main .about-us .first .box, main .about-us .second .box {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  min-width: 200px;
+  padding: 2rem;
+  min-width: 100px !important;
   text-align: center;
+  background-color: rgba(54, 159, 228, 0.1);
+  color: #356B8A;
+  border-radius: .25rem;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+main .about-us .first .box:hover, main .about-us .second .box:hover {
   background-color: #369FE4;
+  color: #FFFFFF;
+}
+
+main .about-us .first .box .icon, main .about-us .second .box .icon {
+  font-size: 4rem;
 }
 
 main .about-us .about2 {
-  border: 5px solid rgba(54, 158, 228, 0.15);
-  height: 100%;
+  border: 5px solid rgba(54, 158, 228, 0.1);
+  border-radius: .25rem;
 }
 
 main .about-us .about2 .about-img {
@@ -149,81 +206,7 @@ main .about-us .about2 p {
   text-justify: auto;
 }
 
-main .contact-us .contact-img {
-  width: 100%;
-  overflow: hidden;
-  height: 600px;
-}
-
-main .contact-us .contact-img img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  opacity: .9;
-  background-blend-mode: darken;
-}
-
-main .contact-us .contact-form {
-  height: 100%;
-  width: 100%;
-  color: white;
-  background-color: #369FE4 !important;
-}
-
-main .contact-us .contact-form form {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem;
-  border-radius: .3rem;
-}
-
-main .contact-us .contact-form h2 {
-  color: #FFFFFF;
-  font-weight: 800;
-}
-
-main .contact-us .contact-form .input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid #356B8A;
-  width: 100%;
-  color: #FFFFFF;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-main .contact-us .contact-form .input::-webkit-input-placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .input:-ms-input-placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .input::-ms-input-placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .input::placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .btn {
-  color: #356B8A;
-  margin-top: 1rem;
-  border: 1px solid #356B8A;
-  outline: none;
-}
-
-main .contact-us .contact-form .btn:hover {
-  background-color: #356B8A;
-  color: white;
-}
-
 main .testimonials {
-  margin-top: 600px;
   background-color: #343334 !important;
 }
 
@@ -238,6 +221,15 @@ main .testimonials .customer {
   padding: 1rem;
   margin: 1rem;
   border-radius: .3rem;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+main .testimonials .customer:hover {
+  background-color: #FFFFFF;
+  color: #343334;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 main .testimonials .customer .pic {
