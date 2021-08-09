@@ -5,7 +5,9 @@ from .models import User ,Profile,Booking,Unit
 from mainapp import views
 
 def employee(request):
-  return render(request,'employee.html')
+    pickup=Booking.objects.filter(pickup=True)
+    delivery=Booking.objects.filter(pickup=True)
+    return render(request,'employee.html' ,{'pickup' :pickup,'delivery' :delivery}) 
 
 def units(request):
     units = Unit.objects.all()
