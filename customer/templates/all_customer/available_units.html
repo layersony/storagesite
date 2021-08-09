@@ -5,60 +5,43 @@
 
 
 {% block content %}
+
+
+
     <div class="available">
         <table class="container table table-active ">
       <thead>
     <tr>
-      <th scope="col">UNIT</th>
-      <th scope="col">SIZE</th>
-      <th scope="col">VOLUME</th>
-      <th scope="col">WEEKLY PRICE</th>
-      <th scope="col">MONTHLY PRICE</th>
-      <th scope="col">STATUS</th>
+      <th scope="col">name</th>
+      <th scope="col">width</th>
+      <th scope="col">height</th>
+      <th scope="col">daily_charge</th>
+      <th scope="col">weekly_charge</th>
+      <th scope="col">access_code</th>
     </tr>
   </thead>
+      
   <tbody>
+    {% for Unit in Units %}
     <tr>
-      <th scope="row">1</th>
-      <td>20</td>
-      <td>3*4*6</td>
-      <td>Ksh3000</td>
-      <td>Ksh9000</td>
-      <td><button type="button" class="btn btn-info">available</button></td>
+      <th scope="row">{{ Unit.name }}</th>
+      <td>{{ Unit.width }}</td>
+      <td>{{ Unit.height }}</td>
+      <td>{{ Unit.length }}</td>
+      <td>{{ Unit.daily_charge }}</td>
+      <td>{{ Unit.weekly_charge }}</td>
+      <td>{{ Unit.monthly_charge }}</td>
+      <td>{{ Unit.access_code }}</td>
+      <td><a href="{%url 'all_customer:book_with_pk' pk=unit %}"><button type="button" class="btn btn-info">{{ Unit.occupied }}</button></a></td>
     </tr>
-    <br>
-    <br>
-    <tr>
-      <th scope="row">2</th>
-      <td>20</td>
-      <td>3*4*6</td>
-      <td>Ksh3000</td>
-      <td>Ksh9000</td>
-      <td><button type="button" class="btn btn-danger">occupied</button></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>20</td>
-      <td>3*4*6</td>
-      <td>Ksh3000</td>
-      <td>Ksh9000</td>
-      <td><button type="button" class="btn btn-info">available</button></td>
-    </tr>
-    <br>
-    <br>
-    <tr>
-        <th scope="row">3</th>
-        <td>20</td>
-        <td>3*4*6</td>
-        <td>Ksh3000</td>
-        <td>Ksh9000</td>
-        <td><button type="button" class="btn btn-danger">occupied</button></td>
-      </tr>
-  </tbody>
-
+    {% endfor %}
+    </tbody>
+  
   </table>
 </div>
 
 
 
 {%endblock%}
+
+

@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
+ <div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
             <div class="card border-0">
@@ -12,48 +12,21 @@
                     <h3 class="mb-4">BOOK UNITA1</h3>
                 </div>
                 <div class="row">
-                    <div class="d-block my-3">
-                        <div class="custom-control custom-radio">
-                          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                          <label class="custom-control-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                          <label class="custom-control-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                          <label class="custom-control-label" for="paypal">PayPal</label>
-                        </div>
-                      </div>
+                    
+                    
                     <div class="col-sm-6">
-                              <div class="mb-3">
-                                  <label for="formGroupExampleInput" class="form-label">Description</label>
-                                  <input type="text" class="form-control" id="formGroupExampleInput">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="formGroupExampleInput2" class="form-label">billing cycle</label>
-                                  <input type="text" class="form-control" id="formGroupExampleInput2">
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                  <label class="form-check-label" for="flexCheckDefault">
-                                    pick up
-                                  </label>
-                                  <div class="mb-3">
-                                    <label for="formGroupExampleInput" class="form-label">Pick up Adress</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput">
+                                <div>  
+                                    <form action="" method="post">
+                                      {% csrf_token %}
+                                      {{form}}
+                                      <input type="submit">
+                                    </form>
                                   </div>
-                                </div>
-                   
                 </div>
             </div>
         </div>
     </div>
 </div>
-    
-
-
 
 
 {%endblock%}
