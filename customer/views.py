@@ -28,6 +28,9 @@ def profile(request):
 def bookingDetails(request):
     return render(request, 'all_customer/booking_details.html')
 
+def updateProfile(request):
+    return render(request, 'all_customer/update_profile.html')
+
 def available(request):
       return render(request, 'all_customer/available_units.html', )
 

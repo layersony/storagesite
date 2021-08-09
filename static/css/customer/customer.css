@@ -1,6 +1,7 @@
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Yatra+One&family=Zen+Tokyo+Zoo&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' );
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
 
 *{
     margin: 0;
@@ -23,7 +24,7 @@ body{
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-    overflow: hidden;
+    /* overflow: hidden; */
     display: -webkit-box;
     /* display: -webkit-flex; */
     display: -moz-box; 
@@ -35,7 +36,7 @@ body{
 .wrapper .left
 {
     padding-top: 50px;
-    margin-left: 100px;
+    margin-left: 70px;
 
 }
 .wrapper .left p
@@ -62,7 +63,7 @@ body{
 {
     position: absolute;
     display: flex;
-    margin-left: 350px;
+    margin-left: 300px;
     padding-top: 50px;
 }
 .wrapper .right .info-data
@@ -88,9 +89,9 @@ body{
 {
     position: absolute;
     display: flex;
-    margin-left: 350px;
+    margin-left: 300px;
     margin-top: 200px;
-    font-size:larger;
+    font-size:small;
     
 }
 table,tr{
@@ -113,7 +114,7 @@ table,tr{
 .updateForm
 {   
     margin-left: 40%;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: center;
     padding-right: 12px;
     
