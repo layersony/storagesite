@@ -155,8 +155,6 @@ main .about-us .first, main .about-us .second {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
   gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -167,7 +165,7 @@ main .about-us .first .box, main .about-us .second .box {
       -ms-flex-positive: 1;
           flex-grow: 1;
   padding: 2rem;
-  min-width: 200px;
+  min-width: 100px !important;
   text-align: center;
   background-color: rgba(54, 159, 228, 0.1);
   color: #356B8A;

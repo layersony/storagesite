@@ -133,14 +133,13 @@ main{
         .first, .second{
             width: auto;
             display: flex;
-            flex-wrap: nowrap;
             gap: 1rem;
             margin-top: 1rem;
             margin-bottom: 1rem;
             .box{
                 flex-grow: 1;
                 padding: 2rem;
-                min-width: 200px;
+                min-width: 100px !important;
                 text-align: center;
                 background-color: rgba(54, 159, 228, .1);
                 color: $dark-blue;
