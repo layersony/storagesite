@@ -1,0 +1,42 @@
+{% extends 'customadmin/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<!-- <button class="btn btn-md">Go Back</button> -->
+<div class="p-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="modalhead text-center">Update Unit</h1>
+        <form method="post" enctype="multipart/form-data" action="{% url 'mainadminupdateunit' unit.id %}">
+            {% csrf_token %}
+            {% bootstrap_form  addunit %}
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-success text-white">Update Unit</button>
+            </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="mt-2 mb-3">
+          <button data-toggle="modal" data-target="#myModaldelete" class="btn btn-outline-danger">Delete Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModaldelete" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content p-4">
+      <p class="text-center">Are you Sure you want to Delete Unit <strong>{{ unit }}</strong>?</p>
+      <form method="post" enctype="multipart/form-data" action='{% url "deleteunit" unit.id %}'>
+        {% csrf_token %}
+        <div class="text-center">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

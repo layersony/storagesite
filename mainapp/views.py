@@ -175,86 +175,167 @@ class BookingItem(APIView):
 
 @login_required(login_url='login')
 def customadmin(request):
-  if request.method == 'POST':
-    adduser = AddUserForm(request.POST or None)
-    addpro = AddProfileForm(request.POST or None, request.FILES)
-    addunit = AddUnitForm(request.POST)
-    addbook = AddBookingForm(request.POST)
+  if request.user.is_superuser:
+    if request.method == 'POST':
+      adduser = AddUserForm(request.POST or None)
+      addpro = AddProfileForm(request.POST or None, request.FILES)
+      addunit = AddUnitForm(request.POST)
+      addbook = AddBookingForm(request.POST)
 
+      if adduser.is_valid():
+        add_user = adduser.save(commit=False)
+        add_user.set_password(adduser.cleaned_data['password1'])
+        add_user.save()
+        messages.success(request, 'User Added successfully')
+
+      if addpro.is_valid():
+        addpro.save()
+        messages.success(request, 'Profile Added successfully')
+
+      if addunit.is_valid():
+        addunit.save()
+        messages.success(request, 'Unit Added successfully')
+
+      if addbook.is_valid():      
+        if Unit.objects.get(id=addbook.cleaned_data['unit'].id).occupied == False:
+          Unit.objects.filter(id=addbook.cleaned_data['unit'].id).update(occupied=True)
+          addbook.save()
+          messages.success(request, 'Booking Added successfully')
+          return redirect('customadmin')
+        else:
+          messages.error(request, f'Sorry {addbook.cleaned_data["unit"]} Has Already Being Booked')
+
+    allusers = User.objects.all()
+    allprofiles = Profile.objects.all()
+    allunits = Unit.objects.all()
+    allBooking = Booking.objects.all()
+
+    available_units = Unit.objects.filter(occupied=False)
+    occupied_units = Unit.objects.filter(occupied=True)
+
+    adduser = AddUserForm()
+    addpro = AddProfileForm()
+    addunit = AddUnitForm()
+    addbook = AddBookingForm()
+
+    params = {
+      'allusers':allusers,
+      'allprofiles':allprofiles,
+      'allunits':allunits,
+      'allBooking':allBooking,
+      'available_units':available_units,
+      'occupied_units':occupied_units,
+      'adduser':adduser,
+      'addpro':addpro,
+      'addunit':addunit,
+      'addbook':addbook,
+    }
+    return render(request, 'customadmin/index.html', params)
+  else:
+    messages.error(request, f'You are not Authorized to Access the Admin Page')
+    return redirect('home')
+
+@login_required(login_url='login')
+def mainadminupdateuser(request, id):
+  userto = User.objects.get(id=id)
+  if request.method == 'POST':
+    adduser = AddUserForm(request.POST, instance=userto)
     if adduser.is_valid():
       add_user = adduser.save(commit=False)
       add_user.set_password(adduser.cleaned_data['password1'])
-      adduser.save()
-      messages.success(request, 'User Added successfully')
-
-    if addpro.is_valid():
-      addpro.save()
-      messages.success(request, 'Profile Added successfully')
-
-    if addunit.is_valid():
-      addunit.save()
-      messages.success(request, 'Unit Added successfully')
-
-    if addbook.is_valid():
-      addbook.save()
-      messages.success(request, 'Booking Added successfully')
-
-
-  allusers = User.objects.all()
-  allprofiles = Profile.objects.all()
-  allunits = Unit.objects.all()
-  allBooking = Booking.objects.all()
-
-  available_units = Unit.objects.filter(occupied=False)
-  occupied_units = Unit.objects.filter(occupied=True)
-
-  adduser = AddUserForm()
-  addpro = AddProfileForm()
-  addunit = AddUnitForm()
-  addbook = AddBookingForm()
-
+      add_user.save()
+      return redirect('customadmin')
+  
+  adduser = AddUserForm(instance=userto)
   params = {
-    'allusers':allusers,
-    'allprofiles':allprofiles,
-    'allunits':allunits,
-    'allBooking':allBooking,
-    'available_units':available_units,
-    'occupied_units':occupied_units,
     'adduser':adduser,
-    'addpro':addpro,
-    'addunit':addunit,
-    'addbook':addbook,
+    'userto':userto
   }
-  return render(request, 'customadmin/index.html', params)
+  return render(request, 'customadmin/update.html', params)
 
 @login_required(login_url='login')
-def mainadminpost(request):
+def deleteuser(request, id):
+  userto = User.objects.get(id=id)
   if request.method == 'POST':
-    adduser = AddUserForm(request.POST)
-    addpro = AddProfileForm(request.POST)
-    addunit = AddUnitForm(request.POST)
-    addbook = AddBookingForm(request.POST)
-    print(request.POST)
+    userto.delete()
+    return redirect('customadmin')
 
-    if adduser.is_valid():
-      adduser.save()
-      messages.success(request, 'User Added successfully')
-      return redirect('customadmin')
-
+@login_required(login_url='login')
+def mainadminupdateprofile(request, id):
+  userto = Profile.objects.get(id=id)
+  if request.method == 'POST':
+    addpro = AddProfileForm(request.POST, instance=userto)
     if addpro.is_valid():
       addpro.save()
-      messages.success(request, 'Profile Added successfully')
       return redirect('customadmin')
+  
+  addpro = AddProfileForm(instance=userto)
+  params = {
+    'addpro':addpro,
+    'userto':userto
+  }
+  return render(request, 'customadmin/updateprofile.html', params)
 
+@login_required(login_url='login')
+def deleteprofile(request, id):
+  userto = Profile.objects.get(id=id)
+  if request.method == 'POST':
+    userto.delete()
+    return redirect('customadmin')
+
+@login_required(login_url='login')
+def mainadminupdateunit(request, id):
+  unit = Unit.objects.get(id=id)
+  if request.method == 'POST':
+    addunit = AddUnitForm(request.POST, instance=unit)
     if addunit.is_valid():
       addunit.save()
-      messages.success(request, 'Unit Added successfully')
       return redirect('customadmin')
+  
+  addunit = AddUnitForm(instance=unit)
+  params = {
+    'addunit':addunit,
+    'unit':unit
+  }
+  return render(request, 'customadmin/updateunit.html', params)
 
-    if addbook.is_valid():
+@login_required(login_url='login')
+def deleteunit(request, id):
+  unit = Unit.objects.get(id=id)
+  if request.method == 'POST':
+    unit.delete()
+    return redirect('customadmin')
+
+@login_required(login_url='login')
+def mainadminupdatebook(request, id):
+  book = Booking.objects.get(id=id)
+  if request.method == 'POST':
+
+    addbook = AddBookingForm(request.POST or None, instance=book)
+
+    if 'update' in request.POST and addbook.is_valid():
       addbook.save()
-      messages.success(request, 'Booking Added successfully')
+      print('redirecting')
       return redirect('customadmin')
+    if 'delete' in request.POST:
+      print(request.POST)
+  
+
+  addbook = AddBookingForm(instance=book)
+  params = {
+    'addbook':addbook,
+    'book':book
+  }
+  return render(request, 'customadmin/updatebook.html', params)
+
+@login_required(login_url='login')
+def deletebook(request, id):
+  book = Booking.objects.get(id=id)
+  if request.method == 'POST':
+    book.delete()
+    Unit.objects.filter(id=book.unit.id).update(occupied=False)
+    messages.success(request, f'{book} Deleted Successfully')
+    return redirect('customadmin')
 
 class AllUnits(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly,)

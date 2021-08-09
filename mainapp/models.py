@@ -151,6 +151,11 @@ class Unit(models.Model):
             return cls.objects.get(pk=id)
         except Unit.DoesNotExist:
             return Http404
+    
+    @classmethod
+    def search(cls,search_term):
+        units = Unit.objects.filter(name__icontains=search_term).all()
+        return units
 
 class Booking(models.Model):
     profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)

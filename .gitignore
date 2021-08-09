@@ -1,5 +1,6 @@
 envprodev/
 .env
+virtual/
 *.pyc
 virtual/]
 requirements.txtsource
@@ -130,6 +131,9 @@ ENV/
 env.bak/
 venv.bak/
 virtual/
+virtualenv/
+virtualstorage/
+virtualsite
 
 # Spyder project settings
 .spyderproject
