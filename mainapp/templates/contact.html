@@ -16,7 +16,9 @@
                 <p class="text-uppercase carefree">Reach out to us</p>
                 <div class="row">
                     <div class="col-lg-4">
-                        <form action="" class="feedbackform">
+                        
+                        <form action="" class="feedbackform" id="feedbackForm" method="POST">
+                            {% csrf_token %}
                             <input class="input" type="text" placeholder="First Name" name="f_name" id="f_name" required>
                             <input class="input" type="text" placeholder="Last Name" name="l_name" id="l_name" required>
                             <input class="input" type="email" placeholder="Email" name="email" id="email" required>

@@ -17,6 +17,7 @@ from rest_framework.authtoken import views as auth_views
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
 from django.contrib.auth.decorators import login_required
+from .emails import send_feedback
 
 
 def index(request):
@@ -26,7 +27,16 @@ def about(request):
   return render(request, 'about.html')
 
 def contact(request):
-  return render(request, 'contact.html')
+    if request.method == 'POST':
+        f_name = request.POST.get('f_name')
+        l_name = request.POST.get('l_name')
+        full_name = f_name + " " + l_name
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        send_feedback(full_name, message, email)
+        
+    return render(request, 'contact.html')
 
 def signup(request):
 
