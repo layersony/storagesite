@@ -2,32 +2,22 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
 from rest_framework import permissions, serializers
-from .forms import RegistrationForm
-from django.contrib import messages
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Booking
-from .serializer import BookingSerializer
+from .serializer import BookingSerializer, UnitSerializer, MyAuthTokenSerializer
 from rest_framework import status
 from .permissions import IsAuthenticatedOrReadOnly
 from django.db.models.query_utils import select_related_descend
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout, login, authenticate
 from .forms import RegistrationForm, AddUserForm, AddProfileForm, AddUnitForm, AddBookingForm
 from django.contrib import messages
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from .serializer import UnitSerializer
 from .models import Unit, User, Profile, Booking
-from rest_framework import status
-from django.http import Http404
 import hashlib
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.authtoken import views as auth_views
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
+from django.contrib.auth.decorators import login_required
 
-from .serializer import MyAuthTokenSerializer
 
 def index(request):
   return render(request, 'index.html')
@@ -51,7 +41,7 @@ def signup(request):
       if user is not None:
           login(request, user) 
           if user.is_authenticated and (user.user_type=='client'):
-              return redirect('custhome')
+              return redirect('profile')
 
       return redirect('home')
 
@@ -74,14 +64,15 @@ def sign_in(request):
       password = request.POST.get('password')
 
       user = authenticate(request, email=email, password=password)
+      print(user)
       if user is not None:
           login(request, user)
           if user.is_authenticated and user.is_superuser:
             return redirect('customadmin')
           elif user.is_authenticated and (user.user_type=='employee'):
-            return redirect('emphome') 
+            return redirect('units') 
           elif user.is_authenticated and (user.user_type=='client'):
-            return redirect('custhome')
+            return redirect('profile')
       else:
         messages.info(request, 'Username Or Password is incorrect')
         return redirect('login')
@@ -165,16 +156,18 @@ class BookingItem(APIView):
         booking = self.get_booking(booking_id)
         booking.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-        
+
+@login_required(login_url='login')
 def customadmin(request):
   if request.method == 'POST':
-    adduser = AddUserForm(request.POST or None, instance=request.user)
-    addpro = AddProfileForm(request.POST or None, instance=request.user)
+    adduser = AddUserForm(request.POST or None)
+    addpro = AddProfileForm(request.POST or None, request.FILES)
     addunit = AddUnitForm(request.POST)
     addbook = AddBookingForm(request.POST)
-    print(request.POST)
 
     if adduser.is_valid():
+      add_user = adduser.save(commit=False)
+      add_user.set_password(adduser.cleaned_data['password1'])
       adduser.save()
       messages.success(request, 'User Added successfully')
 
@@ -218,10 +211,11 @@ def customadmin(request):
   }
   return render(request, 'customadmin/index.html', params)
 
+@login_required(login_url='login')
 def mainadminpost(request):
   if request.method == 'POST':
-    adduser = AddUserForm(request.POST or None)
-    addpro = AddProfileForm(request.POST or None)
+    adduser = AddUserForm(request.POST)
+    addpro = AddProfileForm(request.POST)
     addunit = AddUnitForm(request.POST)
     addbook = AddBookingForm(request.POST)
     print(request.POST)
