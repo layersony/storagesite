@@ -104,6 +104,7 @@ main{
     }
 
     .about-us{
+        padding-top: 5rem;
         .first{
             height: 150px;
             width: 100%;
@@ -195,7 +196,6 @@ main{
 
     // }
     .testimonials{
-        margin-top: 600px;
         background-color: $dark !important;
         h2{
             font-weight: 600;
@@ -211,6 +211,12 @@ main{
             padding: 1rem;
             margin: 1rem;
             border-radius: .3rem;
+            transition: 300ms;
+            &:hover{
+                background-color: $white;
+                color: $dark;
+                transform: scale(1.05);
+            }
             .pic{
                 width: 30%;
                 display: flex;

@@ -106,6 +106,10 @@ main .header .header-overlay p.heading span {
   color: #369FE4;
 }
 
+main .about-us {
+  padding-top: 5rem;
+}
+
 main .about-us .first {
   height: 150px;
   width: 100%;
@@ -152,7 +156,6 @@ main .about-us .about2 p {
 }
 
 main .testimonials {
-  margin-top: 600px;
   background-color: #343334 !important;
 }
 
@@ -167,6 +170,15 @@ main .testimonials .customer {
   padding: 1rem;
   margin: 1rem;
   border-radius: .3rem;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+main .testimonials .customer:hover {
+  background-color: #FFFFFF;
+  color: #343334;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 main .testimonials .customer .pic {
