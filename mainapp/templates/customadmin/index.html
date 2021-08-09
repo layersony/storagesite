@@ -37,7 +37,7 @@
         <div class="modal-dialog">
             <div class="modal-content p-4">
                 <h1 class="modalhead text-center">Add New Unit</h1>
-                <form method="post" enctype="multipart/form-data" action="{% url 'mainadminpost' %}">
+                <form method="post" enctype="multipart/form-data" action="{% url 'customadmin' %}">
                     {% csrf_token %}
                     {% bootstrap_form  addunit%}
                     <div class="text-center">
@@ -69,9 +69,16 @@
 
 <main>
     <div class="container-fluid px-4">
-        <div class="text-center">
+        <div class="text-center mt-2">
             {% for message in messages %}
-            <sub class="alert alert-info">{{ message }}</sub>
+            <div class="container-fluid p-0">
+              <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+              </div>
+            </div>
             {% endfor %}
         </div>
 
@@ -143,7 +150,7 @@
                             <td>{{user.is_superuser}}</td>
                             <td>{{user.is_active}}</td>
                             <td>{{user.last_login}}</td>
-                            <td><a class="text-success" href="#">Update</a></td>
+                            <td><a class="text-success" href="{% url 'mainadminupdateuser' user.id %}">Update</a></td>
                         </tr>
                         {% empty %}
                         <p class="alert alert-info text-center">No Users in the Database</p>
@@ -200,7 +207,7 @@
                             <td>{{user.nok_email}}</td>
                             <td>{{user.nok_number}}</td>
                             <td>{{user.nok_relationship}}</td>
-                            <td><a class="text-success" href="#">Update</a></td>
+                            <td><a class="text-success" href="{% url 'mainadminupdateprofile' user.id %}">Update</a></td>
                         </tr>
                         {% endif %}
                         {% empty %}
@@ -265,7 +272,7 @@
                             <td>{{unit.weekly_charge}}</td>
                             <td>{{unit.monthly_charge}}</td>
                             <td>{{unit.access_code}}</td>
-                            <td><a class="text-success" href="#">Update</a></td>
+                            <td><a class="text-success" href="{% url 'mainadminupdateunit' unit.id %}">Update</a></td>
                         </tr>
                         {% empty %}
                         <p class="alert alert-info text-center">No Units in the Database</p>
@@ -311,9 +318,9 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for book in allbooks %}
+                        {% for book in allBooking %}
                         <tr>
-                            <td>{{book.user}}</td>
+                            <td>{{book.profile}}</td>
                             <td>{{book.unit}}</td>
                             <td>{{book.start_date}}</td>
                             <td>{{book.end_date}}</td>
@@ -326,7 +333,7 @@
                             <td>{{book.payment_mode}}</td>
                             <td>{{book.account_number}}</td>
                             <td>{{book.total_cost}}</td>
-                            <td><a class="text-success" href="#">Update</a></td>
+                            <td><a class="text-success" href="{% url 'mainadminupdatebook' book.id %}">Update</a></td>
                         </tr>
                         {% empty %}
                         <p class="alert alert-info text-center">No Bookings in the Database</p>

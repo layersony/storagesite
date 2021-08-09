@@ -19,6 +19,7 @@ def onsite_booking(request):
 
         if form.is_valid():
             book_unit = form.save(commit=False)
+            book_unit.user = request.user
             book_unit.save()
             return redirect('onsite_booking')
 
