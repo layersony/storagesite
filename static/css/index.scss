@@ -138,60 +138,60 @@ main{
         }
     }
 
-    .contact-us{
-        .contact-img{
-            width: 100%;
-            overflow: hidden;
-            height: 600px;
-            img{
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                opacity: .9;
-                background-blend-mode: darken;
-            }
-        }
-        .contact-form{
-            height: 100%;
-            width: 100%;
-            color: white;
-            background-color: $blue !important;
-            form{
-                background-color: rgba(255, 255, 255, 0.8);
-                padding: 1.5rem;
-                border-radius: .3rem;
-            }
-            h2{
-                color: $white;
-                font-weight: 800;
-            }
-            .input{
-                background-color: transparent;
-                border: none;
-                outline: none;
-                border-bottom: 1px solid $dark-blue;
-                width: 100%;
-                color: $white;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-                margin-top: 1rem;
-                &::placeholder{
-                    color: $dark-blue;
-                }
-            }
-            .btn{
-                color: $dark-blue;
-                margin-top: 1rem;
-                border: 1px solid $dark-blue;
-                outline: none;
-                &:hover{
-                    background-color: $dark-blue;
-                    color: white;
-                }
-            }
-        }
+    // .contact-us{
+    //     .contact-img{
+    //         width: 100%;
+    //         overflow: hidden;
+    //         height: 600px;
+    //         img{
+    //             height: 100%;
+    //             width: 100%;
+    //             object-fit: cover;
+    //             opacity: .9;
+    //             background-blend-mode: darken;
+    //         }
+    //     }
+    //     .contact-form{
+    //         height: 100%;
+    //         width: 100%;
+    //         color: white;
+    //         background-color: $blue !important;
+    //         form{
+    //             background-color: rgba(255, 255, 255, 0.8);
+    //             padding: 1.5rem;
+    //             border-radius: .3rem;
+    //         }
+    //         h2{
+    //             color: $white;
+    //             font-weight: 800;
+    //         }
+    //         .input{
+    //             background-color: transparent;
+    //             border: none;
+    //             outline: none;
+    //             border-bottom: 1px solid $dark-blue;
+    //             width: 100%;
+    //             color: $white;
+    //             padding-top: 1rem;
+    //             padding-bottom: 1rem;
+    //             margin-top: 1rem;
+    //             &::placeholder{
+    //                 color: $dark-blue;
+    //             }
+    //         }
+    //         .btn{
+    //             color: $dark-blue;
+    //             margin-top: 1rem;
+    //             border: 1px solid $dark-blue;
+    //             outline: none;
+    //             &:hover{
+    //                 background-color: $dark-blue;
+    //                 color: white;
+    //             }
+    //         }
+    //     }
 
-    }
+    // }
     .testimonials{
         margin-top: 600px;
         background-color: $dark !important;

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}
+<main class="container-fluid">
+
+    <!-- ABOUT US -->
+    <div class="about-us">
+        <div class="container py-5">
+            <h2 class="mb-5">About Us</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="about1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam vitae aut quos commodi a odit quo
+                        necessitatibus consequatur mollitia obcaecati itaque, ducimus iure sit, fuga aliquam beatae est
+                        accusamus ex.
+                    </div>
+                    <div class="sellpoints">
+                        <div class="first">
+                            <div class="box">Box 1</div>
+                            <div class="box">Box 2</div>
+                        </div>
+                        <div class="first">
+                            <div class="box">Box 3</div>
+                            <div class="box">Box 4</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about2 p-3">
+                        <div class="about-img mb-2">
+                            <img src="{% static 'img/about-img.jpg'%}" alt="" class="img-fluid">
+                        </div>
+                        <div class="about-subtext">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, eum. Suscipit
+                                corrupti sit odio asperiores atque nesciunt, cupiditate cumque ipsum. Nesciunt
+                                perspiciatis maxime iste totam cumque. Consequatur nobis dolor sit. Lorem, ipsum dolor
+                                sit amet consectetur adipisicing elit. Distinctio ex magnam officia eum laborum iste
+                                aliquid tempora. </p>
+                        </div>
+                        <div class="about-btn">
+                            <a class="btn btn-success " href="#contactussection" role="button"> Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ABOUT US -->
+
+    <!-- TESTIMONIALS -->
+    <div class="testimonials py-5">
+        <div class="">
+            <h2 class="text-center pb-5">Our Clients Say</h2>
+            <div class="feedback mx-5 d-flex row">
+                <div class="col-lg-4">
+                    <div class="customer d-flex">
+                        <div class="pic">
+                            <div class="pic-holder">
+                                <img src="{% static 'img/contact-img.jpg' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque ex dolor
+                                consectetur
+                                hic rem totam recusandae quia, reprehenderit doloribus accusantium delectus labore?
+                                Harum
+                                quidem sequi magnam sit voluptatum quos?</p>
+                            <p class="mt-5"><strong>John Doe</strong></p>
+                            <p><em>Businessman</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="customer d-flex">
+                        <div class="pic">
+                            <div class="pic-holder">
+                                <img src="{% static 'img/contact-img.jpg' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque ex dolor
+                                consectetur
+                                hic rem totam recusandae quia, reprehenderit doloribus accusantium delectus labore?
+                                Harum
+                                quidem sequi magnam sit voluptatum quos?</p>
+                            <p class="mt-5"><strong>John Doe</strong></p>
+                            <p><em>Businessman</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="customer d-flex">
+                        <div class="pic">
+                            <div class="pic-holder">
+                                <img src="{% static 'img/contact-img.jpg' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque ex dolor
+                                consectetur
+                                hic rem totam recusandae quia, reprehenderit doloribus accusantium delectus labore?
+                                Harum
+                                quidem sequi magnam sit voluptatum quos?</p>
+                            <p class="mt-5"><strong>John Doe</strong></p>
+                            <p><em>Businessman</em></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /TESTIMONIALS -->
+</main>
+{% endblock %}

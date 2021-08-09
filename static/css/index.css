@@ -2,7 +2,6 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700);
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
 }
 
 * {
@@ -147,79 +146,6 @@ main .about-us .about2 p {
   font-size: 14px;
   text-align: justify;
   text-justify: auto;
-}
-
-main .contact-us .contact-img {
-  width: 100%;
-  overflow: hidden;
-  height: 600px;
-}
-
-main .contact-us .contact-img img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  opacity: .9;
-  background-blend-mode: darken;
-}
-
-main .contact-us .contact-form {
-  height: 100%;
-  width: 100%;
-  color: white;
-  background-color: #369FE4 !important;
-}
-
-main .contact-us .contact-form form {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem;
-  border-radius: .3rem;
-}
-
-main .contact-us .contact-form h2 {
-  color: #FFFFFF;
-  font-weight: 800;
-}
-
-main .contact-us .contact-form .input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid #356B8A;
-  width: 100%;
-  color: #FFFFFF;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-main .contact-us .contact-form .input::-webkit-input-placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .input:-ms-input-placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .input::-ms-input-placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .input::placeholder {
-  color: #356B8A;
-}
-
-main .contact-us .contact-form .btn {
-  color: #356B8A;
-  margin-top: 1rem;
-  border: 1px solid #356B8A;
-  outline: none;
-}
-
-main .contact-us .contact-form .btn:hover {
-  background-color: #356B8A;
-  color: white;
 }
 
 main .testimonials {
