@@ -113,11 +113,12 @@ main .header .header-overlay p.heading span {
 /*************** UNITS TABLE***************/
 table{
   margin-left: 5rem;
+  color: white;
 }
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
-  margin-left: 5rem;
+  margin-left: 9rem;
   font-size: 0.9em;
   min-width: 400px;
   border-radius: 5px 5px 0 0;
@@ -135,6 +136,7 @@ table{
 .content-table th,
 .content-table td {
   padding: 12px 15px;
+  
 }
 
 .content-table tbody tr {
@@ -149,15 +151,7 @@ table{
 }
 
 .content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #369FE4;
-}
-
-.available{
-  background-color: #369FE4;
-}
-
-.occupied{
-  background-color: #79C54E;
+  border-bottom: 2px solid white;
 }
 
 .onsite-header {
@@ -185,7 +179,7 @@ input,textarea {
 
 .allunits-header {
   font-weight: 900;
-  margin-left: 15rem;
+  text-align: center;
 }
 
 .unit-search {
