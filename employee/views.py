@@ -33,3 +33,21 @@ def onsite_booking(request):
         user_form = AddUserForm()
     return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users})
 
+
+def search(request):
+    current_user = request.user
+    all_units = Unit.objects.all()
+    parameter = request.GET.get('unit')
+    searched_units = Unit.objects.filter(name__icontains=parameter)
+
+    return render(request,'search_result.html',{'current_user':current_user,'units':searched_units})
+
+
+def delete_unit(request,unit_id):
+    current_user = request.user
+    unit = Unit.objects.get(pk=unit_id)
+    if unit:
+        unit.delete_unit(unit_id)
+    return redirect('units')
+
+
