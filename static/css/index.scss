@@ -40,6 +40,9 @@ h1, h2, h3, h4, h5{
 .navbar{
     background-color: $dark !important;
     color: $white !important;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
     .navbar-brand{
         font-weight: 800;
         font-size: 1.5rem;
@@ -68,8 +71,7 @@ main{
     padding: 0 !important;
     .header {
         width: 100%;
-        height: 500px;
-
+        height: 100vh;
         .header-bg {
             height: 100%;
             width: 100%;
@@ -92,7 +94,7 @@ main{
                 letter-spacing: .4rem;
             }
             p.heading{
-                font-size: 3rem;
+                font-size: 5rem;
                 font-weight: 700;
                 span{
                     color: $blue;

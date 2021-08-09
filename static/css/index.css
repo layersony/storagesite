@@ -33,6 +33,9 @@ h1, h2, h3, h4, h5 {
 .navbar {
   background-color: #343334 !important;
   color: #FFFFFF !important;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
 }
 
 .navbar .navbar-brand {
@@ -64,7 +67,7 @@ main {
 
 main .header {
   width: 100%;
-  height: 500px;
+  height: 100vh;
 }
 
 main .header .header-bg {
@@ -95,7 +98,7 @@ main .header .header-overlay p.carefree {
 }
 
 main .header .header-overlay p.heading {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
 }
 
