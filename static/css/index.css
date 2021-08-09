@@ -110,30 +110,44 @@ main .about-us {
   padding-top: 5rem;
 }
 
-main .about-us .first {
-  height: 150px;
-  width: 100%;
+main .about-us .first, main .about-us .second {
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-main .about-us .first .box {
+main .about-us .first .box, main .about-us .second .box {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  padding: 2rem;
   min-width: 200px;
   text-align: center;
+  background-color: rgba(54, 159, 228, 0.1);
+  color: #356B8A;
+  border-radius: .25rem;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+main .about-us .first .box:hover, main .about-us .second .box:hover {
   background-color: #369FE4;
+  color: #FFFFFF;
+}
+
+main .about-us .first .box .icon, main .about-us .second .box .icon {
+  font-size: 4rem;
 }
 
 main .about-us .about2 {
-  border: 5px solid rgba(54, 158, 228, 0.15);
+  border: 5px solid rgba(54, 158, 228, 0.1);
+  border-radius: .25rem;
   height: 100%;
 }
 
