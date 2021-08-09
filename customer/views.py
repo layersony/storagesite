@@ -37,7 +37,7 @@ def available(request):
 
 
 
-def book(request, pk=None):
+def book(request, pk):
       if pk:
             unit=Unit.objects.get(pk=pk)
       else:

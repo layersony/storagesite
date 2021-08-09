@@ -4,22 +4,19 @@
 
 
 {% block content %}
- <div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
+ <div class="container-fluid px-1 px-md-2 px-md-4 py-5 mx-auto"> 
     <div class="row d-flex justify-content-center">
-        <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
+        <div class="col-lg-6 col-md-10 col-md-8 col-sm-11">
             <div class="card border-0">
-                <div class="row justify-content-center">
-                    <h3 class="mb-4">BOOK UNITA1</h3>
-                </div>
                 <div class="row">
-                    
-                    
-                    <div class="col-sm-6">
-                                <div>  
+                    <div class="container-fluid col-sm-8 align-items-center d-flex justify-content-center " >
+                                <div>   
                                     <form action="" method="post">
                                       {% csrf_token %}
                                       {{form}}
-                                      <input type="submit">
+                                      <div class="col text-center">
+                                      <button type="submit" class="btn btn-success text-center mt-4  btn-lg">PAY</button>
+                                      </div>
                                     </form>
                                   </div>
                 </div>
@@ -27,6 +24,13 @@
         </div>
     </div>
 </div>
+</div>
 
+<style>
+  .card{
+      background-color: rgb(243, 240, 240);
+  }
+  
+</style>
 
 {%endblock%}

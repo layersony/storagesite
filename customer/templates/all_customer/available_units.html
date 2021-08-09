@@ -10,19 +10,28 @@
 
     <div class="available">
         <table class="container table table-active ">
+          <br>
+          <br>
+          <br>
+          <br>
       <thead>
     <tr>
-      <th scope="col">name</th>
-      <th scope="col">width</th>
-      <th scope="col">height</th>
-      <th scope="col">daily_charge</th>
-      <th scope="col">weekly_charge</th>
-      <th scope="col">access_code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Width</th>
+      <th scope="col">Height</th>
+      <th scope="col">Lenght</th>
+      <th scope="col">Daily_charge</th>
+      <th scope="col">Weekly_charge</th>
+      <th scope="col">Wonthly_charge</th>
+      <th scope="col">Status</th>
+      <th scope="col">Access_code</th>
+      
+      
     </tr>
   </thead>
       
   <tbody>
-    {% for Unit in Units %}
+    {% for Unit in units %}
     <tr>
       <th scope="row">{{ Unit.name }}</th>
       <td>{{ Unit.width }}</td>
@@ -31,8 +40,13 @@
       <td>{{ Unit.daily_charge }}</td>
       <td>{{ Unit.weekly_charge }}</td>
       <td>{{ Unit.monthly_charge }}</td>
+      {% if Unit.occupied %}
+        <td><span class="text-danger">Occupied</span></td>
+        {% else %}
+        <td><span class="text-success">Available</span></td>
+        {% endif %}
       <td>{{ Unit.access_code }}</td>
-      <td><a href="{%url 'all_customer:book_with_pk' pk=unit %}"><button type="button" class="btn btn-info">{{ Unit.occupied }}</button></a></td>
+      <td><a href="{%url 'book' Unit.id %}"><button type="button" class="btn btn-info">book</button></a></td>
     </tr>
     {% endfor %}
     </tbody>
