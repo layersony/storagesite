@@ -7,32 +7,28 @@
 
 <div class="wrapper">
   <div class="left">
-    <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.profile_picture.url }}"
+    <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.pic.url }}"
     height="125px" width="125px">
       <h2>{{user.name}}</h2>
-      <p>Phone Number:</p> 
-      <p><i class="fa fa-phone info"></i>{{user.phone_number}}</p>
-      <p>Email:</p>
+   
+      <p><i class="fa fa-phone info"></i>{{user.profile.phone_number}}</p>
+    
       <p><i class="fa fa-envelope info"></i>{{user.email}}</p>
-      <p>Location:</p>
-      <p><i class="fa fa-map-marker info"></i>{{user.location}}</p>
+    
+      <p><i class="fa fa-map-marker info"></i>{{user.profile.location}}</p>
       <a class="btn btn-warning" href = "{% url 'update_profile' %}">Edit Profile</a>
   </div>
   <div class="right">
       <div class="info">
           <h3>Address</h3>
           <div class="info-data">
-            My physical adress: {{user.adress}}
+           {{user.profile.address}}
           </div>
       </div>
   </div>
   <div class="right2">
       <div class="payment">
-          <h3>Payment</h3>
-          <div class="payment-data">
-              <p>Payment Method</p>
-              <p>Phone Number</p>
-          </div>
+          
       </div>
   </div>
   <div class="table1">
@@ -50,18 +46,17 @@
             </tr>
           </thead>
           <tbody>
-        {% for datail in details %}
+          {% for detail in details %}
             <tr>
-              <th scope="row">{{datail.unit}}</th>
-              <td>{{datail.start_date}}</td>
+              <th scope="row">{{detail.unit}}</th>
+              <td>{{detail.start_date}}</td>
               <td>{{details.end_date}}</td>
               <td>{{detail.size}}</td>
               <td>{{detail.cost}}</td>
-              {% endfor %}
               <td><button style="background-color:red; border:red; border-radius:2px;">check out</button></td>
-              <td><a style="background-color:blue; border:blue; border-radius:2px; " href = "{% url 'bookingdetails' %}">view</a></td>
+              <td><a style="background-color:blue; border:blue; border-radius:2px; " href = "{% url 'bookingdetails' detail.id%}">view</a></td>
             </tr>
-        
+            {% endfor %}
           </tbody>
         </table>
   </div>

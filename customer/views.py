@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
-from .forms import BookingForm,PaymentForm
+from .forms import BookingForm,PaymentForm, UpdateUserForm
 
 
 from .models import User ,Profile,Booking,Unit
@@ -22,20 +22,25 @@ from django.conf import settings
 
 def update_profile(request):
     user = request.user
+
     if request.method == 'POST':
-        form = UpdateProfileForm(request.POST, request.FILES)
-        if form.is_valid():
+        userform = UpdateUserForm(request.POST, instance=request.user)
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid() and userform.is_valid():
             form.save()
-            return redirect('all_customer/profile', user.username)
+            userform.save()
+            return redirect('profile')
     else:
-        form = UpdateProfileForm()
-    return render(request, 'all_customer/update_profile.html', {'form': form})
+      userform = UpdateUserForm(instance=request.user)
+      form = UpdateProfileForm(instance=request.user.profile)
+    return render(request, 'all_customer/update_profile.html', { 'form': form, 'userform': userform})
 
 def profile(request):
     return render(request, 'all_customer/profile.html')
     
-def booking_details(request):
-    return render(request, 'all_customer/bookingdetails.html')
+def booking_details(request, id):
+      book = Booking.objects.get(id=id)
+      return render(request, 'all_customer/bookingdetails.html', {'book':book})
 
 def available(request):
       units=Unit.objects.all()

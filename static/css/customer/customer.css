@@ -2,7 +2,9 @@
 @import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
-
+html{
+    font-size: 12px;
+}
 *{
     margin: 0;
     padding: 0;
@@ -19,7 +21,8 @@ body{
     left:10%;
     top:10%;
     width: 80%;
-    height: 80%;
+    
+    min-height: 70vh;
     display: flex;
     border-radius: 5px;
     background-color: white;
@@ -50,10 +53,10 @@ body{
 }
 .wrapper .left .btn
 {  
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     background-color: green;
-    text-align: center;
+    text-align: left;
 }
 .wrapper .left .img
 {   width: 100px;
@@ -114,29 +117,30 @@ table,tr{
 .updateForm
 {   
     margin-left: 40%;
-    margin-top: 5px;
+    margin-top: 30px;
     text-align: center;
     padding-right: 12px;
+    padding-bottom: 50px;
     
 }
 
 input[type=text], select, textarea {
     width: 100%; /* Full width */
-    padding: 1px; /* Some padding */ 
-    border: 1px solid #ccc; /* Gray border */
+    padding: 0.5px; /* Some padding */ 
+    border: 0.5px solid #ccc; /* Gray border */
     border-radius: 4px; /* Rounded borders */
     box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 1px; /* Add a top margin */
+    margin-top: 0px; /* Add a top margin */
     margin-bottom: 4px; /* Bottom margin */
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
   }
 
 .wrapper .booking_data
-{
-    margin-left: 25%;
-    margin-top: 10%;
+{   font-size: 12px;
+    margin-left: 15%;
+    margin-top: 15%;
     text-align: left;
-    padding-right: 12px;
+    padding-right: 10px;
 }
 .exit{
     margin-left: 20%;
@@ -146,5 +150,4 @@ input[type=text], select, textarea {
     text-align: center;
     background-color: red;
     border-radius: 4px;
-  
 }

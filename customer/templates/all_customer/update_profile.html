@@ -1,6 +1,6 @@
 {% extends 'all_customer/base.html' %}
 {% load static %}
-<!-- {% load bootstrap4 %} -->
+{% load bootstrap4 %} 
 
 {% block content%}
     <link rel="stylesheet" href="/static/css/customer/customer.css">
@@ -9,36 +9,14 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="wrapper">
         
-        <div class="updateForm">
-            <h2>Update Profile:</h2>
-            <div class="user">
-                <h3>Customer</h3>
-                <form action="/action">
-                <input type="text" id="fname" name="fname" placeholder="Username"><br>
-                <input type="text" id="lname" name="lname" placeholder="Full Name"><br>
-                <input type="text" id="fname" name="fname" placeholder="Email"><br>
-                <input type="text" id="lname" name="lname" placeholder="Phone Number"><br>
-                <input type="text" id="fname" name="fname" placeholder="Location"><br>
-                <input type="text" id="lname" name="lname" placeholder="Address"><br>
-            </div>
-            <div class="nok">
-                <h3>Next of Kin</h3>
-                <input type="text" id="fname" name="fname" placeholder="Full Name"><br>
-                <input type="text" id="lname" name="lname" placeholder="Email"><br>
-                <input type="text" id="fname" name="fname" placeholder="Phone Number"><br>
-                <input type="text" id="lname" name="lname" placeholder="Relationship"><br>
-            </div>
-            <div class="payment">
-                <h3>Payment</h3>
-                <select name="cars" id="cars">
-                    <option value="none" selected disabled hidden>Payment Mode</option>
-                    <option value="mpesa">Mpesa</option>
-                    <option value="bank">Bank</option>
-                    <option value="cash">Cash</option>
-                </select>
-            </div><br>
-            <input type="submit" value="Submit">
-            </form> 
+        <div class="updateForm text-left">
+            <h2 style="font-size: 20px;">Update Profile:</h2>
+            <form action="{% url 'update_profile'%}" enctype="multipart/form-data" method="post">
+                {%csrf_token%}
+                {%bootstrap_form userform%}
+                {%bootstrap_form form%}
+                <button type="submit" style="padding-left: 20px; padding-right:20px;text-align:center; background-color:green; border:1px ; border-radius:3px;">Update</button>
+            </form>
 
         </div>
 
