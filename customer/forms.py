@@ -2,13 +2,14 @@ from django.forms import ModelForm
 from django import forms
 from .models import Booking
 from mainapp.models import Profile
+from django.contrib.auth.forms import UserCreationForm
 
 
 
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        fields = ['description','address']
+        fields = ['description','address', 'pickup']
 
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control'}),
