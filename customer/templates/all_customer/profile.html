@@ -1,29 +1,28 @@
 {% extends 'all_customer/base.html' %}
 {% load static %}
-<!-- {% load bootstrap4 %} -->
+{% load bootstrap4 %}
 
 {% block content %}
-
 <link rel="stylesheet" href="/static/css/customer/customer.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" rel="stylesheet" >
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="wrapper">
   <div class="left">
     <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.profile_picture.url }}"
     height="125px" width="125px">
       <h2>{{user.name}}</h2>
-      <p><i class="fa fa-phone info"></i>{{user.name}}</p>
-      <p><i class="fa fa-envelope info"></i>{{user.adress}}</p>
-      <p><i class="fa fa-map-marker info"></i>{{user.nok_fullname}}</p>
+      <p>Phone Number:</p> 
+      <p><i class="fa fa-phone info"></i>{{user.phone_number}}</p>
+      <p>Email:</p>
+      <p><i class="fa fa-envelope info"></i>{{user.email}}</p>
+      <p>Location:</p>
+      <p><i class="fa fa-map-marker info"></i>{{user.location}}</p>
       <a class="btn btn-warning" href = "{% url 'update_profile' %}">Edit Profile</a>
   </div>
   <div class="right">
       <div class="info">
           <h3>Address</h3>
           <div class="info-data">
-              {{user.adress}}
+            My physical adress: {{user.adress}}
           </div>
       </div>
   </div>
@@ -51,17 +50,18 @@
             </tr>
           </thead>
           <tbody>
-
+        {% for datail in details %}
             <tr>
-              <th scope="row">{{data.}}</th>
-              <td>19/07</td>
-              <td>27/09</td>
-              <td>small</td>
-              <td>4,000</td>
-              <td><button style="background-color:red; border:red; border-radius:2px; ">check out</button></td>
-              <td><button style="background-color:blue; border:blue; border-radius:2px; ">view</button></td>
+              <th scope="row">{{datail.unit}}</th>
+              <td>{{datail.start_date}}</td>
+              <td>{{details.end_date}}</td>
+              <td>{{detail.size}}</td>
+              <td>{{detail.cost}}</td>
+              {% endfor %}
+              <td><button style="background-color:red; border:red; border-radius:2px;">check out</button></td>
+              <td><a style="background-color:blue; border:blue; border-radius:2px; " href = "{% url 'bookingdetails' %}">view</a></td>
             </tr>
-
+        
           </tbody>
         </table>
   </div>

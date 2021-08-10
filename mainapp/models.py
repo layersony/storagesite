@@ -68,6 +68,8 @@ class Profile(models.Model):
     pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address = models.CharField(max_length=20, blank=True, null=True)
+    location = models.CharField(max_length=20, blank=True, null=True)
+    address = models.CharField(max_length=20, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
     nok_number = models.CharField(max_length=100, blank=True, null=True)
@@ -116,6 +118,7 @@ Unit_sizes = (
 
 class Unit(models.Model):
     name = models.CharField(max_length=200)
+    volume = models.PositiveIntegerField(null=True)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
@@ -168,6 +171,7 @@ class Booking(models.Model):
     pickup = models.BooleanField(default=False)
     payment_mode = models.CharField(max_length=200)
     account_number = models.CharField(max_length=30)
+    cost = models.PositiveIntegerField(null=True)
     total_cost = models.PositiveIntegerField(null=True)
 
     def __str__(self) :

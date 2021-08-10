@@ -20,47 +20,22 @@ from django.views.generic.edit import UpdateView
 from . import views
 from django.conf import settings
 
-# def update_profile(request):
-#     user = request.user
-#     if request.method == 'POST':
-#         form = UpdateProfileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('all_customer/profile', user.username)
-#     else:
-#         form = UpdateProfileForm()
-#     return render(request, 'all_customer/update_rofile.html', {'form': form})
-
-
 def update_profile(request):
-  custopro = Profile.objects.all()
-  if request.method == 'POST':
-    addcustopro = UpdateProfileForm(request.POST, instance=custopro)
-    if addcustopro.is_valid():
-      addcustopro.save()
-      return redirect('profile')
-  
-  addcustopro = UpdateProfileForm(instance=custopro)
-  content = {
-    'addcustopro':addcustopro,
-    'custopro':custopro
-  }
-  return render(request, 'profile/update_profile.html', content)
+    user = request.user
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('all_customer/profile', user.username)
+    else:
+        form = UpdateProfileForm()
+    return render(request, 'all_customer/update_profile.html', {'form': form})
 
-
-def delete_profile(request, id):
-  custopro = Profile.objects.all()
-  if request.method == 'POST':
-    custopro.delete()
-    return redirect('propile')
-
-
-    
 def profile(request):
     return render(request, 'all_customer/profile.html')
     
-def bookingDetails(request):
-    return render(request, 'all_customer/booking_details.html')
+def booking_details(request):
+    return render(request, 'all_customer/bookingdetails.html')
 
 def available(request):
       units=Unit.objects.all()

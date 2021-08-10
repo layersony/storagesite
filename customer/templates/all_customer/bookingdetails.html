@@ -1,0 +1,27 @@
+{% extends 'all_customer/base.html' %}
+{% load static %}
+{% load bootstrap4 %} 
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/customer/customer.css">
+    <div class="wrapper">
+        
+        <div class="booking_data">
+            <h2>BOOKING DETAILS:</h2><br>
+            
+                <p>Volume:{{book.volume}}</p>
+                <p>Size: {{book.size}}</p><br>
+                <h5>Price:</h5>
+                <p>Weekly -> {{book.weekly_charge}}</p>
+                <p>monthly ->{{book.monthly_charge}}</p><br>
+                <h5>Description</h5>
+                <p>Billing Cycle: {{book.billig}}</p>
+                <p>Gate Access Code: {{book.access_code}}</p>
+                <P>Total Price: {{book.total_cost}} </P>
+        </div>
+    
+        <button class="exit">check out</button>
+    </div>
+
+{%endblock%}
