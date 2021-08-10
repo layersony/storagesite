@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Yatra+One&family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+html{
+    font-size: 12px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+body{
+    background:#ebe7e7;
+}
+.wrapper 
+{
+    position: absolute;
+    left:10%;
+    top:10%;
+    width: 80%;
+    
+    min-height: 70vh;
+    display: flex;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    /* overflow: hidden; */
+    display: -webkit-box;
+    /* display: -webkit-flex; */
+    display: -moz-box; 
+    display: -ms-flexbox;  
+    flex-wrap: wrap;  
+    align-items: stretch;
+    flex-direction: row-reverse;
+}
+.wrapper .left
+{
+    padding-top: 50px;
+    margin-left: 70px;
+
+}
+.wrapper .left p
+{
+    font-size: small;
+}
+.wrapper .left .info
+{
+    color:blue;
+    padding: 10px;
+}
+.wrapper .left .btn
+{  
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    text-align: left;
+}
+.wrapper .left .img
+{   width: 100px;
+    border-radius: 50%;
+}
+.wrapper .right
+{
+    position: absolute;
+    display: flex;
+    margin-left: 300px;
+    padding-top: 50px;
+}
+.wrapper .right .info-data
+{
+    font-size: small;
+    font-style: italic;
+}
+.wrapper .right2
+{
+    /* background-color: blue; */
+    position: absolute;
+    display: flex;
+    margin-left: 600px;
+    padding-top: 50px;
+}
+.wrapper .right2 .payment-data
+{
+    font-size: small;
+    font-style: italic;
+}
+
+.table1
+{
+    position: absolute;
+    display: flex;
+    margin-left: 300px;
+    margin-top: 200px;
+    font-size:small;
+    
+}
+table,tr{
+        width: 70%;
+        white-space:nowrap;
+        background-color: black;
+        border: 2px white solid;
+        border-collapse: collapse;
+        
+    }
+    
+    td,th{
+        padding: 4px ;
+        color: white;
+       
+    }
+
+    /* Profile Page */
+
+.updateForm
+{   
+    margin-left: 40%;
+    margin-top: 30px;
+    text-align: center;
+    padding-right: 12px;
+    padding-bottom: 50px;
+    
+}
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 0.5px; /* Some padding */ 
+    border: 0.5px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 0px; /* Add a top margin */
+    margin-bottom: 4px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+.wrapper .booking_data
+{   font-size: 12px;
+    margin-left: 15%;
+    margin-top: 15%;
+    text-align: left;
+    padding-right: 10px;
+}
+.exit{
+    margin-left: 20%;
+    margin-top: 45%;
+    padding-left: 15px;
+    padding-right:15px;
+    text-align: center;
+    background-color: red;
+    border-radius: 4px;
+}
