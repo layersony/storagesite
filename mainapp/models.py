@@ -154,7 +154,7 @@ class Unit(models.Model):
     
     @classmethod
     def search(cls,search_term):
-        units = Unit.objects.filter(name__icontains=search_term).all()
+        units = Unit.objects.filter(name__icontains=search_term)
         return units
 
 class Booking(models.Model):

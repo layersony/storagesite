@@ -21,7 +21,7 @@ def onsite_booking(request):
             book_unit = form.save(commit=False)
             book_unit.user = request.user
             book_unit.save()
-            return redirect('onsite_booking')
+            return redirect('')
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
@@ -37,11 +37,13 @@ def onsite_booking(request):
 
 def search(request):
     current_user = request.user
-    all_units = Unit.objects.all()
-    parameter = request.GET.get('unit')
-    searched_units = Unit.objects.filter(name__icontains=parameter)
+    if request.method == "POST":
+        parameter = request.POST.get('search')
+        searched_unit = Unit.objects.filter(name__icontains=parameter)
+        
+        return render(request,'employee/search_result.html',{'current_user':current_user,'units':searched_unit})
 
-    return render(request,'search_result.html',{'current_user':current_user,'units':searched_units})
+    return render(request,'employee/search_result.html',{'current_user':current_user,'units':[]})
 
 
 def delete_unit(request,unit_id):
