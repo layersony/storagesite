@@ -157,6 +157,12 @@ class Unit(models.Model):
         units = Unit.objects.filter(name__icontains=search_term).all()
         return units
 
+BillingCycle = (
+    ('Daily', 'Daily'),
+    ('Weekly', 'Weekly'),
+    ('Monthly', 'Monthly'),
+)
+
 class Booking(models.Model):
     profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)
     unit = models.ForeignKey(Unit, related_name='unit', on_delete=CASCADE)
@@ -165,6 +171,8 @@ class Booking(models.Model):
     end_date = models.DateTimeField(null=True)
     address = models.CharField(max_length=200)
     pickup = models.BooleanField(default=False)
+    delivery = models.BooleanField(default=False, null=True, blank=True)
+    billing_Cycle = models.CharField(max_length=100, choices=BillingCycle, default='Monthly')
     payment_mode = models.CharField(max_length=200)
     account_number = models.CharField(max_length=30)
     total_cost = models.PositiveIntegerField(null=True)
