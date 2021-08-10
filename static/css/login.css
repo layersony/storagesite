@@ -6,7 +6,11 @@ html {
 }
 .dflogin{
   width: 50%;
+}
 
+.dfregi{
+  width: 50%;
+  margin-top: 100px;
 }
 
 .col-md-12{
@@ -27,6 +31,9 @@ html {
 
 @media screen and (max-width:500px){
   .dflogin{
+    width: 100%;
+  }
+  .dfregi{
     width: 100%;
   }
 }
