@@ -13,6 +13,16 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
+    $('.view_unit').click(function(){
+        var unitName = $(this).attr('data-unitname');
+        var monthlyCharge = $(this).attr('data-monthly');
+        // var onsite_booking_url = 
+
+        $('#unitName').text(unitName);
+        $('#monthlyCharge').text(monthlyCharge);
+        // $('#onsiteBooking').attr('href', onsite_booking_url);
+    })
+
     $("#id_end_date").datetimepicker(
       {
         format: 'Y-m-d H:i:i',

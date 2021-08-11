@@ -118,7 +118,6 @@ Unit_sizes = (
 
 class Unit(models.Model):
     name = models.CharField(max_length=200)
-    volume = models.PositiveIntegerField(null=True)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
@@ -128,6 +127,10 @@ class Unit(models.Model):
     weekly_charge = models.PositiveIntegerField()
     monthly_charge = models.PositiveIntegerField()
     access_code = models.PositiveIntegerField()
+
+    @property
+    def volume(self):
+        return self.width * self.length * self.height
 
     def __str__(self):
         return self.name

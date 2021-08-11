@@ -17,8 +17,9 @@ def units(request):
     return render (request,'employee/units.html' ,{'units':units})
 
 
-def onsite_booking(request):
+def onsite_booking(request, unit_name):
     users = User.objects.exclude(id=request.user.id)
+    unit = Unit.objects.get(name=unit_name)
 
     if request.method == 'POST':
         form = BookingForm(request.POST, request.FILES)
@@ -39,7 +40,7 @@ def onsite_booking(request):
         form = BookingForm()
         views.customadmin
         user_form = AddUserForm()
-    return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users})
+    return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users, 'unit':unit})
 
 
 def search(request):

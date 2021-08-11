@@ -1,7 +1,6 @@
 {% extends 'employee/base.html'%}
 {% load static %}
 {% load bootstrap4 %}
-{% include 'units.html' %}
 {% block content %}
 
 
@@ -12,9 +11,9 @@
       <div class="card onsite">
         <div class="row">
           <div class="col-md-6">
-            <h2>{{ unit.name}}</h2><hr>
+            <h2>{{ unit.name }}</h2><hr>
             <ul><hr>
-              <li>volume :</li><hr>
+              <li>Volume : {{ unit.volume }} m<sup>3</sup> </li><hr>
               <li>Size :</li><hr>
               <li>Weekly Price :</li><hr>
               <li>Monthly Price :</li><hr>
@@ -28,7 +27,7 @@
               <div class="modal-dialog">
                   <div class="modal-content p-4">
                       <h1 class="modalhead text-center">Add New User</h1>
-                      <form method="post" enctype="multipart/form-data" action="{% url 'onsite_booking' %}">
+                      <form method="post" enctype="multipart/form-data" action="">
                           {% csrf_token %}
                           {% bootstrap_form  user_form%}
                           <div class="text-center">
@@ -42,7 +41,7 @@
 
             </div>
           <div class="col-md-6">
-            <form method="post" enctype="multipart/form-data" action="{% url 'onsite_booking' %}">
+            <form method="post" enctype="multipart/form-data" action="">
               {% csrf_token %}
               {% bootstrap_form form %}
               <button type="submit" class="btn btn-success text-white" value="Save">Proceed to pay</button>
