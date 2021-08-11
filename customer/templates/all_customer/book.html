@@ -9,15 +9,18 @@
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
             <div class="card border-0">
+                <div class="text-center">
+                    <h2>BOOK UNIT {{ unit.name }}</h2>
+                </div>
                 <div class="row">
-                    <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4">
+                    <div class="col-sm-5 text-sm-left justify-content-center pt-4 pb-4">
                         <h5 class="mb-5">Name : {{ unit.name }}</h5>
                         <h5 class="mb-5">Width : {{ unit.width }}</h5>
                         <h5 class="mb-5">Height : {{ unit.height }}</h5>
                         <h5 class="mb-5">Length : {{ unit.length }}</h5>
-                        <h5 class="mb-5">{{ Unit.daily_charge }}</h5>
-                        <h5 class="mb-5">{{ Unit.weekly_charge }}</h5>
-                        <h5 class="mb-5">{{ Unit.monthly_charge }}</h5>
+                        <h5 class="mb-5">Daily_charge : {{ unit.daily_charge }}</h5>
+                        <h5 class="mb-5">Weekly_charge : {{ unit.weekly_charge }}</h5>
+                        <h5 class="mb-5">Monthly_charg : {{ unit.monthly_charge }}</h5>
                         <h2><a href="{%url 'payment' %}"><button type="submit" class="btn btn-success text-center mt-4">Proceed To PAY</button></a></h2>
                     </div>
                     <div class="col-sm-6">

@@ -38,7 +38,7 @@ def contact(request):
         
     return render(request, 'contact.html')
 
-def signup(request):
+
 
 def signup(request):
   if request.method == 'POST':

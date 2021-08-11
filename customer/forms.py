@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        fields = ['description','address', 'pickup']
+        fields = ['description','address', 'billing_Cycle', 'pickup']
 
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control'}),
