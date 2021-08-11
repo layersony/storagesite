@@ -43,6 +43,10 @@
           <div class="col-md-6">
             <form method="post" enctype="multipart/form-data" action="">
               {% csrf_token %}
+              <div id="autocomplete" class="autocomplete">
+                  <input class="autocomplete-input" />
+                  <ul class="autocomplete-result-list"></ul>
+              </div>
               {% bootstrap_form form %}
               <button type="submit" class="btn btn-success text-white" value="Save">Proceed to pay</button>
             </form> 
@@ -52,4 +56,8 @@
     </div>
   </div>  
 </div>
+
+<script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+
 {% endblock content%}

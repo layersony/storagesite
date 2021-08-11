@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
 from . forms import BookingForm,AddUserForm
@@ -61,5 +62,17 @@ def delete_unit(request,unit_id):
     if unit:
         unit.delete_unit(unit_id)
     return redirect('units')
+
+def search_client(request):
+    client = request.GET.get('client')
+
+    payload = []
+    if client:
+        clients = User.objects.filter(name__icontains=client)
+        for client in clients:
+            payload.append(client.name)
+
+    return JsonResponse({'status': 200, 'data': payload})
+
 
 

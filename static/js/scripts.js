@@ -13,6 +13,8 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
+    
+
     $('.view_unit').click(function(){
         var unitName = $(this).attr('data-unitname');
         var monthlyCharge = $(this).attr('data-monthly');
@@ -30,4 +32,24 @@ $(document).ready(function(){
         formatDate: 'Y-m-d',
       }
     );
+
+    
 });
+
+new Autocomplete('#autocomplete', {
+    search: input => {
+        if (input.length < 1) {
+            return []
+        }
+        const url = `/employee/search_client/?client=${input}`
+
+        return new Promise(resolve => {
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                
+                resolve(data.data);
+            })
+        })
+        }
+    })

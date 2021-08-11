@@ -76,7 +76,7 @@ class Profile(models.Model):
     nok_relationship = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self) :
-        return str(self.user.username)
+        return str(self.user.name)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
