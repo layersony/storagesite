@@ -25,6 +25,8 @@ urlpatterns = [
   path('admin/userunit/delete/<str:id>', views.deleteunit, name='deleteunit'),
   path('admin/userbook/<str:id>/', views.mainadminupdatebook, name='mainadminupdatebook'),
   path('admin/userbook/delete/<str:id>', views.deletebook, name='deletebook'),
+  path('daraja/stk-push', views.stk_push_callback, name='mpesa_stk_push_callback'),
+  path('mpesatrial/', views.mpesatrial)  
 ]
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
