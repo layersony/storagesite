@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
 from .models import Booking
@@ -34,5 +35,11 @@ class PaymentForm(ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('pic','user', 'phone_number', 'address', 'nok_fullname',
-                  'nok_number', 'nok_email', 'nok_relationship',)
+        fields = ['pic', 'phone_number','location','address', 'nok_fullname',
+                  'nok_number', 'nok_email', 'nok_relationship',]
+        
+class UpdateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'
+        exclude = ['user_type', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined', 'groups', 'user_permissions', 'password']

@@ -13,11 +13,13 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
-    $("#id_end_date").datetimepicker(
-      {
-        format: 'Y-m-d H:i:i',
-        formatTime: 'H:i:i',
-        formatDate: 'Y-m-d',
-      }
-    );
+  $("#id_end_date").datetimepicker(
+    {
+      format: 'Y-m-d H:i:i',
+      formatTime: 'H:i:i',
+      formatDate: 'Y-m-d',
+    }
+  );
+
+  
 });

@@ -68,6 +68,8 @@ class Profile(models.Model):
     pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address = models.CharField(max_length=20, blank=True, null=True)
+    location = models.CharField(max_length=20, blank=True, null=True)
+    address = models.CharField(max_length=20, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
     nok_number = models.CharField(max_length=100, blank=True, null=True)
@@ -116,6 +118,7 @@ Unit_sizes = (
 
 class Unit(models.Model):
     name = models.CharField(max_length=200)
+    volume = models.PositiveIntegerField(null=True)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
@@ -157,17 +160,33 @@ class Unit(models.Model):
         units = Unit.objects.filter(name__icontains=search_term).all()
         return units
 
+BillingCycle = (
+    ('Daily', 'Daily'),
+    ('Weekly', 'Weekly'),
+    ('Monthly', 'Monthly'),
+)
+
+
+ModePayment = (
+    ('Mpesa','Mpesa'),
+    ('Bank', 'Bank'),
+    ('Cash','Cash'),
+)
+
 class Booking(models.Model):
     profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)
     unit = models.ForeignKey(Unit, related_name='unit', on_delete=CASCADE)
-
     description = models.CharField(max_length=200)
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField(null=True)
     address = models.CharField(max_length=200)
     pickup = models.BooleanField(default=False)
-    payment_mode = models.CharField(max_length=200)
+    delivery = models.BooleanField(default=False, null=True, blank=True)
+    delivery_address = models.TextField(null=True, blank=True)
+    billing_Cycle = models.CharField(max_length=100, choices=BillingCycle, default='Monthly')
+    payment_mode = models.CharField(max_length=50, choices=ModePayment, default='Mpesa')
     account_number = models.CharField(max_length=30)
+    cost = models.PositiveIntegerField(null=True)
     total_cost = models.PositiveIntegerField(null=True)
 
     def __str__(self) :

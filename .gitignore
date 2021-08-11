@@ -1,8 +1,8 @@
 envprodev/
 .env
 virtual/
+migrations/
 *.pyc
-virtual/]
 requirements.txtsource
 
 # Created by https://www.toptal.com/developers/gitignore/api/django

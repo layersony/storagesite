@@ -17,11 +17,28 @@ from rest_framework.authtoken import views as auth_views
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
 from django.contrib.auth.decorators import login_required
+from .emails import send_feedback
 
 
 def index(request):
   return render(request, 'index.html')
 
+def about(request):
+  return render(request, 'about.html')
+
+def contact(request):
+    if request.method == 'POST':
+        f_name = request.POST.get('f_name')
+        l_name = request.POST.get('l_name')
+        full_name = f_name + " " + l_name
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        send_feedback(full_name, message, email)
+        
+    return render(request, 'contact.html')
+
+def signup(request):
 
 def signup(request):
   if request.method == 'POST':
@@ -322,7 +339,7 @@ def deletebook(request, id):
     return redirect('customadmin')
 
 class AllUnits(APIView):
-  permission_classes = (IsAuthenticated,)
+  permission_classes = (IsAuthenticatedOrReadOnly,)
   def get(self, request, format=None):
     allunits = Unit.objects.all()
     serializer = UnitSerializer(allunits, many=True)
