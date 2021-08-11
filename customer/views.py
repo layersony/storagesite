@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
 from .forms import BookingForm,PaymentForm, UpdateUserForm
@@ -36,7 +37,8 @@ def update_profile(request):
     return render(request, 'all_customer/update_profile.html', { 'form': form, 'userform': userform})
 
 def profile(request):
-    return render(request, 'all_customer/profile.html')
+      units = Booking.objects.filter(profile=request.user.profile)
+      return render(request, 'all_customer/profile.html', {'details':units})
     
 def booking_details(request, id):
       book = Booking.objects.get(id=id)
@@ -81,6 +83,18 @@ def payment(request):
       context = {'form': form}
       return render(request, 'all_customer/payment.html', context)
 
+def checkout(request):
+      unit_id = request.GET.get('unit')
+      book_id = request.GET.get('booking')
+      Unit.objects.filter(id=unit_id).update(occupied=False)
+      Booking.delete_booking(book_id)
+      message = messages.success(request ,f'You have Successfully Moved Out of unit {Unit.objects.get(id=unit_id).name}')
+      data = {
+            'message':message
+      }
+      return JsonResponse(data)
+      
+      
 
 
 

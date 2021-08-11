@@ -373,3 +373,4 @@ class OneUnit(APIView):
     one_unit = Unit.view_one_unit(id)
     one_unit.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+

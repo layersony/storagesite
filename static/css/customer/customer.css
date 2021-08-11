@@ -2,111 +2,64 @@
 @import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
-html{
-    font-size: 12px;
-}
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     list-style: none;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Open Sans", san-serif;
+    /* line-height: 1rem; */
+    color: #343334;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+h1, h2, h3, h4, h5, h6{
+    color: #369FE4;
 }
 body{
-    background:#ebe7e7;
+    background:#ffffff;
 }
 .wrapper 
 {
-    position: absolute;
-    left:10%;
-    top:10%;
-    width: 80%;
-    
+    width: 85%;
     min-height: 70vh;
-    display: flex;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-    /* overflow: hidden; */
-    display: -webkit-box;
-    /* display: -webkit-flex; */
-    display: -moz-box; 
-    display: -ms-flexbox;  
-    flex-wrap: wrap;  
-    align-items: stretch;
-    flex-direction: row-reverse;
 }
-.wrapper .left
-{
-    padding-top: 50px;
-    margin-left: 70px;
+.prof{
+    margin-top: 100px;
+    width: 95%;
+}
 
-}
-.wrapper .left p
+.fa
 {
-    font-size: small;
-}
-.wrapper .left .info
-{
-    color:blue;
+    color:#369FE4;
     padding: 10px;
+    font-size: 22px;
 }
-.wrapper .left .btn
-{  
-    border-radius: 5px;
-    color: white;
-    background-color: green;
-    text-align: left;
-}
-.wrapper .left .img
-{   width: 100px;
-    border-radius: 50%;
-}
-.wrapper .right
-{
-    position: absolute;
-    display: flex;
-    margin-left: 300px;
-    padding-top: 50px;
-}
-.wrapper .right .info-data
-{
-    font-size: small;
-    font-style: italic;
-}
-.wrapper .right2
-{
-    /* background-color: blue; */
-    position: absolute;
-    display: flex;
-    margin-left: 600px;
-    padding-top: 50px;
-}
-.wrapper .right2 .payment-data
-{
-    font-size: small;
-    font-style: italic;
+
+.addressinfo{
+    height: 20vh;
 }
 
 .table1
 {
-    position: absolute;
-    display: flex;
-    margin-left: 300px;
-    margin-top: 200px;
-    font-size:small;
-    
+    position: relative;
+    display: flex;   
 }
-table,tr{
-        width: 70%;
-        white-space:nowrap;
-        background-color: black;
+.table1 .fa
+{
+    color: #fff;
+    font-size: 18px;
+}
+table, tr{
+        background-color: #343334;
         border: 2px white solid;
-        border-collapse: collapse;
-        
     }
+.context{
+    background-color: #fff;
+    color: #343334;
+}
     
-    td,th{
+    th{
         padding: 4px ;
         color: white;
        
@@ -150,4 +103,16 @@ input[type=text], select, textarea {
     text-align: center;
     background-color: red;
     border-radius: 4px;
+}
+
+@media  screen and (max-width:500px) {
+    .prof{
+        margin-top: 100px;
+        width: 100%;
+    }
+    .wrapper 
+{
+    width: 100%;
+    min-height: 70vh;
+}
 }
