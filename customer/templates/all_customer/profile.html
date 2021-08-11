@@ -4,64 +4,68 @@
 
 {% block content %}
 <link rel="stylesheet" href="/static/css/customer/customer.css">
+<div class="wrapper container-fluid d-flex justify-content-center align-items-center">
 
-<div class="wrapper">
-  <div class="left">
+<div class="row prof">
+  <div class="col-md-3 p-5">
     <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.pic.url }}"
-    height="125px" width="125px">
-      <h2>{{user.name}}</h2>
-   
-      <p><i class="fa fa-phone info"></i>{{user.profile.phone_number}}</p>
-    
-      <p><i class="fa fa-envelope info"></i>{{user.email}}</p>
-    
-      <p><i class="fa fa-map-marker info"></i>{{user.profile.location}}</p>
-      <a class="btn btn-warning" href = "{% url 'update_profile' %}">Edit Profile</a>
+    height="200px" width="200px" class="img-fluid">
+      <h2 class="font-weight-bold mt-5">{{user.name}}</h2>
+      <h5>@{{ user.username }}</h5>
+      <p><i class="fa fa-phone mt-2"></i>{{user.profile.phone_number}}</p>
+      <p><i class="fa fa-envelope"></i>{{user.email}}</p>
+      <p><i class="fa fa-map-marker"></i>{{user.profile.location}}</p>
+      <a class="btn btn-success btn-md mt-2" href = "{% url 'update_profile' %}">Edit Profile</a>
   </div>
-  <div class="right">
-      <div class="info">
-          <h3>Address</h3>
+  <div class="col-md-8 d-flex flex-column p-3">
+  <div class="addressinfo">
+      <div class="info text-center">
+          <h3 class="font-weight-bold">Address</h3>
           <div class="info-data">
            {{user.profile.address}}
           </div>
       </div>
   </div>
-  <div class="right2">
-      <div class="payment">
-          
-      </div>
-  </div>
-  <div class="table1">
-      <table class="table caption-top, table-striped">
-          <caption style="text-align:center;"><h3>My Units</h3></caption>
+
+  <div class="table-responsive mt-2 flex-column">
+    <h3 class="text-center font-weight-bold">My Units</h3>
+      <table class="table table-striped">
+
           <thead>
             <tr>
+              <th scope="col">no:</th>
               <th scope="col">Units</th>
               <th scope="col">Start</th>
-              <th scope="col">End</th>
               <th scope="col">Size</th>
+              <th scope="col">Billing Cycle</th>
               <th scope="col">Cost(KES)</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col"><i class="fa fa-eye"></i></th>
+              <th scope="col"><i class="fa fa-external-link-alt text-danger"></i></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="context">
           {% for detail in details %}
-            <tr>
-              <th scope="row">{{detail.unit}}</th>
+            <tr >
+              <td>{{ forloop.counter }}.</td>
+              <td class="font-weight-bold">{{detail.unit}}</td>
               <td>{{detail.start_date}}</td>
-              <td>{{details.end_date}}</td>
-              <td>{{detail.size}}</td>
+              <td>{{detail.unit.size}}</td>
+              <td>{{detail.billing_Cycle}}</td>
               <td>{{detail.cost}}</td>
-              <td><button style="background-color:red; border:red; border-radius:2px;">check out</button></td>
-              <td><a style="background-color:blue; border:blue; border-radius:2px; " href = "{% url 'bookingdetails' detail.id%}">view</a></td>
+              <td><a style="color:#369FE4;" href = "{% url 'bookingdetails' detail.id%}">View</a></td>
+              <td><span class="text-danger" id="checkout">Check out</span></td>
+              <p id='bookingid' style='display:none'>{{detail.id}}</p>
             </tr>
+            {% empty %}
+            <p class="alert alert-info text-center"> No Booked Units Available</p>
             {% endfor %}
           </tbody>
         </table>
   </div>
   
-
 </div>
-    
+</div>
+</div>
+
+
 {%endblock%}

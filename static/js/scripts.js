@@ -21,5 +21,28 @@ $(document).ready(function(){
     }
   );
 
-  
+});
+
+$(document).ready(function(){
+  $('#checkout').click(function(){
+    bookingdetails = $('#bookingid').html()
+    let leave = prompt('Are you sure you want to Move Out? (yes/no)').toLowerCase()
+
+    
+    if (leave == 'yes'){
+      $.ajax({
+        'url': '/ajax/checkout/',
+        'type':'GET',
+        'data':bookingdetails,
+        'dataType': 'json',
+        'success': function(data){
+          console.log(data)
+        }
+      })
+    }else if( leave == 'no'){
+      console.log('stays')
+    }else{
+      alert('Invalid!, Enter Yes or No')
+    }
+  })
 });

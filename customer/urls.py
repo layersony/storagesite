@@ -11,6 +11,7 @@ urlpatterns = [
   path('available/', views.available, name='available'),
   path('book/<str:pk>', views.book, name='book'),
   path('payment/', views.payment, name='payment'),
+  path('ajax/checkout/', views.checkout, name='checkout')
 ]
 
 
