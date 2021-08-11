@@ -23,6 +23,7 @@ MODE = config('MODE', default='dev')
 AUTH_USER_MODEL = 'mainapp.User'
 
 INSTALLED_APPS = [
+    'mpesa_api.apps.MpesaApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -35,7 +36,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_daraja',
+    # 'django_daraja',
+    
 ]
 
 MIDDLEWARE = [
@@ -90,7 +92,7 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 
 DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS =['.localhost','.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS =['.localhost','.herokuapp.com','127.0.0.1', '29f0b3481c82.ngrok.io']
 
 
 # Password validation
@@ -153,43 +155,45 @@ EMAIL_PORT=587
 EMAIL_HOST_USER=config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
 
-# The Mpesa environment to use
-# Possible values: sandbox, production
 
-MPESA_ENVIRONMENT = 'sandbox'
 
-# Credentials for the daraja app
+# # The Mpesa environment to use
+# # Possible values: sandbox, production
 
-MPESA_CONSUMER_KEY = 'n7jvs1RC3BDZ1OzPoF7HkAjLDyHMmRdG'
-MPESA_CONSUMER_SECRET = 'XbXDA8TNflXWuZAc'
+# MPESA_ENVIRONMENT = 'sandbox'
 
-#Shortcode to use for transactions. For sandbox  use the Shortcode 1 provided on test credentials page
+# # Credentials for the daraja app
 
-MPESA_SHORTCODE = '174379'
+# MPESA_CONSUMER_KEY = 'n7jvs1RC3BDZ1OzPoF7HkAjLDyHMmRdG'
+# MPESA_CONSUMER_SECRET = 'XbXDA8TNflXWuZAc'
 
-# Shortcode to use for Lipa na MPESA Online (MPESA Express) transactions
-# This is only used on sandbox, do not set this variable in production
-# For sandbox use the Lipa na MPESA Online Shorcode provided on test credentials page
+# #Shortcode to use for transactions. For sandbox  use the Shortcode 1 provided on test credentials page
 
-MPESA_EXPRESS_SHORTCODE = '174379'
+# MPESA_SHORTCODE = '174379'
 
-# Type of shortcode
-# Possible values:
-# - paybill (For Paybill)
-# - till_number (For Buy Goods Till Number)
+# # Shortcode to use for Lipa na MPESA Online (MPESA Express) transactions
+# # This is only used on sandbox, do not set this variable in production
+# # For sandbox use the Lipa na MPESA Online Shorcode provided on test credentials page
 
-MPESA_SHORTCODE_TYPE = 'paybill'
+# MPESA_EXPRESS_SHORTCODE = '174379'
 
-# Lipa na MPESA Online passkey
-# Sandbox passkey is available on test credentials page
-# Production passkey is sent via email once you go live
+# # Type of shortcode
+# # Possible values:
+# # - paybill (For Paybill)
+# # - till_number (For Buy Goods Till Number)
 
-MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919!'
+# MPESA_SHORTCODE_TYPE = 'paybill'
 
-# Username for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+# # Lipa na MPESA Online passkey
+# # Sandbox passkey is available on test credentials page
+# # Production passkey is sent via email once you go live
 
-MPESA_INITIATOR_USERNAME = 'testapi'
+# MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919!'
 
-# Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+# # Username for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
 
-MPESA_INITIATOR_SECURITY_CREDENTIAL = 'Safaricom992!'
+# MPESA_INITIATOR_USERNAME = 'testapi'
+
+# # Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+
+# MPESA_INITIATOR_SECURITY_CREDENTIAL = 'Safaricom992!'
