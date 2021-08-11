@@ -11712,3 +11712,8 @@ body {
 .modalhead{
   color: #369fe4;
 }
+@media screen and (max-width:400px) {
+  .navbar .navbar-brand {
+    font-size: 1.8rem;
+  }
+}

@@ -22,11 +22,8 @@
       <th scope="col">Lenght</th>
       <th scope="col">Daily_charge</th>
       <th scope="col">Weekly_charge</th>
-      <th scope="col">Wonthly_charge</th>
+      <th scope="col">Monthly_charge</th>
       <th scope="col">Status</th>
-      <th scope="col">Access_code</th>
-      
-      
     </tr>
   </thead>
       
@@ -45,8 +42,7 @@
         {% else %}
         <td><span class="text-success">Available</span></td>
         {% endif %}
-      <td>{{ Unit.access_code }}</td>
-      <td><a href="{%url 'book' Unit.id %}"><button type="button" class="btn btn-info">book</button></a></td>
+      <td><a href="{%url 'book' Unit.name %}"><button type="button" class="btn btn-info">book</button></a></td>
     </tr>
     {% endfor %}
     </tbody>
