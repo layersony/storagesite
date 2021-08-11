@@ -56,7 +56,7 @@
             <td>{{ unit.weekly_charge}}</td>
             <td>{{ unit.monthly_charge}}</td>
             <td><a class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
-                    data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}">Edit Unit</a></td>
+                    data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}">View</a></td>
           </tr>
           {% endfor %}
           {% endif %}
@@ -66,7 +66,7 @@
           <div class="modal fade text-dark" id="myModalunit" role="dialog" >
             <div class="modal-dialog" >
                 <div class="modal-content p-4"  style="width:40rem;">
-                    <h1 class="modalhead text-center" style="margin-bottom: 3rem;">Unit <span id="unitName">Haha</span> </h1>
+                    <h1 class="modalhead text-center" style="margin-bottom: 3rem;">Unit <span id="unitName"></span> </h1>
                     <div class="row">
                       <div class="col-md-6">
                         <p>Name of the unit:  </p><hr>
@@ -85,8 +85,8 @@
                       </div>
                     </div>
                     <a href="" class="btn btn-outline " style="float:right; background-color: #79C54E; color:white;">Update Availability Status </a>
-                    <a href="{% url 'onsite_booking' unit_name='A7' %}" id="onsiteBooking" class="btn btn-outline"
-                        style="background-color: #369FE4; color: white;">Book Unit</a>
+                    <a id="onsiteBooking" class="btn btn-outline"
+                        style="background-color: #369FE4; color: white;">Book Unit <span id="url"></span> </a>
                     <a href="#" class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
   
                 </div>
