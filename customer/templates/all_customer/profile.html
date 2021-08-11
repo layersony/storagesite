@@ -54,7 +54,8 @@
               <td>{{detail.cost}}</td>
               <td><a style="color:#369FE4;" href = "{% url 'bookingdetails' detail.id%}">View</a></td>
               <td><span class="text-danger" id="checkout">Check out</span></td>
-              <p id='bookingid' style='display:none'>{{detail.id}}</p>
+              <p id='unit_id' style='display:none'>{{detail.unit.id}}</p>
+              <p id='booking_id' style='display:none'>{{detail.id}}</p>
             </tr>
             {% empty %}
             <p class="alert alert-info text-center"> No Booked Units Available</p>
@@ -67,5 +68,33 @@
 </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  var $j = jQuery.noConflict();
 
+  $j('#checkout').click(function(){
+  bookingdetails = $j('#booking_id').html()
+  unitdetails = $j('#unit_id').html()
+  let leave = prompt('Are you sure you want to Move Out? (yes/no)').toLowerCase()
+
+  if (leave == 'yes'){
+    $j.ajax({
+      'url': '{% url "checkout" %}',
+      'type':'GET',
+      'data':{
+        'booking':bookingdetails,
+        'unit':unitdetails
+      },
+      'dataType': 'json',
+      'success': function(data){
+        console.log(data)
+      }
+    })
+  }else if( leave == 'no'){
+    console.log('stays')
+  }else{
+    alert('Invalid!, Enter Yes or No')
+  }
+  })
+</script>
 {%endblock%}

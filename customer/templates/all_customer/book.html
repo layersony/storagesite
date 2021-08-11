@@ -9,15 +9,19 @@
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
             <div class="card border-0">
-                <div class="row justify-content-center">
-                    <h3 class="mb-4">BOOK UNITA1</h3>
+                <div class="text-center">
+                    <h2>BOOK UNIT {{ unit.name }}</h2>
                 </div>
                 <div class="row">
-                    <div class="col-sm-5 text-sm-center justify-content-center pt-4 pb-4"> <small class="text-sm text-muted">Volume</small>
-                        <h5 class="mb-5">4ft</h5> <small class="text-sm text-muted">Size</small>
-                        <div class="row px-3 justify-content-sm-center">
-                            <h2 class=""><span class="text-md font-weight-bold mr-2"></span><span class="text-danger">59.49</span></h2>
-                        </div><a href="{%url 'payment' %}"><button type="submit" class="btn btn-success text-center mt-4">Proceed To PAY</button></a>
+                    <div class="col-sm-5 text-sm-left justify-content-center pt-4 pb-4">
+                        <h5 class="mb-5">Name : {{ unit.name }}</h5>
+                        <h5 class="mb-5">Width : {{ unit.width }}</h5>
+                        <h5 class="mb-5">Height : {{ unit.height }}</h5>
+                        <h5 class="mb-5">Length : {{ unit.length }}</h5>
+                        <h5 class="mb-5">Daily_charge : {{ unit.daily_charge }}</h5>
+                        <h5 class="mb-5">Weekly_charge : {{ unit.weekly_charge }}</h5>
+                        <h5 class="mb-5">Monthly_charg : {{ unit.monthly_charge }}</h5>
+                        <h2><a href="{%url 'payment' %}"><button type="submit" class="btn btn-success text-center mt-4">Proceed To PAY</button></a></h2>
                     </div>
                     <div class="col-sm-6">
                                 <div class="mb-3">
@@ -29,16 +33,10 @@
                                     {% csrf_token %}
                                     {{form.as_p}}
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                        pick up
-                                      </label>
-                                   
-          
                                   </form>
 
                                 </div>
-                   
+              
                  </div>
             </div>
         </div>
@@ -54,3 +52,5 @@
 
 
 {%endblock%} 
+
+

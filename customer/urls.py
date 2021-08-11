@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
   # path('', views.index, name='custhome'),
   path('profile/', views.profile, name='profile'),
@@ -11,7 +12,7 @@ urlpatterns = [
   path('available/', views.available, name='available'),
   path('book/<str:pk>', views.book, name='book'),
   path('payment/', views.payment, name='payment'),
-  path('ajax/checkout/', views.checkout, name='checkout')
+  path('ajax/checkout', views.checkout, name='checkout')
 ]
 
 
