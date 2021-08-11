@@ -68,7 +68,7 @@ def search_client(request):
 
     payload = []
     if client:
-        clients = User.objects.filter(name__icontains=client)
+        clients = User.objects.filter(user_type='client',name__icontains=client)
         for client in clients:
             payload.append(client.name)
 
