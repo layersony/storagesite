@@ -15,19 +15,32 @@ window.addEventListener('DOMContentLoaded', event => {
 $(document).ready(function(){
     $('.view_unit').click(function(){
         var unitName = $(this).attr('data-unitname');
+        var unitWidth = $(this).attr('data-unitwidth');
+        var unitHeight = $(this).attr('data-unitheight');
+        var unitLength = $(this).attr('data-unitlength');
+        var unitSize = $(this).attr('data-unitsize');
+        var unitOccupied = $(this).attr('data-occupied');
+        var dailyCharge = $(this).attr('data-daily');
+        var weeklyCharge = $(this).attr('data-weekly');
         var monthlyCharge = $(this).attr('data-monthly');
         var onsite_booking_url = "onsite_booking/" + unitName
 
         $('#unitName').text(unitName);
+        $('#unitWidth').text(unitWidth);
+        $('#unitHeight').text(unitHeight);
+        $('#unitLength').text(unitLength);
+        $('#unitSize').text(unitSize);
         $('#monthlyCharge').text(monthlyCharge);
+        $('#weeklyCharge').text(weeklyCharge);
+        $('#dailyCharge').text(dailyCharge);
         $('#onsiteBooking').attr('href', onsite_booking_url);
     })
 
-    $("#id_end_date").datetimepicker(
-      {
+$("#id_end_date").datetimepicker(
+    {
         format: 'Y-m-d H:i:i',
         formatTime: 'H:i:i',
         formatDate: 'Y-m-d',
-      }
+    }
     );
 });

@@ -22,8 +22,7 @@
 
   <div class=" container-fluid">
     <div class="col-md-12">  
-      <h2 class="allunits-header">All storagesite units </h2>
-      
+      <h2 class="allunits-header">All storagesite units </h2>  
       <table class="content-table">
         <thead>
           <tr>
@@ -37,11 +36,8 @@
             <th>WEEKLY CHARGE (Ksh)</th>
             <th>MONTHLY CHARGE (Ksh)</th>
             <th></th>
-            
-
           </tr>
-        </thead>
-        
+        </thead> 
         <tbody>
         {% if units %}
         {% for unit in units %}
@@ -56,38 +52,41 @@
             <td>{{ unit.weekly_charge}}</td>
             <td>{{ unit.monthly_charge}}</td>
             <td><a class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
-                    data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}">View</a></td>
+                    data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}"
+                    data-unitwidth="{{ unit.width }}" data-daily="{{ unit.daily_charge }}"
+                    data-unitheight="{{ unit.height }}" data-weekly="{{ unit.weekly_charge }}"
+                    data-unitlength="{{ unit.length }}" data-unitsize="{{ unit.size }}">View</a></td>
           </tr>
           {% endfor %}
           {% endif %}
           </tbody>
 
-  
+
           <div class="modal fade text-dark" id="myModalunit" role="dialog" >
             <div class="modal-dialog" >
                 <div class="modal-content p-4"  style="width:40rem;">
                     <h1 class="modalhead text-center" style="margin-bottom: 3rem;">Unit <span id="unitName"></span> </h1>
                     <div class="row">
                       <div class="col-md-6">
-                        <p>Name of the unit:  </p><hr>
-                        <p>Height of the unit:  </p><hr>
-                        <p>Length of the unit:  </p><hr>
-                        <p>General size:  </p><hr>
-                        <p>Availability status:  </p><hr>
+                        <p>Height of the unit:    <span style="color:#369FE4" id="unitHeight"></span> </p><hr>
+                        <p>Length of the unit:    <span style="color:#369FE4"id="unitWidth"></span> </p><hr>
+                        <p>Length of the unit:    <span style="color:#369FE4" id="unitLength"></span> </p><hr>
+                        <p>General size:          <span style="color:#369FE4"id="unitSize"></span> </p><hr>
+                        <p>Availability status:   <span style="color:#369FE4"id=""></span> </p><hr>
                       </div>
                       <div class="col-md-6">
-                        <p>Charges per day:  </p><hr>
-                        <p>Charges per week:  </p><hr>
-                        <p>Charges per month: KES <span id="monthlyCharge"></span>.00 </p>
+                        <p>Charges per day:        <span style="color:#369FE4">KES<span id="dailyCharge"></span>.00</span></p><hr>
+                        <p>Charges per week:        <span style="color:#369FE4">KES<span id="weeklyCharge"></span>.00</span> </p><hr>
+                        <p>Charges per month:       <span style="color:#369FE4">KES<span id="monthlyCharge"></span>.00</span> </p>
                         <hr>
                         <p>Most suitable goods to be stored : </p><hr>
                         <p>Average temperatures:</p>
                       </div>
                     </div>
-                    <a href="" class="btn btn-outline " style="float:right; background-color: #79C54E; color:white;">Update Availability Status </a>
-                    <a id="onsiteBooking" class="btn btn-outline"
+                    <a href="{% url 'customadmin' %}" class="btn btn-outline " style="float:right; background-color: #79C54E; color:white;">Update Availability Status </a>
+                    <a  href=" " id="onsiteBooking" class="btn btn-outline"
                         style="background-color: #369FE4; color: white;">Book Unit <span id="url"></span> </a>
-                    <a href="#" class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
+                    <a href="{% url 'delete_unit' unit_id %}" class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
   
                 </div>
             </div>
