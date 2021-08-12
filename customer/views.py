@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
 from .forms import BookingForm,PaymentForm, UpdateUserForm
@@ -8,7 +9,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import logout, login, authenticate
 from django.contrib import messages
-
 from .forms import UpdateProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -19,6 +19,7 @@ from django.views.generic.edit import UpdateView
 
 from . import views
 from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
 
 def update_profile(request):
     user = request.user
@@ -36,26 +37,28 @@ def update_profile(request):
     return render(request, 'all_customer/update_profile.html', { 'form': form, 'userform': userform})
 
 def profile(request):
-    return render(request, 'all_customer/profile.html')
+      units = Booking.objects.filter(profile=request.user.profile)
+      return render(request, 'all_customer/profile.html', {'details':units})
     
 def booking_details(request, id):
       book = Booking.objects.get(id=id)
       return render(request, 'all_customer/bookingdetails.html', {'book':book})
 
+@login_required
 def available(request):
       units=Unit.objects.all()
       return render(request, 'all_customer/available_units.html', {"units":units})
 
 
+@login_required
 def book(request):
       return render(request, 'all_customer/book.html', )
 
 def book(request, pk):
-      if pk:
-            unit=Unit.objects.get(pk=pk)
-      else:
-            unit = request.user
+
+      unit=Unit.objects.get(name=pk)
       
+
       form_class = BookingForm()
       form = BookingForm()
 
@@ -64,10 +67,10 @@ def book(request, pk):
             if form.is_valid():
                   form.save()
 
-      context = {'form': form}
+      context = {'form': form, "unit":unit}
       return render(request, 'all_customer/book.html',  context)
 
-
+@login_required
 def payment(request):
       form_class = PaymentForm()
       form = PaymentForm()
@@ -80,8 +83,18 @@ def payment(request):
       context = {'form': form}
       return render(request, 'all_customer/payment.html', context)
 
-
-
-
+def checkout(request):
+      unit_id = request.GET.get('unit')
+      book_id = request.GET.get('booking')
+      Unit.objects.filter(id=unit_id).update(occupied=False)
+      Booking.delete_booking(book_id)
+      message = messages.success(request ,f'You have Successfully Moved Out of unit {Unit.objects.get(id=unit_id).name}')
+      data = {
+            'message':message
+      }
+      return JsonResponse(data)
       
       
+
+
+

@@ -34,10 +34,6 @@ class AddUnitForm(forms.ModelForm):
     fields = '__all__'
 
 class AddBookingForm(forms.ModelForm):
-  # def __init__(self, *args, **kwargs):
-  #   super(AddBookingForm, self).__init__(*args, **kwargs)
-  #   self.fields['unit'].queryset = Unit.objects.filter(occupied=self.instance.occupied)
-
   class Meta:
     model = Booking
     fields = '__all__'
