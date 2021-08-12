@@ -127,6 +127,8 @@ class Unit(models.Model):
     weekly_charge = models.PositiveIntegerField()
     monthly_charge = models.PositiveIntegerField()
     access_code = models.PositiveIntegerField()
+    suitable_property =models.CharField(max_length=400)
+    average_temperature = models.IntegerField()
 
     @property
     def volume(self):
