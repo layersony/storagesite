@@ -26,9 +26,15 @@ def onsite_booking(request, unit_name):
         form = BookingForm(request.POST, request.FILES)
         user_form = AddUserForm(request.POST)
 
+        user_full_name = request.POST.get('user_profile')
+
+        user_obj = User.objects.get(name=user_full_name)
+
+        profile_obj = Profile.objects.get(user=user_obj)
+
         if form.is_valid():
             book_unit = form.save(commit=False)
-            book_unit.user = request.user
+            book_unit.proofile = profile_obj
             book_unit.unit = unit
             book_unit.save()
             return redirect('')

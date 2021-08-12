@@ -43,8 +43,9 @@
           <div class="col-md-6">
             <form method="post" enctype="multipart/form-data" action="">
               {% csrf_token %}
-              <div id="autocomplete" class="autocomplete">
-                  <input class="autocomplete-input" />
+              <div id="autocomplete" class="autocomplete mb-3">
+                  <input class="autocomplete-input" placeholder="Search client..." name="user_profile"
+                      id="user_profile" />
                   <ul class="autocomplete-result-list"></ul>
               </div>
               {% bootstrap_form form %}
