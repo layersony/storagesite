@@ -12,7 +12,6 @@
                 <p style="color:white; font-size: 20px;"class="mx-5 mb-5">View a list of all available units<br>
                 Help an onsite client book storage<br>
                 View the company's statistics</p>
-                <a class="btn btn-success" href="#" role="button">View My Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
                 <a class="btn btn-success" href="#" role="button">View Statistics <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
                 <a class="btn btn-success" href="#" role="button"> Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
@@ -86,13 +85,10 @@
                     <a href="{% url 'customadmin' %}" class="btn btn-outline " style="float:right; background-color: #79C54E; color:white;">Update Availability Status </a>
                     <a  href=" " id="onsiteBooking" class="btn btn-outline"
                         style="background-color: #369FE4; color: white;">Book Unit <span id="url"></span> </a>
-                    <a href="{% url 'delete_unit' unit_id %}" class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
-  
+                    <a href="{%%} " class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
                 </div>
             </div>
-          </div>
-
-        
+          </div> 
       </table>
     </div>  
   </div>
