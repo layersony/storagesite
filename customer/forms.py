@@ -10,26 +10,25 @@ from django.contrib.auth.forms import UserCreationForm
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        fields = ['description','billing_Cycle', 'pickup', 'address']
+        fields = ['description','billing_Cycle', 'pickup', 'address', 'cost', 'payment_mode','account_number','total_cost']
 
         widgets = {
             'description': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
-        }
-
-
-class PaymentForm(ModelForm):
-    class Meta:
-        model = Booking
-        fields = ['payment_mode','account_number','total_cost']
-        
-        widgets = {
-            'payment_mode': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'payment_mode': forms.TextInput(attrs={'class': 'form-control'}),
             'account_number': forms.TextInput(attrs={'class': 'form-control'}),
             'total_cost': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-  
+
+# class PaymentForm(ModelForm):
+#     class Meta:
+#         model = Booking
+#         fields = ['payment_mode','account_number','total_cost']
+        
+#         widgets = {
+
+#         }
 
 
 class UpdateProfileForm(forms.ModelForm):

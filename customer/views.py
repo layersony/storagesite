@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
-from .forms import BookingForm,PaymentForm, UpdateUserForm
+from .forms import BookingForm, UpdateUserForm
 
 
 from .models import User ,Profile,Booking,Unit
@@ -20,6 +20,8 @@ from django.views.generic.edit import UpdateView
 from . import views
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
+
+from mpesa_api.views import lipa_na_mpesa_online
 
 def update_profile(request):
     user = request.user
@@ -51,9 +53,6 @@ def available(request):
 
 
 @login_required
-def book(request):
-      return render(request, 'all_customer/book.html', )
-
 def book(request, pk):
 
       unit=Unit.objects.get(name=pk)
@@ -65,23 +64,40 @@ def book(request, pk):
       if request.method == 'POST':
             form = BookingForm(request.POST)
             if form.is_valid():
-                  form.save()
+                  bkunit = form.save(commit=False)
+                  bkunit.profile = request.user.profile
+                  bkunit.unit = unit
+                  bkunit.save()
+
+                  account_number = form.cleaned_data['account_number']
+                  payment = form.cleaned_data['payment_mode']
+
+                  phonenumber = None
+                  if account_number[0] == '0':
+                      phonenumber = '254'+ account_number[1:]
+                  
+                  if payment == 'Mpesa':
+                        lipa_na_mpesa_online(request, phonenumber)
+                        messages.success(request, 'Your Payment is Being Proccessed')
+                        Unit.objects.filter(name=pk).update(occupied=True)
+                        messages.success(request, f'You Have Booked Unit {pk}')
+                        return redirect('profile')
 
       context = {'form': form, "unit":unit}
       return render(request, 'all_customer/book.html',  context)
 
-@login_required
-def payment(request):
-      form_class = PaymentForm()
-      form = PaymentForm()
+# @login_required
+# def payment(request):
+#       form_class = PaymentForm()
+#       form = PaymentForm()
 
-      if request.method == 'POST':
-            form = PaymentForm(request.POST)
-            if form.is_valid():
-                  form.save()
+#       if request.method == 'POST':
+#             form = PaymentForm(request.POST)
+#             if form.is_valid():
+#                   form.save()
 
-      context = {'form': form}
-      return render(request, 'all_customer/payment.html', context)
+#       context = {'form': form}
+#       return render(request, 'all_customer/payment.html', context)
 
 def checkout(request):
       unit_id = request.GET.get('unit')

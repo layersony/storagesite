@@ -20,6 +20,13 @@ $(document).ready(function(){
       formatDate: 'Y-m-d',
     }
   );
-
+  
+  $('#id_pickup').click(function() {
+    if ($('#id_pickup').checked){
+      alert('amazing')
+    }else{
+      alert('unchecked')
+    }
+  });
 });
 
