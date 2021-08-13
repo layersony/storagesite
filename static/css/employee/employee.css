@@ -85,6 +85,7 @@ main .header .header-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
   width: 100%;
+  
 }
 
 main .header .header-overlay p {
@@ -112,13 +113,13 @@ main .header .header-overlay p.heading span {
 
 /*************** UNITS TABLE***************/
 table{
-  margin-left: 5rem;
   color: white;
 }
+
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
-  margin-left: 9rem;
+  
   font-size: 0.9em;
   min-width: 400px;
   border-radius: 5px 5px 0 0;
@@ -178,7 +179,7 @@ input,textarea {
 }
 
 .allunits-header {
-  font-weight: 900;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -217,6 +218,11 @@ input::placeholder {
 
 .add {
   font-size: 3rem;
+}
+
+.addition {
+  font-style: italic;
+  font-weight: 700;
 }
 
 

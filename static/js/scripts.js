@@ -23,17 +23,26 @@ $(document).ready(function(){
         var dailyCharge = $(this).attr('data-daily');
         var weeklyCharge = $(this).attr('data-weekly');
         var monthlyCharge = $(this).attr('data-monthly');
+        var property = $(this).attr('data-property');
+        var temp = $(this).attr('data-temp');
         var onsite_booking_url = "onsite_booking/" + unitName
+        var delete_url = "delete_unit/" + unitName
+
 
         $('#unitName').text(unitName);
         $('#unitWidth').text(unitWidth);
         $('#unitHeight').text(unitHeight);
         $('#unitLength').text(unitLength);
         $('#unitSize').text(unitSize);
+        $('#status').text(unitOccupied);
         $('#monthlyCharge').text(monthlyCharge);
         $('#weeklyCharge').text(weeklyCharge);
         $('#dailyCharge').text(dailyCharge);
+        $('#property').text(property);
+        $('#temp').text(temp);
         $('#onsiteBooking').attr('href', onsite_booking_url);
+        $('#deleteUnit').attr('href', delete_url);
+
     })
 
 $("#id_end_date").datetimepicker(

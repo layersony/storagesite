@@ -5,15 +5,12 @@
 
 <div class="container-fluid" >
   <hr>
-    <div class="jumbotron card card-image" style=" background-image: url('/static/images/marvin-meyer-SYTO3xs06fU-unsplash.jpg'); background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.74); background-blend-mode: darken;">
+    <div class="jumbotron card card-image" style=" background-image: url('/static/images/marvin-meyer-SYTO3xs06fU-unsplash.jpg'); background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.616); background-blend-mode: darken;">
         <div class="text-white text-center py-5 px-4">
             <div>
                 <h2 style="color:#369FE4; font-size: 3rem;"class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>storage<span style="color: white;">site employee</span></strong></h2>
-                <p style="color:white; font-size: 20px;"class="mx-5 mb-5">View a list of all available units<br>
-                Help an onsite client book storage<br>
-                View the company's statistics</p>
-                <a class="btn btn-success" href="#" role="button">View Statistics <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
-                <a class="btn btn-success" href="#" role="button"> Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View a list of all available units and Help an onsite client book storage</p><br>
+                <a class="btn btn-success" href="#" role="button">View Statistics and Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -21,75 +18,79 @@
 
   <div class=" container-fluid">
     <div class="col-md-12">  
-      <h2 class="allunits-header">All storagesite units </h2>  
-      <table class="content-table">
-        <thead>
-          <tr>
-            <th>UNIT</th>
-            <th>WIDTH (m)</th>
-            <th>HEIGHT (m)</th>
-            <th>LENGTH (m)</th>
-            <th>SIZE</th>
-            <th>OCCUPIED</th>
-            <th>DAILY CHARGE (Ksh)</th>
-            <th>WEEKLY CHARGE (Ksh)</th>
-            <th>MONTHLY CHARGE (Ksh)</th>
-            <th></th>
-          </tr>
-        </thead> 
-        <tbody>
-        {% if units %}
-        {% for unit in units %}
-          <tr>
-            <td>{{ unit.name}}</td>
-            <td>{{ unit.width}}</td>
-            <td>{{ unit.height}}</td>
-            <td>{{ unit.length}}</td>
-            <td>{{ unit.size}}</td>
-            <td>{{ unit.occupied}}</td>
-            <td>{{ unit.daily_charge}}</td>
-            <td>{{ unit.weekly_charge}}</td>
-            <td>{{ unit.monthly_charge}}</td>
-            <td><a class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
-                    data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}"
-                    data-unitwidth="{{ unit.width }}" data-daily="{{ unit.daily_charge }}"
-                    data-unitheight="{{ unit.height }}" data-weekly="{{ unit.weekly_charge }}"
-                    data-unitlength="{{ unit.length }}" data-unitsize="{{ unit.size }}">View</a></td>
-          </tr>
-          {% endfor %}
-          {% endif %}
-          </tbody>
+      <h2 class="allunits-header">ALL STORAGE UNITS </h2> 
+      <div  class="d-flex justify-content-center">
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>UNIT</th>
+              <th>WIDTH (m)</th>
+              <th>HEIGHT (m)</th>
+              <th>LENGTH (m)</th>
+              <th>SIZE</th>
+              <th>OCCUPIED</th>
+              <th>DAILY CHARGE (Ksh)</th>
+              <th>WEEKLY CHARGE (Ksh)</th>
+              <th>MONTHLY CHARGE (Ksh)</th>
+              <th></th>
+            </tr>
+          </thead> 
+          <tbody>
+          {% if units %}
+          {% for unit in units %}
+            <tr>
+              <td>{{ unit.name}}</td>
+              <td>{{ unit.width}}</td>
+              <td>{{ unit.height}}</td>
+              <td>{{ unit.length}}</td>
+              <td>{{ unit.size}}</td>
+              <td>{{ unit.occupied}}</td>
+              <td>{{ unit.daily_charge}}</td>
+              <td>{{ unit.weekly_charge}}</td>
+              <td>{{ unit.monthly_charge}}</td>
+              <td><a class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
+                      data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}"
+                      data-unitwidth="{{ unit.width }}" data-daily="{{ unit.daily_charge }}"
+                      data-unitheight="{{ unit.height }}" data-weekly="{{ unit.weekly_charge }}"
+                      data-unitlength="{{ unit.length }}" data-unitsize="{{ unit.size }}" data-occupied="{{ unit.occupied}}"
+                      data-property="{{ unit.suitable_property }}" data-temp="{{ unit.average_temperature }}">View</a></td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
 
 
-          <div class="modal fade text-dark" id="myModalunit" role="dialog" >
-            <div class="modal-dialog" >
-                <div class="modal-content p-4"  style="width:40rem;">
-                    <h1 class="modalhead text-center" style="margin-bottom: 3rem;">Unit <span id="unitName"></span> </h1>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <p>Height of the unit:    <span style="color:#369FE4" id="unitHeight"></span> </p><hr>
-                        <p>Length of the unit:    <span style="color:#369FE4"id="unitWidth"></span> </p><hr>
-                        <p>Length of the unit:    <span style="color:#369FE4" id="unitLength"></span> </p><hr>
-                        <p>General size:          <span style="color:#369FE4"id="unitSize"></span> </p><hr>
-                        <p>Availability status:   <span style="color:#369FE4"id=""></span> </p><hr>
+            <div class="modal fade text-dark" id="myModalunit" role="dialog" >
+              <div class="modal-dialog" >
+                  <div class="modal-content p-4"  style="width:40rem;">
+                      <h1 class="modalhead text-center" style="margin-bottom: 3rem; background-color:#343334; color:white; padding:2rem;">Unit <span id="unitName"></span> </h1>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p>Height of the unit: <span style="color:#369FE4; font-weight: 700;" id="unitHeight"></span> </p><hr>
+                          <p>Length of the unit: <span style="color:#369FE4; font-weight: 700;"id="unitWidth"></span> </p><hr>
+                          <p>Length of the unit: <span style="color:#369FE4; font-weight: 700;" id="unitLength"></span> </p><hr>
+                          <p>General size: <span style="color:#369FE4; font-weight: 700;"id="unitSize"></span> </p><hr>
+                        </div>
+                        <div class="col-md-6">
+                          <p>Availability status: <span style="color:#369FE4 ; font-weight: 700;"id="status"></span> </p><hr>
+                          <p>Charges per day: <span style="color:#369FE4; font-weight: 700;">KES<span id="dailyCharge"></span>.00</span></p><hr>
+                          <p>Charges per week: <span style="color:#369FE4;font-weight: 700;">KES<span id="weeklyCharge"></span>.00</span> </p><hr>
+                          <p>Charges per month: <span style="color:#369FE4; font-weight: 700;">KES<span id="monthlyCharge"></span>.00</span> </p>
+                          <hr>
+                        </div>
+
+                          <p class="addition" >Most suitable goods to be stored are <span id="property"></span> in the average temperatures of <span id="temp"></span></p>
+                          
                       </div>
-                      <div class="col-md-6">
-                        <p>Charges per day:        <span style="color:#369FE4">KES<span id="dailyCharge"></span>.00</span></p><hr>
-                        <p>Charges per week:        <span style="color:#369FE4">KES<span id="weeklyCharge"></span>.00</span> </p><hr>
-                        <p>Charges per month:       <span style="color:#369FE4">KES<span id="monthlyCharge"></span>.00</span> </p>
-                        <hr>
-                        <p>Most suitable goods to be stored : </p><hr>
-                        <p>Average temperatures:</p>
-                      </div>
-                    </div>
-                    <a href="{% url 'customadmin' %}" class="btn btn-outline " style="float:right; background-color: #79C54E; color:white;">Update Availability Status </a>
-                    <a  href=" " id="onsiteBooking" class="btn btn-outline"
-                        style="background-color: #369FE4; color: white;">Book Unit <span id="url"></span> </a>
-                    <a href="{%%} " class="btn btn-danger" style="background-color: #369FE4; color: white;" >Delete Unit</a>  
-                </div>
-            </div>
-          </div> 
-      </table>
+                    
+                      <a  href=" " id="onsiteBooking" class="btn btn-outline"
+                          style="background-color: #79C54E; color: white; ">Book Unit <span id="url"></span> </a>
+                      <a href="" id="deleteUnit" class="btn btn-danger" style="background-color: #369FE4; color: white; " >Delete Unit</a>  
+                  </div>
+              </div>
+            </div> 
+        </table>
+      </div> 
     </div>  
   </div>
 
