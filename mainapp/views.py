@@ -19,10 +19,6 @@ from rest_framework.schemas import ManualSchema
 from django.contrib.auth.decorators import login_required
 from .emails import send_feedback
 
-# from django.http import HttpResponse
-# from django_daraja.mpesa.core import MpesaClient
-# from django.urls import reverse
-
 
 def index(request):
   return render(request, 'index.html')
@@ -377,18 +373,3 @@ class OneUnit(APIView):
     one_unit = Unit.view_one_unit(id)
     one_unit.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
-
-# def mpesatrial(request):
-#   cl = MpesaClient()
-#   phone_number = '0796727706'
-#   amount = 1
-#   account_reference = 'reference'
-#   transaction_desc = 'Description'
-#   callback_url = request.build_absolute_uri(reverse('mpesa_stk_push_callback'))
-#   print(callback_url)
-#   response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-#   return HttpResponse(response)
-
-# def stk_push_callback(request):
-#   data = request.body
-#   return HttpResponse(data)
