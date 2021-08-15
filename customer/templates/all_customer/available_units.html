@@ -39,7 +39,7 @@
       <td>{{ Unit.monthly_charge }}</td>
       {% if Unit.occupied %}
         <td><span class="text-danger">Occupied</span></td>
-        <td><a href="{%url 'book' Unit.name %}"><button type="button" disabled class="btn btn-info">book</button></a></td>
+        <td><button type="button" disabled class="btn btn-info">book</button></td>
         {% else %}
         <td><span class="text-success">Available</span></td>
         <td><a href="{%url 'book' Unit.name %}"><button type="button" class="btn btn-info">book</button></a></td>

@@ -63,7 +63,9 @@ def book(request, pk):
 
       if request.method == 'POST':
             form = BookingForm(request.POST)
+            print(form)
             if form.is_valid():
+                  print(form.cleaned_data)
                   bkunit = form.save(commit=False)
                   bkunit.profile = request.user.profile
                   bkunit.unit = unit
@@ -72,32 +74,11 @@ def book(request, pk):
                   account_number = form.cleaned_data['account_number']
                   payment = form.cleaned_data['payment_mode']
 
-                  phonenumber = None
-                  if account_number[0] == '0':
-                      phonenumber = '254'+ account_number[1:]
-                  
-                  if payment == 'Mpesa':
-                        lipa_na_mpesa_online(request, phonenumber)
-                        messages.success(request, 'Your Payment is Being Proccessed')
-                        Unit.objects.filter(name=pk).update(occupied=True)
-                        messages.success(request, f'You Have Booked Unit {pk}')
-                        return redirect('profile')
+                  Booking.lipa_booking(request, unit.id, account_number, payment)
+                  return redirect('profile')
 
       context = {'form': form, "unit":unit}
       return render(request, 'all_customer/book.html',  context)
-
-# @login_required
-# def payment(request):
-#       form_class = PaymentForm()
-#       form = PaymentForm()
-
-#       if request.method == 'POST':
-#             form = PaymentForm(request.POST)
-#             if form.is_valid():
-#                   form.save()
-
-#       context = {'form': form}
-#       return render(request, 'all_customer/payment.html', context)
 
 def checkout(request):
       unit_id = request.GET.get('unit')

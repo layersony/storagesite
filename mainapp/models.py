@@ -7,6 +7,10 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.http import Http404
 from django.contrib.auth.hashers import make_password
+from mpesa_api.views import lipa_na_mpesa_online
+from django.contrib import messages
+from django.shortcuts import redirect
+
 
 
 class UserManager(BaseUserManager):
@@ -160,6 +164,7 @@ class Unit(models.Model):
         return units
 
 BillingCycle = (
+    ('-----','-----'),
     ('Daily', 'Daily'),
     ('Weekly', 'Weekly'),
     ('Monthly', 'Monthly'),
@@ -167,6 +172,7 @@ BillingCycle = (
 
 
 ModePayment = (
+    ('-----','-----'),
     ('Mpesa','Mpesa'),
     ('Bank', 'Bank'),
     ('Cash','Cash'),
@@ -178,13 +184,13 @@ class Booking(models.Model):
     description = models.CharField(max_length=200)
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField(null=True)
-    address = models.CharField(max_length=200)
-    pickup = models.BooleanField(default=False)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    pickup = models.BooleanField(default=False, null=True, blank=True)
     delivery = models.BooleanField(default=False, null=True, blank=True)
     delivery_address = models.TextField(null=True, blank=True)
-    billing_Cycle = models.CharField(max_length=100, choices=BillingCycle, default='Monthly')
-    payment_mode = models.CharField(max_length=50, choices=ModePayment, default='Mpesa')
-    account_number = models.CharField(max_length=30)
+    billing_Cycle = models.CharField(max_length=100, choices=BillingCycle, default='-----')
+    payment_mode = models.CharField(max_length=50, choices=ModePayment, default='-----')
+    account_number = models.CharField(max_length=50, null=True, blank=True)
     cost = models.PositiveIntegerField(null=True)
     total_cost = models.PositiveIntegerField(null=True)
 
@@ -210,3 +216,26 @@ class Booking(models.Model):
     def view_one_booking(cls, id):
         abooking = cls.objects.get(id=id)
         return abooking
+
+    @classmethod
+    def lipa_booking(cls, request, unitId, accountNumber, paymentMode):
+        unit = Unit.objects.get(id=unitId)
+        phonenumber = None
+        if accountNumber[0] == '0':
+            phonenumber = '254'+ accountNumber[1:]
+        elif accountNumber[0:2] == '254':
+            phonenumber = accountNumber
+        else:
+            messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
+            return redirect(request.META['HTTP_REFERER'])
+            
+        if paymentMode == 'Mpesa':
+            lipa_na_mpesa_online(request, phonenumber)
+            messages.success(request, 'Your Payment is Being Proccessed')
+            Unit.objects.filter(id=unitId).update(occupied=True)
+            messages.success(request, f'You Have Booked Unit {unit}')
+            
+        else:
+            Unit.objects.filter(id=unitId).update(occupied=True)
+            messages.success(request, f'You Have Booked Unit {unit}')
+            
