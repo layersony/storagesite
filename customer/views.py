@@ -65,9 +65,19 @@ def book(request, pk):
             form = BookingForm(request.POST)
             print(form)
             if form.is_valid():
-                  print(form.cleaned_data)
+                  cycle = form.cleaned_data['billing_Cycle']
                   bkunit = form.save(commit=False)
                   bkunit.profile = request.user.profile
+                  if cycle == 'Daily':
+                        bkunit.cost = unit.daily_charge
+                        bkunit.total_cost = int(unit.daily_charge) + 200
+                  elif cycle == 'Weekly':
+                        bkunit.cost = unit.weekly_charge 
+                        bkunit.total_cost = int(unit.weekly_charge) + 200
+                  else:
+                        bkunit.cost = unit.monthly_charge
+                        bkunit.total_cost = int(unit.monthly_charge) + 200
+
                   bkunit.unit = unit
                   bkunit.save()
 

@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-li
+
 <div class="container-fluid" >
   <hr>
     <div class="jumbotron card card-image" style=" background-image: url('/static/images/marvin-meyer-SYTO3xs06fU-unsplash.jpg'); background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.74); background-blend-mode: darken;">
@@ -12,9 +12,9 @@ li
                 <p style="color:white; font-size: 20px;"class="mx-5 mb-5">View a list of all available units<br>
                 Help an onsite client book storage<br>
                 View the company's statistics</p>
-                <a class="btn btn-success" href="#" role="button">View My Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
-                <a class="btn btn-success" href="#" role="button">View Statistics <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
-                <a class="btn btn-success" href="#" role="button"> Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="{% url 'profile' %}" role="button">View My Profile <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="{% url 'employee' %}" role="button">View Statistics <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn btn-success" href="{% url 'employee' %}" role="button"> Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
