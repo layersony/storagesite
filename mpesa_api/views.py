@@ -33,29 +33,32 @@ def lipa_na_mpesa_online(request, namber):
         "PartyA": int(namber),  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPassword.Business_short_code,
         "PhoneNumber": int(namber),  # replace with your phone number to get stk push
-        "CallBackURL": "http://29f0b3481c82.ngrok.io",
+        "CallBackURL": "https://storagesite.herokuapp.com/",
         "AccountReference": "Storagesite",
         "TransactionDesc": "Testing stk push StorageSite"
     }
     response = requests.post(api_url, json=request, headers=headers)
+    print(response)
     return HttpResponse('success')
 
 @csrf_exempt
 def register_urls(request):
+    print(request)
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"
     headers = {"Authorization": "Bearer %s" % access_token}
     options = {"ShortCode": LipanaMpesaPassword.Business_short_code,
                "ResponseType": "Completed",
-               "ConfirmationURL": "https://29f0b3481c82.ngrok.io/api/v1/c2b/confirmation",
-               "ValidationURL": "https://29f0b3481c82.ngrok.io/api/v1/c2b/validation"}
+               "ConfirmationURL": "https://storagesite.herokuapp.com/api/v1/c2b/confirmation",
+               "ValidationURL": "https://storagesite.herokuapp.com/api/v1/c2b/validation"}
     response = requests.post(api_url, json=options, headers=headers)
     return HttpResponse(response.text)
 
 @csrf_exempt
 def call_back(request):
     #you can capture the mpesa calls.
-    pass
+    # pass
+    print(request)
 
 @csrf_exempt
 def validation(request):
@@ -63,13 +66,23 @@ def validation(request):
         "ResultCode": 0,
         "ResultDesc": "Accepted"
     }
+    print(request)
+    with open('paymnt.txt', 'a+') as f:
+        f.write(request.body.decode('utf-8'))
+        f.close
+
     return JsonResponse(dict(context))
 
 @csrf_exempt
 def confirmation(request):
+    print(request)
     mpesa_body =request.body.decode('utf-8')
     mpesa_payment = json.loads(mpesa_body)
-    print(mpesa_payment)
+
+    with open('confirm.txt', 'a+') as f:
+        f.write(request.body.decode('utf-8'))
+        f.close
+    
     payment = MpesaPayment(
         first_name=mpesa_payment['FirstName'],
         last_name=mpesa_payment['LastName'],

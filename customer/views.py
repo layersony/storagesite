@@ -63,7 +63,6 @@ def book(request, pk):
 
       if request.method == 'POST':
             form = BookingForm(request.POST)
-            print(form)
             if form.is_valid():
                   cycle = form.cleaned_data['billing_Cycle']
                   bkunit = form.save(commit=False)
@@ -79,12 +78,13 @@ def book(request, pk):
                         bkunit.total_cost = int(unit.monthly_charge) + 200
 
                   bkunit.unit = unit
-                  bkunit.save()
+                  
 
                   account_number = form.cleaned_data['account_number']
                   payment = form.cleaned_data['payment_mode']
 
                   Booking.lipa_booking(request, unit.id, account_number, payment)
+                  bkunit.save()
                   return redirect('profile')
 
       context = {'form': form, "unit":unit}
