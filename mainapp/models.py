@@ -79,7 +79,7 @@ class Profile(models.Model):
     nok_relationship = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self) :
-        return str(self.user.username)
+        return str(self.user.name)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -121,7 +121,6 @@ Unit_sizes = (
 
 class Unit(models.Model):
     name = models.CharField(max_length=200)
-    volume = models.PositiveIntegerField(null=True)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
@@ -131,6 +130,10 @@ class Unit(models.Model):
     weekly_charge = models.PositiveIntegerField()
     monthly_charge = models.PositiveIntegerField()
     access_code = models.PositiveIntegerField()
+
+    @property
+    def volume(self):
+        return self.width * self.length * self.height
 
     def __str__(self):
         return self.name
@@ -160,7 +163,7 @@ class Unit(models.Model):
     
     @classmethod
     def search(cls,search_term):
-        units = Unit.objects.filter(name__icontains=search_term).all()
+        units = Unit.objects.filter(name__icontains=search_term)
         return units
 
 BillingCycle = (
