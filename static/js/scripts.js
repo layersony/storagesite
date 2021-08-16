@@ -13,7 +13,6 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
-<<<<<<< HEAD
   $("#id_end_date").datetimepicker(
     {
       format: 'Y-m-d H:i:i',
@@ -30,7 +29,6 @@ $(document).ready(function(){
     }
   });
 
-=======
     
 
     $('.view_unit').click(function(){
@@ -42,7 +40,6 @@ $(document).ready(function(){
         $('#monthlyCharge').text(monthlyCharge);
         $('#onsiteBooking').attr('href', onsite_booking_url);
     })
->>>>>>> master
 
     $("#id_end_date").datetimepicker(
       {
