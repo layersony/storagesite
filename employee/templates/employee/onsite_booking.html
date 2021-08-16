@@ -1,7 +1,6 @@
 {% extends 'employee/base.html'%}
 {% load static %}
 {% load bootstrap4 %}
-{% include 'units.html' %}
 {% block content %}
 
 
@@ -12,17 +11,14 @@
       <div class="card onsite">
         <div class="row">
           <div class="col-md-6">
-            {% if units %}
-            {% for unit in units %}
-            <h2>{{ unit.name}}</h2><hr>
+            <h2>{{ unit.name }}</h2><hr>
             <ul><hr>
-              <li>volume :</li><hr>
+              <li>Volume : {{ unit.volume }} m<sup>3</sup> </li><hr>
               <li>Size :</li><hr>
               <li>Weekly Price :</li><hr>
               <li>Monthly Price :</li><hr>
             </ul>
-            {% endfor %}
-            {% endif %}
+            
 
             <a><button class="glyphicon glyphicon-plus  btn-primary"  style="font-size: 25px;"data-toggle="modal" data-target="#myModaluser" >New Client</button></a> 
             <a href="/employee/units"><button class="btn btn-success" style="font-size: 20px; margin-left: 3rem;"> View Units</button></a>
@@ -31,7 +27,7 @@
               <div class="modal-dialog">
                   <div class="modal-content p-4">
                       <h1 class="modalhead text-center">Add New User</h1>
-                      <form method="post" enctype="multipart/form-data" action="{% url 'onsite_booking' %}">
+                      <form method="post" enctype="multipart/form-data" action="">
                           {% csrf_token %}
                           {% bootstrap_form  user_form%}
                           <div class="text-center">
@@ -45,8 +41,13 @@
 
             </div>
           <div class="col-md-6">
-            <form method="post" enctype="multipart/form-data" action="{% url 'onsite_booking' %}">
+            <form method="post" enctype="multipart/form-data" action="">
               {% csrf_token %}
+              <div id="autocomplete" class="autocomplete mb-3">
+                  <input class="autocomplete-input" placeholder="Search client..." name="user_profile"
+                      id="user_profile" />
+                  <ul class="autocomplete-result-list"></ul>
+              </div>
               {% bootstrap_form form %}
               <button type="submit" class="btn btn-success text-white" value="Save">Proceed to pay</button>
             </form> 
@@ -56,4 +57,8 @@
     </div>
   </div>  
 </div>
+
+<script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+
 {% endblock content%}

@@ -7,7 +7,7 @@ from mainapp.views import AddProfileForm
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields ='__all__'    
+        exclude = ['unit', 'profile']   
 
 
 class AddUserForm(forms.ModelForm):

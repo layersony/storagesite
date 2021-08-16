@@ -13,13 +13,43 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
-  $("#id_end_date").datetimepicker(
-    {
-      format: 'Y-m-d H:i:i',
-      formatTime: 'H:i:i',
-      formatDate: 'Y-m-d',
-    }
-  );
+    
 
+    $('.view_unit').click(function(){
+        var unitName = $(this).attr('data-unitname');
+        var monthlyCharge = $(this).attr('data-monthly');
+        var onsite_booking_url = "onsite_booking/" + unitName
+
+        $('#unitName').text(unitName);
+        $('#monthlyCharge').text(monthlyCharge);
+        $('#onsiteBooking').attr('href', onsite_booking_url);
+    })
+
+    $("#id_end_date").datetimepicker(
+      {
+        format: 'Y-m-d H:i:i',
+        formatTime: 'H:i:i',
+        formatDate: 'Y-m-d',
+      }
+    );
+
+    
 });
 
+new Autocomplete('#autocomplete', {
+    search: input => {
+        if (input.length < 1) {
+            return []
+        }
+        const url = `/employee/search_client/?client=${input}`
+
+        return new Promise(resolve => {
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                
+                resolve(data.data);
+            })
+        })
+        }
+    })
