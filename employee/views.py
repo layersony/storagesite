@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
 from . forms import BookingForm,AddUserForm
@@ -6,10 +7,10 @@ from mainapp import views
 
 def employee(request):
     pickup=Booking.objects.filter(pickup=True)
-    delivery=Booking.objects.filter(pickup=True)
+    delivery=Booking.objects.filter(delivery=True)
     available=Unit.objects.filter(occupied=False)
     occupied_units=Unit.objects.filter(occupied=True)
-    users=User.objects.all
+    users=User.objects.filter(user_type='client')
     return render(request,'employee.html' ,{'pickup' :pickup,'delivery' :delivery, 'available' :available, 'occupied_units' :occupied_units, 'users' :users}) 
 
 def units(request):
@@ -25,9 +26,15 @@ def onsite_booking(request, unit_name):
         form = BookingForm(request.POST, request.FILES)
         user_form = AddUserForm(request.POST)
 
+        user_full_name = request.POST.get('user_profile')
+
+        user_obj = User.objects.get(name=user_full_name)
+
+        profile_obj = Profile.objects.get(user=user_obj)
+
         if form.is_valid():
             book_unit = form.save(commit=False)
-            book_unit.user = request.user
+            book_unit.proofile = profile_obj
             book_unit.unit = unit
             book_unit.save()
             return redirect('')
@@ -61,5 +68,17 @@ def delete_unit(request,unit_name):
     if unit:
         unit.delete_unit(unit_name)
     return redirect('units')
+
+def search_client(request):
+    client = request.GET.get('client')
+
+    payload = []
+    if client:
+        clients = User.objects.filter(user_type='client',name__icontains=client)
+        for client in clients:
+            payload.append(client.name)
+
+    return JsonResponse({'status': 200, 'data': payload})
+
 
 

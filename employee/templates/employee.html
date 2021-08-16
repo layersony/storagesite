@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container col-sm" style='background-image:url("https://images.unsplash.com/photo-1623441569387-025265e5846c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80");background-size: cover;background-repeat: no-repeat;background-position: center;height: 100%;padding-bottom: 500px;'>
+<div class="container col-sm pt-5" style='background-image:url("https://images.unsplash.com/photo-1623441569387-025265e5846c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80");background-size: cover;background-repeat: no-repeat;background-position: center;height: 100%;padding-bottom: 500px;'>
     <div class="row">
         <div class="col-md-4">
             <div class=" card col-sm mt-4">
@@ -40,17 +40,17 @@
 
         </div>
     </div>
-
-    <div class="row">
+    <div id="clientrequest"></div>
+    <div class="row mt-5">
         {% for booking in pickup %}
         <div class="col-md">
             <div class=" card mt-44" style="text-align: left;">
                     <div class="delivery" style="background-color: azure;">
                         <h3>Pickup requests</h3>
                         <p>Username:{{booking.profile.user.username}}</p>
-                        <p>Location:Jupiter</p>
+                        <p>Location:{{booking.profile.location}}</p>
                         <p>Address:{{booking.profile.address}}</p>
-                        <p>Contact:{{booking.profile.phonenumber}}</p>
+                        <p>Contact:{{booking.profile.phone_number}}</p>
                         <p>Date:{{booking.stat_date}}</p>
                         
                         <hr>
@@ -64,9 +64,9 @@
                 <div class="delivery" style="background-color: azure;">
                     <h3>Delivery requests</h3>
                     <p>Username:{{booking.profile.user.username}}</p>
-                        <p>Location:Jupiter</p>
+                        <p>Location:{{booking.profile.location}}</p>
                         <p>Address:{{booking.profile.address}}</p>
-                        <p>Contact:{{booking.profile.phonenumber}}</p>
+                        <p>Contact:{{booking.profile.phone_number}}</p>
                         <p>Date:{{booking.stat_date}}</p>
                     <hr>
                 </div>

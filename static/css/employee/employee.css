@@ -227,7 +227,12 @@ input::placeholder {
 
 
 /************UNIT TABLE************/
-
+#autocomplete ul{
+    color: #2e2e2e !important;
+}
+#autocomplete input::placeholder{
+    color: #343334 !important;
+}
 
 
 

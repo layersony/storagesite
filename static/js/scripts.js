@@ -13,6 +13,24 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
+  $("#id_end_date").datetimepicker(
+    {
+      format: 'Y-m-d H:i:i',
+      formatTime: 'H:i:i',
+      formatDate: 'Y-m-d',
+    }
+  );
+  
+  $('#id_pickup').click(function() {
+    if ($('#id_pickup').checked){
+      alert('amazing')
+    }else{
+      alert('unchecked')
+    }
+  });
+
+    
+
     $('.view_unit').click(function(){
         var unitName = $(this).attr('data-unitname');
         var unitWidth = $(this).attr('data-unitwidth');
@@ -53,3 +71,22 @@ $("#id_end_date").datetimepicker(
     }
     );
 });
+    
+
+new Autocomplete('#autocomplete', {
+    search: input => {
+        if (input.length < 1) {
+            return []
+        }
+        const url = `/employee/search_client/?client=${input}`
+
+        return new Promise(resolve => {
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                
+                resolve(data.data);
+            })
+        })
+        }
+    })
