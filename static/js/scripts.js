@@ -13,25 +13,9 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
-  $("#id_end_date").datetimepicker(
-    {
-      format: 'Y-m-d H:i:i',
-      formatTime: 'H:i:i',
-      formatDate: 'Y-m-d',
-    }
-  );
-  
-  $('#id_pickup').click(function() {
-    if ($('#id_pickup').checked){
-      alert('amazing')
-    }else{
-      alert('unchecked')
-    }
-  });
-
     
 
-    $('.view_unit').click(function(){
+    $(".view_unit").click(function () {
         var unitName = $(this).attr('data-unitname');
         var unitWidth = $(this).attr('data-unitwidth');
         var unitHeight = $(this).attr('data-unitheight');
@@ -43,8 +27,8 @@ $(document).ready(function(){
         var monthlyCharge = $(this).attr('data-monthly');
         var property = $(this).attr('data-property');
         var temp = $(this).attr('data-temp');
-        var onsite_booking_url = "onsite_booking/" + unitName
-        var delete_url = "delete_unit/" + unitName
+        var onsite_booking_url = "onsite_booking/" + unitName;
+        var delete_url = "delete_unit/" + unitName;
 
 
         $('#unitName').text(unitName);
@@ -60,16 +44,23 @@ $(document).ready(function(){
         $('#temp').text(temp);
         $('#onsiteBooking').attr('href', onsite_booking_url);
         $('#deleteUnit').attr('href', delete_url);
-
     })
-
-$("#id_end_date").datetimepicker(
+  $("#id_end_date").datetimepicker(
     {
-        format: 'Y-m-d H:i:i',
-        formatTime: 'H:i:i',
-        formatDate: 'Y-m-d',
+      format: 'Y-m-d H:i:i',
+      formatTime: 'H:i:i',
+      formatDate: 'Y-m-d',
     }
-    );
+  );
+  
+  $('#id_pickup').click(function() {
+    if ($('#id_pickup').checked){
+      alert('amazing')
+    }else{
+      alert('unchecked')
+    }
+  });
+    
 });
     
 

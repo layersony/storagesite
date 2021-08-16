@@ -9,7 +9,7 @@
         <div class="text-white text-center py-5 px-4">
             <div>
                 <h2 style="color:#369FE4; font-size: 3rem;"class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>storage<span style="color: white;">site employee</span></strong></h2>
-                <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View a list of all available units and Help an onsite client book storage</p><br>
+                <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View a list of all available units and help a walk-in client book storage</p><br>
                 <a class="btn btn-success" href="#" role="button">View Statistics and Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
@@ -48,12 +48,12 @@
               <td>{{ unit.daily_charge}}</td>
               <td>{{ unit.weekly_charge}}</td>
               <td>{{ unit.monthly_charge}}</td>
-              <td><a class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
+              <td><button class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
                       data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}"
                       data-unitwidth="{{ unit.width }}" data-daily="{{ unit.daily_charge }}"
                       data-unitheight="{{ unit.height }}" data-weekly="{{ unit.weekly_charge }}"
                       data-unitlength="{{ unit.length }}" data-unitsize="{{ unit.size }}" data-occupied="{{ unit.occupied}}"
-                      data-property="{{ unit.suitable_property }}" data-temp="{{ unit.average_temperature }}">View</a></td>
+                      data-property="{{ unit.suitable_property }}" data-temp="{{ unit.average_temperature }}">View</button></td>
             </tr>
             {% endfor %}
             {% endif %}

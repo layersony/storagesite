@@ -124,7 +124,6 @@ class Unit(models.Model):
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
-    size = models.CharField(max_length=100, choices=Unit_sizes, default='-----')
     occupied = models.BooleanField(default=False, null=True)
     daily_charge = models.PositiveIntegerField()
     weekly_charge = models.PositiveIntegerField()
@@ -136,6 +135,22 @@ class Unit(models.Model):
     @property
     def volume(self):
         return self.width * self.length * self.height
+
+    @property
+    def size(self):
+        if self.volume:
+            if self.volume in range(1,1000):
+                return 'Small'
+            elif self.volume in range(1000, 2000):
+                return 'Medium'
+            elif self.volume in range(2000, 3000):
+                return 'Large'
+            elif self.volume in range(3000, 4000):
+                return 'X-Large'
+            elif self.volume in range(4000, 6000):
+                return '2X-Large'
+            elif self.volume in range(6000, 8000):
+                return '3X-Large'
 
     def __str__(self):
         return self.name
