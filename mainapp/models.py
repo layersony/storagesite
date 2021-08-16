@@ -10,6 +10,7 @@ from django.contrib.auth.hashers import make_password
 from mpesa_api.views import lipa_na_mpesa_online
 from django.contrib import messages
 from django.shortcuts import redirect
+from djmoney.models.fields import MoneyField
 
 
 
@@ -109,26 +110,15 @@ class Profile(models.Model):
         one_profile = self.objects.filter(id=id)
         return one_profile
 
-Unit_sizes = (
-    ('-----','-----'),
-    ('Small','Small'),
-    ('Medium', 'Medium'),
-    ('Large', 'Large'),
-    ('X-large', 'X-large'),
-    ('2X-large', '2X-large'),
-    ('3X=large', '3X-large'),
-)
-
 class Unit(models.Model):
     name = models.CharField(max_length=200)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
     occupied = models.BooleanField(default=False, null=True)
-    daily_charge = models.PositiveIntegerField()
-    weekly_charge = models.PositiveIntegerField()
-    monthly_charge = models.PositiveIntegerField()
-    access_code = models.PositiveIntegerField()
+    daily_charge = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    weekly_charge = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    monthly_charge = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
     suitable_property =models.CharField(max_length=400)
     average_temperature = models.IntegerField()
 
@@ -211,8 +201,9 @@ class Booking(models.Model):
     billing_Cycle = models.CharField(max_length=100, choices=BillingCycle, default='-----')
     payment_mode = models.CharField(max_length=50, choices=ModePayment, default='-----')
     account_number = models.CharField(max_length=50, null=True, blank=True)
-    cost = models.PositiveIntegerField(null=True)
-    total_cost = models.PositiveIntegerField(null=True)
+    access_code = models.PositiveIntegerField(default=0000)
+    cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    total_cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
 
     def __str__(self) :
         return f'{self.unit.name} Booked By {self.profile.user.username}'

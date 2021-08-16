@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'rest_framework.authtoken',
+    'djmoney'
     # 'django_daraja',
     
 ]

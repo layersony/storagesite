@@ -31,6 +31,7 @@ $(document).ready(function(){
         var delete_url = "delete_unit/" + unitName;
 
 
+
         $('#unitName').text(unitName);
         $('#unitWidth').text(unitWidth);
         $('#unitHeight').text(unitHeight);
@@ -40,7 +41,7 @@ $(document).ready(function(){
         $('#monthlyCharge').text(monthlyCharge);
         $('#weeklyCharge').text(weeklyCharge);
         $('#dailyCharge').text(dailyCharge);
-        $('#property').text(property);
+        $('#property').text(property.toLowerCase());
         $('#temp').text(temp);
         $('#onsiteBooking').attr('href', onsite_booking_url);
         $('#deleteUnit').attr('href', delete_url);
