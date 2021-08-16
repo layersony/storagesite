@@ -145,8 +145,8 @@ class Unit(models.Model):
         self.save()
 
     @classmethod
-    def delete_unit(cls, id):
-        cls.objects.filter(id=id).delete()
+    def delete_unit(cls, unit_name):
+        cls.objects.filter(name=unit_name).delete()
 
     @classmethod
     def update_unit(cls, id, *args, **kwargs):

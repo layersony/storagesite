@@ -66,7 +66,7 @@ def delete_unit(request,unit_name):
     current_user = request.user
     unit = Unit.objects.get(name=unit_name)
     if unit:
-        unit.delete_unit(unit_name)
+        Unit.delete_unit(unit_name)
     return redirect('units')
 
 def search_client(request):
