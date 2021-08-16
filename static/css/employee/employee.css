@@ -221,6 +221,7 @@ input::placeholder {
 }
 
 .addition {
+  padding:2rem ;
   font-style: italic;
   font-weight: 700;
 }
