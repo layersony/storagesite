@@ -130,6 +130,8 @@ class Unit(models.Model):
     weekly_charge = models.PositiveIntegerField()
     monthly_charge = models.PositiveIntegerField()
     access_code = models.PositiveIntegerField()
+    suitable_property =models.CharField(max_length=400)
+    average_temperature = models.IntegerField()
 
     @property
     def volume(self):
@@ -143,8 +145,8 @@ class Unit(models.Model):
         self.save()
 
     @classmethod
-    def delete_unit(cls, id):
-        cls.objects.filter(id=id).delete()
+    def delete_unit(cls, unit_name):
+        cls.objects.filter(name=unit_name).delete()
 
     @classmethod
     def update_unit(cls, id, *args, **kwargs):

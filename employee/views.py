@@ -62,11 +62,11 @@ def search(request):
     return render(request,'employee/search_result.html',{'current_user':current_user,'units':[]})
 
 
-def delete_unit(request,unit_id):
+def delete_unit(request,unit_name):
     current_user = request.user
-    unit = Unit.objects.get(pk=unit_id)
+    unit = Unit.objects.get(name=unit_name)
     if unit:
-        unit.delete_unit(unit_id)
+        Unit.delete_unit(unit_name)
     return redirect('units')
 
 def search_client(request):
