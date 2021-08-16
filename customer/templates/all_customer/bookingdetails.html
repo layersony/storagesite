@@ -5,24 +5,25 @@
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/customer/customer.css">
-    <div class="wrapper">
+    <div class="wrapper container pt-5">
         
         <div class="booking_data">
-            <h2>BOOKING DETAILS:</h2><br>
+            <h2>BOOKING DETAILS: {{book.unit}}</h2><br>
             
-                <p>width:{{book.width}}</p>
-                <p>height:{{book.height}}</p>
-                <p>length:{{book.length}}</p>
-                <p>Size: {{book.size}}</p><br>
+                <p>width: {{book.unit.width}}</p>
+                <p>height: {{book.unit.height}}</p>
+                <p>length: {{book.unit.length}}</p>
+                <p>Size: {{book.unit.size}}</p><br>
                 <h5>Price:</h5>
-                <p>Weekly -> {{book.unit.weekly_charge}}</p>
-                <p>monthly ->{{book.unit.monthly_charge}}</p>
+                <p>Weekly: {{book.unit.weekly_charge}}</p>
+                <p>monthly: {{book.unit.monthly_charge}}</p>
                 <h5>Description: {{book.description}}</h5>
-                <p>Billing Cycle:book.billig</p>
+                <p>Billing Cycle: {{book.billing_Cycle}}</p>
                 <P>Total Price: {{book.total_cost}}</P>
         </div>
-    
-        <button class="exit">check-out</button>
+        <div class="text-center mt-2 mb-5">
+            <button class="exit btn btn-info">Go Back</button>
+        </div>
     </div>
 
 {%endblock%}

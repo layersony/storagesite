@@ -18,10 +18,9 @@
                         <h5 class="mb-5">Width : {{ unit.width }}</h5>
                         <h5 class="mb-5">Height : {{ unit.height }}</h5>
                         <h5 class="mb-5">Length : {{ unit.length }}</h5>
-                        <h5 class="mb-5">Daily_charge : {{ unit.daily_charge }}</h5>
-                        <h5 class="mb-5">Weekly_charge : {{ unit.weekly_charge }}</h5>
-                        <h5 class="mb-5">Monthly_charg : {{ unit.monthly_charge }}</h5>
-                        <h2><a href="{%url 'payment' %}"><button type="submit" class="btn btn-success text-center mt-4">Proceed To PAY</button></a></h2>
+                        <h5 class="mb-5">Daily_charge : <span id="daily">{{ unit.daily_charge }}</span></h5>
+                        <h5 class="mb-5">Weekly_charge : <span id="weekly">{{ unit.weekly_charge }}</span></h5>
+                        <h5 class="mb-5">Monthly_charge : <span id="monthly">{{ unit.monthly_charge }}</span></h5>
                     </div>
                     <div class="col-sm-6">
                                 <div class="mb-3">
@@ -29,10 +28,13 @@
                                 </div>
                                 <div class="form-group">
                                   
-                                  <form action="" method="post">
+                                  <form action="{% url 'book' unit.name %}" method="post">
                                     {% csrf_token %}
-                                    {{form.as_p}}
+                                    {% bootstrap_form form %}
+                                    <p>Cost: <span id="cost"></span></p>
+                                    <p>Total Cost: <span id="totalcost"></span></p>
                                     <div class="form-check">
+                                    <button type="submit" class="btn btn-success text-center mt-4">Proceed To PAY</button>
                                   </form>
 
                                 </div>
@@ -50,6 +52,68 @@
     
   </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  let $j = jQuery.noConflict();
+  let cost = '-----'
+  let daily = $j('#daily').html()
+  let weekly = $j('#weekly').html()
+  let monthly = $j('#monthly').html()
+  
+
+  $j('#id_address').toggle();
+  $j('label:contains("Pick Up Address")').toggle()
+
+  $j('#id_billing_Cycle').change(function(){
+    let cost = $j('#id_billing_Cycle option:selected').text();
+    if (cost == 'Daily'){
+      $j('#cost').html(daily)
+      $j('#totalcost').html(daily)
+    }else if (cost == 'Weekly'){
+      $j('#cost').html(weekly)
+      $j('#totalcost').html(weekly)
+    }else if (cost == 'Monthly'){
+      $j('#cost').html(monthly)
+      $j('#totalcost').html(monthly)
+    }else{
+      $j('#cost').html('-----')
+      $j('#totalcost').html('-----')
+    }
+  })
+  $j('#cost').html('-----')
+
+  $j('#id_pickup').click(function(){
+    let cost = $j('#totalcost').text();
+    if ($j('#id_pickup').prop('checked')){
+      $j('#id_address').slideToggle(1000);
+      $j('label:contains("Pick Up Address")').toggle(1000)
+      $j('#totalcost').html(parseInt(cost)+200)
+    }else{
+      $j('#id_address').slideToggle(1000);
+      $j('label:contains("Pick Up Address")').toggle(1000)
+      $j('#totalcost').html(parseInt(cost)-200)
+    }
+  })
+
+  $j('#id_payment_mode').change(function(){
+    let cost = $j('#id_payment_mode option:selected').text();
+    if (cost == 'Mpesa'){
+      $j('label:contains("_Number")').show()
+      $j('#id_account_number').show()
+      $j('label:contains("_Number")').html('Phone _Number')
+    }else if (cost == 'Bank'){
+      $j('label:contains("_Number")').show()
+      $j('#id_account_number').show()
+      $j('label:contains("_Number")').html(`A\C _Number`)
+    }else if (cost == 'Cash'){
+      $j('label:contains("_Number")').hide()
+      $j('#id_account_number').hide()
+    }else{
+
+    }
+  })
+  
+</script>
 
 {%endblock%} 
 

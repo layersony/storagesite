@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 import requests
 from requests.auth import HTTPBasicAuth
 import json
+from decouple import config
 
 #mpesa_cred
 from . mpesa_credentials import MpesaAccessToken, LipanaMpesaPassword
@@ -10,8 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import MpesaPayment
 
 def getAccessToken(request):
-    consumer_key = 'i6WExcww6MQBvrZfG5f6vCmVn1tvzjuX'
-    consumer_secret = '5KStzA49NVFiav65'
+    consumer_key = config('CONSUMER_KEY')
+    consumer_secret = config('CONSUMER_SECRET')
     api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
     r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
     mpesa_access_token = json.loads(r.text)
@@ -19,7 +20,7 @@ def getAccessToken(request):
     return HttpResponse(validated_mpesa_access_token)
 
 
-def lipa_na_mpesa_online(request):
+def lipa_na_mpesa_online(request, namber):
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     headers = {"Authorization": "Bearer %s" % access_token}
@@ -29,11 +30,11 @@ def lipa_na_mpesa_online(request):
         "Timestamp": LipanaMpesaPassword.lipa_time,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": 1,
-        "PartyA": 254796727706,  # replace with your phone number to get stk push
+        "PartyA": int(namber),  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPassword.Business_short_code,
-        "PhoneNumber": 254796727706,  # replace with your phone number to get stk push
+        "PhoneNumber": int(namber),  # replace with your phone number to get stk push
         "CallBackURL": "http://29f0b3481c82.ngrok.io",
-        "AccountReference": "Maingi",
+        "AccountReference": "Storagesite",
         "TransactionDesc": "Testing stk push StorageSite"
     }
     response = requests.post(api_url, json=request, headers=headers)

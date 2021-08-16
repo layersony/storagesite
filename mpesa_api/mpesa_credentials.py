@@ -3,11 +3,11 @@ import json
 from requests.auth import HTTPBasicAuth
 from datetime import datetime
 import base64
-
+from decouple import config
 
 class MpesaC2bCredential:
-    consumer_key = 'i6WExcww6MQBvrZfG5f6vCmVn1tvzjuX'
-    consumer_secret = '5KStzA49NVFiav65'
+    consumer_key = config('CONSUMER_KEY')
+    consumer_secret = config('CONSUMER_SECRET')
     api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
 
@@ -20,7 +20,7 @@ class MpesaAccessToken:
 class LipanaMpesaPassword:
     lipa_time = datetime.now().strftime('%Y%m%d%H%M%S')
     Business_short_code = "174379"
-    passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+    passkey = config('PASSKEY')
     data_to_encode = Business_short_code + passkey + lipa_time
     online_password = base64.b64encode(data_to_encode.encode())
     decode_password = online_password.decode('utf-8')

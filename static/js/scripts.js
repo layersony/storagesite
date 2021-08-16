@@ -13,6 +13,22 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function(){
+  $("#id_end_date").datetimepicker(
+    {
+      format: 'Y-m-d H:i:i',
+      formatTime: 'H:i:i',
+      formatDate: 'Y-m-d',
+    }
+  );
+  
+  $('#id_pickup').click(function() {
+    if ($('#id_pickup').checked){
+      alert('amazing')
+    }else{
+      alert('unchecked')
+    }
+  });
+
     
 
     $('.view_unit').click(function(){

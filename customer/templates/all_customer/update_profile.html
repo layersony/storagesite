@@ -4,20 +4,21 @@
 
 {% block content%}
     <link rel="stylesheet" href="/static/css/customer/customer.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" rel="stylesheet" >
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <div class="wrapper">
+
+    <div class="wrapper container pt-4">
         
         <div class="updateForm text-left">
-            <h2 style="font-size: 20px;">Update Profile:</h2>
+            <h2>Update Profile:</h2>
+            <div class="col-md-7">
             <form action="{% url 'update_profile'%}" enctype="multipart/form-data" method="post">
                 {%csrf_token%}
                 {%bootstrap_form userform%}
                 {%bootstrap_form form%}
-                <button type="submit" style="padding-left: 20px; padding-right:20px;text-align:center; background-color:green; border:1px ; border-radius:3px;">Update</button>
+                <div class="text-center">
+                    <button type="submit" class='btn btn-success'>Update</button>
+                </div>
             </form>
-
+        </div>
         </div>
 
     </div>
