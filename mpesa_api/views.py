@@ -57,15 +57,6 @@ def register_urls(request):
 
 @csrf_exempt
 def call_back(request):
-    resp = {
-        "ResultCode": 0,
-        "ResultDesc": "Success"
-    }
-
-    with open('paymnt.txt', 'a+') as f:
-        f.write(request.body.decode('utf-8'))
-        f.close
-
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
     print(body)
@@ -78,12 +69,11 @@ def call_back(request):
             amount = body['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
             mpesaReceiptNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
             transaction_date = body['Body']['stkCallback']['CallbackMetadata']['Item'][3]["Value"],
-            phoneNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][4]["Value"],
+            phoneNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][-1]["Value"],
         )
         payment.save()
         print('saved response')
-        messages.success('Payment Successfully')
-        
+        messages.success('Payment Successfully')    
     else:
         payment = Payment(
             checkoutRequestID = body['Body']['stkCallback']['CheckoutRequestID'],
@@ -96,7 +86,10 @@ def call_back(request):
         payment.save()
         messages.error('Transcation Declined By User')
 
-
+    resp = {
+        "ResultCode": 0,
+        "ResultDesc": "Success"
+    }
 
     return JsonResponse(dict(resp))
 
@@ -116,23 +109,7 @@ def validation(request):
 def confirmation(request):
     mpesa_body =request.body.decode('utf-8')
     mpesa_payment = json.loads(mpesa_body)
-
-    with open('confirm.txt', 'a+') as f:
-        f.write(request.body.decode('utf-8'))
-        f.close
     
-    # payment = MpesaPayment(
-    #     first_name=mpesa_payment['FirstName'],
-    #     last_name=mpesa_payment['LastName'],
-    #     middle_name=mpesa_payment['MiddleName'],
-    #     description=mpesa_payment['TransID'],
-    #     phone_number=mpesa_payment['MSISDN'],
-    #     amount=mpesa_payment['TransAmount'],
-    #     reference=mpesa_payment['BillRefNumber'],
-    #     organization_balance=mpesa_payment['OrgAccountBalance'],
-    #     type=mpesa_payment['TransactionType'],
-    # )
-    # payment.save()
     print('from confirmation')
     context = {
         "ResultCode": 0,
