@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.http import Http404
 from django.contrib.auth.hashers import make_password
-from mpesa_api.views import lipa_na_mpesa_online
+from mpesa_api.views import lipa_na_mpesa_online, call_back
 from django.contrib import messages
 from django.shortcuts import redirect
 
@@ -229,7 +229,6 @@ class Booking(models.Model):
 
             
         if paymentMode == 'Mpesa':
-            
             if accountNumber[0] == '0':
                 phonenumber = '254'+ accountNumber[1:]
             elif accountNumber[0:2] == '254':
@@ -239,9 +238,14 @@ class Booking(models.Model):
                 return redirect(request.META['HTTP_REFERER'])
 
             lipa_na_mpesa_online(request, phonenumber)
-            messages.success(request, 'Your Payment is Being Proccessed')
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
+            
+            if call_back == 'successfully':
+                messages.success(request, 'Your Payment is Being Proccessed')
+                Unit.objects.filter(id=unitId).update(occupied=True)
+                messages.success(request, f'You Have Booked Unit {unit}')
+            elif call_back == 'declined':
+                messages.error(request, 'Transcation Delined')
+                return redirect('book', unit.name)
             
         else:
             Unit.objects.filter(id=unitId).update(occupied=True)

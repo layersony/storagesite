@@ -59,7 +59,6 @@ def register_urls(request):
 def call_back(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
-    print(body)
     print('from call back')
 
     if body['Body']['stkCallback']['ResultCode'] == 0:
@@ -68,30 +67,23 @@ def call_back(request):
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
             amount = body['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
             mpesaReceiptNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
-            # transactionDate = body['Body']['stkCallback']['CallbackMetadata']['Item'][-2]["Value"],
             phoneNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][-1]["Value"],
         )
         payment.save()
         print('saved response')
-        messages.success('Payment Successfully')    
+        messages.success(request, 'Successfully Paid') 
+        return 'successfully'   
     else:
         payment = Payment(
             checkoutRequestID = body['Body']['stkCallback']['CheckoutRequestID'],
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
             amount = 'Cancelled',
             mpesaReceiptNumber = 'Cancelled',
-            # transaction_date = 'Cancelled',
             phoneNumber = 'Cancelled',
         )
         payment.save()
-        messages.error('Transcation Declined By User')
-
-    resp = {
-        "ResultCode": 0,
-        "ResultDesc": "Success"
-    }
-
-    return JsonResponse(dict(resp))
+        messages.error(request, 'Transcation Declined By User')
+        return 'declined'
 
 @csrf_exempt
 def validation(request):
