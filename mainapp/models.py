@@ -10,8 +10,8 @@ from django.contrib.auth.hashers import make_password
 from mpesa_api.views import lipa_na_mpesa_online, call_back
 from django.contrib import messages
 from django.shortcuts import redirect
-
-
+from mpesa_api.models import Payment
+import time
 
 class UserManager(BaseUserManager):
 
@@ -239,14 +239,10 @@ class Booking(models.Model):
 
             lipa_na_mpesa_online(request, phonenumber)
             
-            if call_back() == 'successfully':
-                messages.success(request, 'Your Payment is Being Proccessed')
-                Unit.objects.filter(id=unitId).update(occupied=True)
-                messages.success(request, f'You Have Booked Unit {unit}')
-            elif call_back() == 'declined':
-                messages.error(request, 'Transcation Delined')
-                return redirect('book', unit.name)
-            
+            messages.success(request, 'Your Payment is Being Proccessed')
+            Unit.objects.filter(id=unitId).update(occupied=True)
+            messages.success(request, f'You Have Booked Unit {unit}')
+        
         else:
             Unit.objects.filter(id=unitId).update(occupied=True)
             messages.success(request, f'You Have Booked Unit {unit}')

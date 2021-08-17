@@ -1,3 +1,4 @@
+from mpesa_api.models import Payment
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
@@ -199,6 +200,9 @@ def customadmin(request):
 
       if addbook.is_valid():      
         if Unit.objects.get(id=addbook.cleaned_data['unit'].id).occupied == False:
+          accountnumber = addbook.cleaned_data['account_number']
+          payment = addbook.cleaned_data['payment_mode']
+          Booking.lipa_booking(request, addbook.cleaned_data['unit'].id, accountnumber, payment)
           Unit.objects.filter(id=addbook.cleaned_data['unit'].id).update(occupied=True)
           addbook.save()
           messages.success(request, 'Booking Added successfully')
@@ -210,6 +214,7 @@ def customadmin(request):
     allprofiles = Profile.objects.all()
     allunits = Unit.objects.all()
     allBooking = Booking.objects.all()
+    allPayments = Payment.objects.all()
 
     available_units = Unit.objects.filter(occupied=False)
     occupied_units = Unit.objects.filter(occupied=True)
@@ -230,6 +235,7 @@ def customadmin(request):
       'addpro':addpro,
       'addunit':addunit,
       'addbook':addbook,
+      'allPayments':allPayments,
     }
     return render(request, 'customadmin/index.html', params)
   else:
