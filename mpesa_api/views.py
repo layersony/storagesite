@@ -68,7 +68,7 @@ def call_back(request):
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
             amount = body['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
             mpesaReceiptNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
-            transactionDate = body['Body']['stkCallback']['CallbackMetadata']['Item'][-2]["Value"],
+            # transactionDate = body['Body']['stkCallback']['CallbackMetadata']['Item'][-2]["Value"],
             phoneNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][-1]["Value"],
         )
         payment.save()
@@ -80,7 +80,7 @@ def call_back(request):
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
             amount = 'Cancelled',
             mpesaReceiptNumber = 'Cancelled',
-            transaction_date = 'Cancelled',
+            # transaction_date = 'Cancelled',
             phoneNumber = 'Cancelled',
         )
         payment.save()

@@ -61,7 +61,7 @@ class Payment(BaseModel):
     merchantRequestID = models.CharField(max_length=50, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     mpesaReceiptNumber = models.CharField(max_length=20, blank=True, null=True)
-    transactionDate = models.DateTimeField(blank=True, null=True)
+    # transactionDate = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=13, blank=True, null=True)
 
     class Meta:
