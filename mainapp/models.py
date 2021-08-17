@@ -239,11 +239,11 @@ class Booking(models.Model):
 
             lipa_na_mpesa_online(request, phonenumber)
             
-            if call_back == 'successfully':
+            if call_back() == 'successfully':
                 messages.success(request, 'Your Payment is Being Proccessed')
                 Unit.objects.filter(id=unitId).update(occupied=True)
                 messages.success(request, f'You Have Booked Unit {unit}')
-            elif call_back == 'declined':
+            elif call_back() == 'declined':
                 messages.error(request, 'Transcation Delined')
                 return redirect('book', unit.name)
             
