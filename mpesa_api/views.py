@@ -68,6 +68,8 @@ def call_back(request):
 
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
+    print(body)
+    print('from call back')
 
     if body['Body']['stkCallback']['ResultCode'] == 0:
         payment = Payment(
@@ -119,20 +121,46 @@ def confirmation(request):
         f.write(request.body.decode('utf-8'))
         f.close
     
-    payment = MpesaPayment(
-        first_name=mpesa_payment['FirstName'],
-        last_name=mpesa_payment['LastName'],
-        middle_name=mpesa_payment['MiddleName'],
-        description=mpesa_payment['TransID'],
-        phone_number=mpesa_payment['MSISDN'],
-        amount=mpesa_payment['TransAmount'],
-        reference=mpesa_payment['BillRefNumber'],
-        organization_balance=mpesa_payment['OrgAccountBalance'],
-        type=mpesa_payment['TransactionType'],
-    )
-    payment.save()
+    # payment = MpesaPayment(
+    #     first_name=mpesa_payment['FirstName'],
+    #     last_name=mpesa_payment['LastName'],
+    #     middle_name=mpesa_payment['MiddleName'],
+    #     description=mpesa_payment['TransID'],
+    #     phone_number=mpesa_payment['MSISDN'],
+    #     amount=mpesa_payment['TransAmount'],
+    #     reference=mpesa_payment['BillRefNumber'],
+    #     organization_balance=mpesa_payment['OrgAccountBalance'],
+    #     type=mpesa_payment['TransactionType'],
+    # )
+    # payment.save()
+    print('from confirmation')
     context = {
         "ResultCode": 0,
         "ResultDesc": "Accepted"
     }
+
+    if mpesa_payment['Body']['stkCallback']['ResultCode'] == 0:
+        payment = Payment(
+            checkoutRequestID = mpesa_payment['Body']['stkCallback']['CheckoutRequestID'],
+            merchantRequestID = mpesa_payment['Body']['stkCallback']['MerchantRequestID'],
+            amount = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
+            mpesaReceiptNumber = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
+            transaction_date = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][3]["Value"],
+            phoneNumber = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][4]["Value"],
+        )
+        payment.save()
+        print('saved response')
+        messages.success('Payment Successfully')
+        
+    else:
+        payment = Payment(
+            checkoutRequestID = mpesa_payment['Body']['stkCallback']['CheckoutRequestID'],
+            merchantRequestID = mpesa_payment['Body']['stkCallback']['MerchantRequestID'],
+            amount = 'Cancelled',
+            mpesaReceiptNumber = 'Cancelled',
+            transaction_date = 'Cancelled',
+            phoneNumber = 'Cancelled',
+        )
+        payment.save()
+        messages.error('Transcation Declined By User')
     return JsonResponse(dict(context))
