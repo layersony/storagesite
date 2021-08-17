@@ -11,7 +11,11 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
+                    {% if user.user_type == 'employee' %}
+                    <a class="nav-link" href="{% url 'units' %}">Units</a>
+                    {% else %}
                     <a class="nav-link" href="{% url 'available' %}">Units</a>
+                    {% endif %}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">About</a>

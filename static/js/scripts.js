@@ -30,6 +30,13 @@ $(document).ready(function(){
         var onsite_booking_url = "onsite_booking/" + unitName;
         var delete_url = "delete_unit/" + unitName;
 
+        if (unitOccupied === true){
+            var status = 'Occupied'
+            $('#onsiteBooking').prop("disabled", true)
+        }else{
+            var status = 'Available'
+        }
+
 
 
         $('#unitName').text(unitName);
@@ -37,7 +44,7 @@ $(document).ready(function(){
         $('#unitHeight').text(unitHeight);
         $('#unitLength').text(unitLength);
         $('#unitSize').text(unitSize);
-        $('#status').text(unitOccupied);
+        $('#status').text(status);
         $('#monthlyCharge').text(monthlyCharge);
         $('#weeklyCharge').text(weeklyCharge);
         $('#dailyCharge').text(dailyCharge);
