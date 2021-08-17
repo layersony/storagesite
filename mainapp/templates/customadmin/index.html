@@ -371,14 +371,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for payment in allpaymenting %}
+                        {% for payment in allPayments %}
                         <tr>
-                            <td>{{payment.profile}}</td>
-                            <td>{{payment.unit}}</td>
-                            <td>{{payment.start_date}}</td>
-                            <td>{{payment.end_date}}</td>
-                            <td>{{payment.address}}</td>
-                            <td>{{book.payment_mode}}</td>
+                            <td>{{payment.checkoutRequestID}}</td>
+                            <td>{{payment.merchantRequestID}}</td>
+                            <td>{{payment.amount}}</td>
+                            <td>{{payment.mpesaReceiptNumber}}</td>
+                            <td>{{book.phoneNumber}}</td>
+                            <td>{{payment.created_at}}</td>
                         </tr>
                         {% empty %}
                         <p class="alert alert-info text-center">No Payments in the Database</p>
