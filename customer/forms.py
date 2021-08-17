@@ -1,3 +1,4 @@
+from typing_extensions import Required
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
@@ -24,12 +25,26 @@ class BookingForm(ModelForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
+    pic = forms.ImageField(required = True)
+    phone_number = forms.CharField(required = True)
+    location = forms.CharField(required = True)
+    address = forms.CharField(required = True, widget=forms.Textarea(attrs={"rows":5, "cols":20}))
+    nok_fullname = forms.CharField(required = True)
+    nok_email = forms.EmailField(required = True)
+    nok_number = forms.CharField(required = True)
+    nok_relationship = forms.CharField(required = True)
+
     class Meta:
         model = Profile
         fields = ['pic', 'phone_number','location','address', 'nok_fullname',
                   'nok_number', 'nok_email', 'nok_relationship',]
         
+        
+        
 class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    name = forms.CharField(required=True)
     class Meta:
         model = User
         fields = '__all__'

@@ -1,3 +1,4 @@
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -10,7 +11,6 @@ from django.contrib.auth.hashers import make_password
 from mpesa_api.views import lipa_na_mpesa_online
 from django.contrib import messages
 from django.shortcuts import redirect
-
 
 
 class UserManager(BaseUserManager):
@@ -68,11 +68,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 			return self.email
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True )
     pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    address = models.CharField(max_length=200, blank=True, null=True)
+    address = models.TextField(max_length=200, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
     nok_number = models.CharField(max_length=100, blank=True, null=True)
