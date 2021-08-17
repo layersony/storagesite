@@ -69,13 +69,13 @@ def book(request, pk):
                   bkunit.profile = request.user.profile
                   if cycle == 'Daily':
                         bkunit.cost = unit.daily_charge
-                        bkunit.total_cost = int(unit.daily_charge) + 200
+                        bkunit.total_cost = int(unit.daily_charge.amount) + 200
                   elif cycle == 'Weekly':
                         bkunit.cost = unit.weekly_charge 
-                        bkunit.total_cost = int(unit.weekly_charge) + 200
+                        bkunit.total_cost = int(unit.weekly_charge.amount) + 200
                   else:
                         bkunit.cost = unit.monthly_charge
-                        bkunit.total_cost = int(unit.monthly_charge) + 200
+                        bkunit.total_cost = int(unit.monthly_charge.amount) + 200
 
                   bkunit.unit = unit
                   

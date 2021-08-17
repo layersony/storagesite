@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="form-group">
                                   
-                                  <form action="{% url 'book' unit.name %}" method="post">
+                                  <form action="{% url 'book' pk=unit.name %}" method="post">
                                     {% csrf_token %}
                                     {% bootstrap_form form %}
                                     <p>Cost: <span id="cost"></span></p>
