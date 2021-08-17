@@ -65,5 +65,5 @@ class Payment(BaseModel):
     phoneNumber = models.CharField(max_length=13, blank=True, null=True)
 
     class Meta:
-        verbose_name = 'Mpesa Payment'
-        verbose_name_plural = 'Mpesa Payments'
+        verbose_name = 'CallBack Payment'
+        verbose_name_plural = 'CallBack Payments'

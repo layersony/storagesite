@@ -79,6 +79,7 @@ def call_back(request):
             phoneNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][4]["Value"],
         )
         payment.save()
+        print('saved response')
         messages.success('Payment Successfully')
         
     else:
