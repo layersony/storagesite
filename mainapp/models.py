@@ -226,15 +226,18 @@ class Booking(models.Model):
     def lipa_booking(cls, request, unitId, accountNumber, paymentMode):
         unit = Unit.objects.get(id=unitId)
         phonenumber = None
-        if accountNumber[0] == '0':
-            phonenumber = '254'+ accountNumber[1:]
-        elif accountNumber[0:2] == '254':
-            phonenumber = accountNumber
-        else:
-            messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
-            return redirect(request.META['HTTP_REFERER'])
+
             
         if paymentMode == 'Mpesa':
+            
+            if accountNumber[0] == '0':
+                phonenumber = '254'+ accountNumber[1:]
+            elif accountNumber[0:2] == '254':
+                phonenumber = accountNumber
+            else:
+                messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
+                return redirect(request.META['HTTP_REFERER'])
+
             lipa_na_mpesa_online(request, phonenumber)
             messages.success(request, 'Your Payment is Being Proccessed')
             Unit.objects.filter(id=unitId).update(occupied=True)
