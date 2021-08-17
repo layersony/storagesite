@@ -42,7 +42,7 @@
         <td><button type="button" disabled class="btn btn-info">book</button></td>
         {% else %}
         <td><span class="text-success">Available</span></td>
-        <td><a href="{%url 'book' Unit.name %}"><button type="button" class="btn btn-info">book</button></a></td>
+        <td><a href="{% url 'book' Unit.name %}"><button type="button" class="btn btn-info">book</button></a></td>
       {% endif %}
     </tr>
     {% endfor %}
