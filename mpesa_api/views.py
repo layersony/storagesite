@@ -64,7 +64,7 @@ def call_back(request):
 
     if body['Body']['stkCallback']['ResultCode'] == 0:
         payment = Payment(
-            checkoutRequestID = body['Body']['stkCallback']['checkoutRequestID'],
+            checkoutRequestID = body['Body']['stkCallback']['CheckoutRequestID'],
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
             amount = body['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
             mpesaReceiptNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
