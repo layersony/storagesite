@@ -33,7 +33,7 @@ def lipa_na_mpesa_online(request, namber):
         "PartyA": int(namber),  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPassword.Business_short_code,
         "PhoneNumber": int(namber),  # replace with your phone number to get stk push
-        "CallBackURL": "https://storagesite.herokuapp.com/",
+        "CallBackURL": "https://storagesite.herokuapp.com/api/v1/c2b/callback",
         "AccountReference": "Storagesite",
         "TransactionDesc": "Testing stk push StorageSite"
     }
@@ -56,9 +56,21 @@ def register_urls(request):
 
 @csrf_exempt
 def call_back(request):
-    #you can capture the mpesa calls.
-    # pass
+    print('starting call back')
     print(request)
+    resp = {
+        "ResultCode": 0,
+        "ResultDesc": "Success"
+    }
+
+    with open('paymnt.txt', 'a+') as f:
+        f.write(request.body.decode('utf-8'))
+        f.close
+
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    print(body)
+    return JsonResponse(dict(resp))
 
 @csrf_exempt
 def validation(request):
