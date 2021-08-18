@@ -19,6 +19,9 @@ from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
 from django.contrib.auth.decorators import login_required
 from .emails import send_feedback
+from mpesa_api.models import Payment
+import time
+from mpesa_api.views import call_back, lipa_na_mpesa_online
 
 
 def index(request):
@@ -203,7 +206,7 @@ def customadmin(request):
         if Unit.objects.get(id=addbook.cleaned_data['unit'].id).occupied == False:
           accountnumber = addbook.cleaned_data['account_number']
           payment = addbook.cleaned_data['payment_mode']
-          Booking.lipa_booking(request, addbook.cleaned_data['unit'].id, accountnumber, payment)
+          lipa_booking(request, addbook.cleaned_data['unit'].id, accountnumber, payment)
           Unit.objects.filter(id=addbook.cleaned_data['unit'].id).update(occupied=True)
           addbook.save()
           messages.success(request, 'Booking Added successfully')
@@ -385,3 +388,34 @@ class OneUnit(APIView):
     one_unit.delete()
     messages.success(request, 'Delated successfully')
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# lipa na mpesa
+def lipa_booking(request, unitId, accountNumber, paymentMode):
+    unit = Unit.objects.get(id=unitId)
+    phonenumber = None
+
+        
+    if paymentMode == 'Mpesa':
+        if accountNumber[0] == '0':
+            phonenumber = '254'+ accountNumber[1:]
+        elif accountNumber[0:2] == '254':
+            phonenumber = accountNumber
+        else:
+            messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
+            return redirect(request.get_full_path())
+
+        
+
+        lipa_na_mpesa_online(request, phonenumber)
+        
+        time.sleep(20)
+
+        Unit.objects.filter(id=unitId).update(occupied=True)
+        messages.success(request, f'You Have Booked Unit {unit}')
+
+    
+    else:
+        time.sleep(7)
+        Unit.objects.filter(id=unitId).update(occupied=True)
+        messages.success(request, f'You Have Booked Unit {unit}')

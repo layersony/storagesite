@@ -58,7 +58,7 @@ def onsite_booking(request, unit_name):
             # payment process
             payment = form.cleaned_data['payment_mode']
             accountnumber = form.cleaned_data['account_number']
-            Booking.lipa_booking(request, unit.id, accountnumber, payment)
+            views.lipa_booking(request, unit.id, accountnumber, payment)
 
             book_unit.save()
             messages.success(request, 'Booked Successfully.')
