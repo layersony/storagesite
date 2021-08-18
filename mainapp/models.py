@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.http.response import HttpResponseRedirect
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -235,13 +236,18 @@ class Booking(models.Model):
                 phonenumber = accountNumber
             else:
                 messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
-                return redirect(request.META['HTTP_REFERER'])
-
-            lipa_na_mpesa_online(request, phonenumber)
-            
+                return redirect(request.get_full_path())
+                
             messages.success(request, 'Your Payment is Being Proccessed')
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
+            lipa_na_mpesa_online(request, phonenumber)
+
+            latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first()
+            if latesttrans:        
+                Unit.objects.filter(id=unitId).update(occupied=True)
+                messages.success(request, f'You Have Booked Unit {unit}')
+            else:
+                messages.error(request, 'Transaction Failed')
+                return redirect(request.get_full_path())
         
         else:
             Unit.objects.filter(id=unitId).update(occupied=True)

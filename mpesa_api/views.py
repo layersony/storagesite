@@ -77,7 +77,7 @@ def call_back(request):
         payment = Payment(
             checkoutRequestID = body['Body']['stkCallback']['CheckoutRequestID'],
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
-            amount = 'Cancelled',
+            amount = 0.00,
             mpesaReceiptNumber = 'Cancelled',
             phoneNumber = 'Cancelled',
         )

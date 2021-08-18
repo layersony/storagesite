@@ -352,33 +352,36 @@
                 <table id="datatablesPayment">
                     <thead>
                         <tr>
+                            <th>Paid Date</th>
                             <th>Checkout Request ID</th>
                             <th>Merchant Request ID</th>
                             <th>Amount</th>
                             <th>Mpesa Receipt Number</th>
                             <th>Phone Number</th>
-                            <th>Paid Date</th>
+                                  
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>Paid Date</th>
                             <th>Checkout Request ID</th>
                             <th>Merchant Request ID</th>
                             <th>Amount</th>
                             <th>Mpesa Receipt Number</th>
                             <th>Phone Number</th>
-                            <th>Paid Date</th>
+                            
                         </tr>
                     </tfoot>
                     <tbody>
                         {% for payment in allPayments %}
                         <tr>
+                            <td>{{payment.created_at}}</td>
                             <td>{{payment.checkoutRequestID}}</td>
                             <td>{{payment.merchantRequestID}}</td>
                             <td>{{payment.amount}}</td>
                             <td>{{payment.mpesaReceiptNumber}}</td>
-                            <td>{{book.phoneNumber}}</td>
-                            <td>{{payment.created_at}}</td>
+                            <td>{{payment.phoneNumber}}</td>
+                            
                         </tr>
                         {% empty %}
                         <p class="alert alert-info text-center">No Payments in the Database</p>
