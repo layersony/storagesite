@@ -40,7 +40,7 @@ def lipa_na_mpesa_online(request, namber):
     }
     response = requests.post(api_url, json=request, headers=headers)
     print('lipa na mpesa online')
-    print(response)
+    print(response.text)
     return HttpResponse('success')
 
 @csrf_exempt
@@ -59,6 +59,7 @@ def register_urls(request):
 def call_back(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
+    print(request.text)
     print('from call back')
 
     if body['Body']['stkCallback']['ResultCode'] == 0:

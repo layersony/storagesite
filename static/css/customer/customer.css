@@ -37,7 +37,7 @@ body{
 }
 
 .addressinfo{
-    height: 20vh;
+    height: 13vh;
 }
 
 .table1
@@ -50,10 +50,10 @@ body{
     color: #fff;
     font-size: 18px;
 }
-table, tr{
+/* table, tr{
         background-color: #343334;
         border: 2px white solid;
-    }
+    } */
 .context{
     background-color: #fff;
     color: #343334;
