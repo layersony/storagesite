@@ -51,11 +51,11 @@ def onsite_booking(request, unit_name):
         profile_obj = Profile.objects.get(user=user_obj)
 
         if form.is_valid():
-            book_unit = form.save(commit=False)
-            book_unit.proofile = profile_obj
-            book_unit.unit = unit
-            book_unit.save()
-            return redirect('')
+            form.instance.profile = profile_obj
+            form.instance.unit = unit
+
+            form.save()
+            return redirect('units')
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
