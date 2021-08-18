@@ -52,3 +52,20 @@ class MpesaPayment(BaseModel):
         
     def __str__(self):
         return self.first_name
+
+class Payment(BaseModel):
+    '''
+        store mpesa calls from callback
+    '''
+    checkoutRequestID = models.CharField(max_length=100, blank=True, null=True)
+    merchantRequestID = models.CharField(max_length=50, blank=True, null=True)
+    amount = models.FloatField(blank=True, null=True)
+    mpesaReceiptNumber = models.CharField(max_length=20, blank=True, null=True)
+    phoneNumber = models.CharField(max_length=13, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'CallBack Payment'
+        verbose_name_plural = 'CallBack Payments'
+    
+    def __str__(self):
+        return self.phoneNumber

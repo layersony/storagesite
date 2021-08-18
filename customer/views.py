@@ -22,6 +22,7 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 
 from mpesa_api.views import lipa_na_mpesa_online
+from django.contrib import messages
 
 def update_profile(request):
     user = request.user
@@ -32,10 +33,12 @@ def update_profile(request):
         if form.is_valid() and userform.is_valid():
             form.save()
             userform.save()
+            messages.success(request, 'Profile details updated.')
             return redirect('profile')
     else:
       userform = UpdateUserForm(instance=request.user)
       form = UpdateProfileForm(instance=request.user.profile)
+      
     return render(request, 'all_customer/update_profile.html', { 'form': form, 'userform': userform})
 
 def profile(request):
@@ -84,6 +87,7 @@ def book(request, pk):
                   payment = form.cleaned_data['payment_mode']
 
                   Booking.lipa_booking(request, unit.id, account_number, payment)
+                  
                   bkunit.save()
                   return redirect('profile')
 

@@ -2,14 +2,17 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.http.response import HttpResponseRedirect
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.http import Http404
 from django.contrib.auth.hashers import make_password
-from mpesa_api.views import lipa_na_mpesa_online
+from mpesa_api.views import lipa_na_mpesa_online, call_back
 from django.contrib import messages
 from django.shortcuts import redirect
+from mpesa_api.models import Payment
+import time
 from djmoney.models.fields import MoneyField
 
 
@@ -232,21 +235,34 @@ class Booking(models.Model):
     def lipa_booking(cls, request, unitId, accountNumber, paymentMode):
         unit = Unit.objects.get(id=unitId)
         phonenumber = None
-        if accountNumber[0] == '0':
-            phonenumber = '254'+ accountNumber[1:]
-        elif accountNumber[0:2] == '254':
-            phonenumber = accountNumber
-        else:
-            messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
-            return redirect(request.META['HTTP_REFERER'])
+
             
         if paymentMode == 'Mpesa':
-            lipa_na_mpesa_online(request, phonenumber)
+            if accountNumber[0] == '0':
+                phonenumber = '254'+ accountNumber[1:]
+            elif accountNumber[0:2] == '254':
+                phonenumber = accountNumber
+            else:
+                messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
+                return redirect(request.get_full_path())
+
             messages.success(request, 'Your Payment is Being Proccessed')
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
-            
+
+            lipa_na_mpesa_online(request, phonenumber)
+
+            time.sleep(27)
+
+            latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first() # get latest transcation
+
+            if latesttrans:        
+                Unit.objects.filter(id=unitId).update(occupied=True)
+                messages.success(request, f'You Have Booked Unit {unit}')
+            else:
+                messages.error(request, 'Transaction Failed')
+                return redirect(request.get_full_path())
+        
         else:
+            time.sleep(10)
             Unit.objects.filter(id=unitId).update(occupied=True)
             messages.success(request, f'You Have Booked Unit {unit}')
             
