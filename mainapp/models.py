@@ -142,8 +142,8 @@ class Unit(models.Model):
                 return 'X-Large'
             elif self.volume in range(4000, 6000):
                 return '2X-Large'
-            elif self.volume in range(6000, 8000):
-                return '3X-Large'
+            else:
+                return '3X-Large +'
 
     def __str__(self):
         return self.name
