@@ -11,14 +11,11 @@ from django.contrib.auth.hashers import make_password
 from mpesa_api.views import lipa_na_mpesa_online, call_back
 from django.contrib import messages
 from django.shortcuts import redirect
-<<<<<<< HEAD
 from mpesa_api.models import Payment
 import time
-=======
 from djmoney.models.fields import MoneyField
 
 
->>>>>>> master
 
 class UserManager(BaseUserManager):
 
