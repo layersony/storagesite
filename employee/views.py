@@ -53,7 +53,8 @@ def onsite_booking(request, unit_name):
         if form.is_valid():
             form.instance.profile = profile_obj
             form.instance.unit = unit
-
+            
+            Unit.update_unit(unit.id, occupied=True)
             form.save()
             return redirect('units')
 

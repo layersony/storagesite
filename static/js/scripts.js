@@ -30,7 +30,7 @@ $(document).ready(function(){
         var onsite_booking_url = "onsite_booking/" + unitName;
         var delete_url = "delete_unit/" + unitName;
 
-        if (unitOccupied === true){
+        if (unitOccupied === 'True'){
             var status = 'Occupied'
             $('#onsiteBooking').prop("disabled", true)
         }else{
@@ -89,3 +89,5 @@ new Autocomplete('#autocomplete', {
         })
         }
     })
+
+
