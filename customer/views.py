@@ -13,6 +13,7 @@ from .forms import UpdateProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from mainapp.models import Profile, User
+from mainapp.views import lipa_booking
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView
 
@@ -86,7 +87,8 @@ def book(request, pk):
                   account_number = form.cleaned_data['account_number']
                   payment = form.cleaned_data['payment_mode']
 
-                  Booking.lipa_booking(request, unit.id, account_number, payment)
+                  lipa_booking(request, unit.id, account_number, payment)
+                  
                   
                   bkunit.save()
                   return redirect('profile')
