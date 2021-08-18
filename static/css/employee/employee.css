@@ -237,3 +237,29 @@ input::placeholder {
 
 
 
+/***********STATISTICS PAGE**********/
+
+.units-no {
+  padding: 5rem;
+  margin-top: 25rem;
+  text-align: center;
+  color:rgb(19, 18, 18);
+  height:23rem;
+
+}
+
+.number{
+  font-size: 5rem;
+  font-weight: 1800;
+}
+
+.stats{
+  background-image: url('/static/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  height:33rem;
+  background-color: rgba(0, 0, 0, 0.616); 
+  background-blend-mode: darken;
+  
+}
+

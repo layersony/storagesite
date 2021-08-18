@@ -61,7 +61,7 @@ $(document).ready(function(){
         $('#onsiteBooking').attr('href', onsite_booking_url);
         $('#deleteUnit').attr('href', delete_url);
 
-    })
+    });
 
 $("#id_end_date").datetimepicker(
     {
