@@ -19,30 +19,30 @@
       <th scope="col">Name</th>
       <th scope="col">Width</th>
       <th scope="col">Height</th>
-      <th scope="col">Lenght</th>
-      <th scope="col">Daily_charge</th>
-      <th scope="col">Weekly_charge</th>
-      <th scope="col">Monthly_charge</th>
+      <th scope="col">Length</th>
+      <th scope="col">Daily Charge</th>
+      <th scope="col">Weekly Charge</th>
+      <th scope="col">Monthly Charge</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
       
   <tbody>
-    {% for Unit in units %}
+    {% for unit in units %}
     <tr>
-      <th scope="row">{{ Unit.name }}</th>
-      <td>{{ Unit.width }}</td>
-      <td>{{ Unit.height }}</td>
-      <td>{{ Unit.length }}</td>
-      <td>{{ Unit.daily_charge }}</td>
-      <td>{{ Unit.weekly_charge }}</td>
-      <td>{{ Unit.monthly_charge }}</td>
-      {% if Unit.occupied %}
+      <th scope="row">{{ unit.name }}</th>
+      <td>{{ unit.width }}</td>
+      <td>{{ unit.height }}</td>
+      <td>{{ unit.length }}</td>
+      <td>{{ unit.daily_charge }}</td>
+      <td>{{ unit.weekly_charge }}</td>
+      <td>{{ unit.monthly_charge }}</td>
+      {% if unit.occupied %}
         <td><span class="text-danger">Occupied</span></td>
         <td><button type="button" disabled class="btn btn-info">book</button></td>
         {% else %}
         <td><span class="text-success">Available</span></td>
-        <td><a href="{%url 'book' Unit.name %}"><button type="button" class="btn btn-info">book</button></a></td>
+        <td><a href="{%url 'book' unit.name %}"><button type="button" class="btn btn-info">Book</button></a></td>
       {% endif %}
     </tr>
     {% endfor %}

@@ -14,13 +14,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-5 text-sm-left justify-content-center pt-4 pb-4">
-                        <h5 class="mb-5">Name : {{ unit.name }}</h5>
-                        <h5 class="mb-5">Width : {{ unit.width }}</h5>
-                        <h5 class="mb-5">Height : {{ unit.height }}</h5>
-                        <h5 class="mb-5">Length : {{ unit.length }}</h5>
-                        <h5 class="mb-5">Daily_charge : <span id="daily">{{ unit.daily_charge }}</span></h5>
-                        <h5 class="mb-5">Weekly_charge : <span id="weekly">{{ unit.weekly_charge }}</span></h5>
-                        <h5 class="mb-5">Monthly_charge : <span id="monthly">{{ unit.monthly_charge }}</span></h5>
+                        <h5 class="mb-5">Name: {{ unit.name }}</h5>
+                        <h5 class="mb-5">Width: {{ unit.width }}</h5>
+                        <h5 class="mb-5">Height: {{ unit.height }}</h5>
+                        <h5 class="mb-5">Length: {{ unit.length }}</h5>
+                        <h5 class="mb-5">Daily Charge: <span id="daily">{{ unit.daily_charge }}</span></h5>
+                        <h5 class="mb-5">Weekly Charge: <span id="weekly">{{ unit.weekly_charge }}</span></h5>
+                        <h5 class="mb-5">Monthly Charge: <span id="monthly">{{ unit.monthly_charge }}</span></h5>
                     </div>
                     <div class="col-sm-6">
                                 <div class="mb-3">
@@ -28,13 +28,13 @@
                                 </div>
                                 <div class="form-group">
                                   
-                                  <form action="{% url 'book' unit.name %}" method="post">
+                                  <form action="{% url 'book' pk=unit.name %}" method="post">
                                     {% csrf_token %}
                                     {% bootstrap_form form %}
                                     <p>Cost: <span id="cost"></span></p>
                                     <p>Total Cost: <span id="totalcost"></span></p>
-                                    <div class="form-check">
-                                    <button type="submit" class="btn btn-success text-center mt-4">Proceed To PAY</button>
+                                    <div class="">
+                                    <button type="submit" class="btn btn-success text-center mt-4">Proceed To Pay</button>
                                   </form>
 
                                 </div>
