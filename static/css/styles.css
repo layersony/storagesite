@@ -38,7 +38,7 @@ html {
 
 .card {
     padding: 30px 25px 35px 50px;
-    border-radius: 30px;
+    border-radius: .5rem;
     box-shadow: 0px 4px 8px 0px white;
     margin-top: 50px;
     margin-bottom: 50px
