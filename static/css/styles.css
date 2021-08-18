@@ -124,6 +124,45 @@ button:focus {
     background-color: white
 }
 
+/****loader*****/
+#loader {
+    border: 10px double transparent;
+    border-radius: 60%;
+    border-top: 15px double #369FE4;
+    width: 70px;
+    height: 70px;
+    animation: spin 0.5s linear infinite reverse;
+  }
+.loadcenterp{
+    position: relative;
+    float: left;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+  
+  @keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+  }
+  
+  .loadcenter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+#loaderdiv{
+  background-position: fixed;
+  overflow: hidden;
+}
+/************end loader************/
+
 @media screen and (max-width: 575px) {
     .border-line {
         border-right: none;
@@ -134,7 +173,6 @@ button:focus {
 .available{
    background-color: white;
 }
-
 
 
 

@@ -79,7 +79,7 @@ def call_back(request):
             merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
             amount = 0.00,
             mpesaReceiptNumber = 'Cancelled',
-            phoneNumber = 'Cancelled',
+            phoneNumber = '07xxxxxxxx',
         )
         payment.save()
         messages.error(request, 'Transcation Declined By User')

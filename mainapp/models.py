@@ -239,9 +239,13 @@ class Booking(models.Model):
                 return redirect(request.get_full_path())
 
             messages.success(request, 'Your Payment is Being Proccessed')
+
             lipa_na_mpesa_online(request, phonenumber)
-            time.sleep(50)
-            latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first()
+
+            time.sleep(27)
+
+            latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first() # get latest transcation
+
             if latesttrans:        
                 Unit.objects.filter(id=unitId).update(occupied=True)
                 messages.success(request, f'You Have Booked Unit {unit}')
@@ -250,6 +254,7 @@ class Booking(models.Model):
                 return redirect(request.get_full_path())
         
         else:
+            time.sleep(10)
             Unit.objects.filter(id=unitId).update(occupied=True)
             messages.success(request, f'You Have Booked Unit {unit}')
             
