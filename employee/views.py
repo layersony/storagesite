@@ -61,17 +61,20 @@ def onsite_booking(request, unit_name):
             Booking.lipa_booking(request, unit.id, accountnumber, payment)
 
             book_unit.save()
+            messages.success(request, 'Booked Successfully.')
             return redirect('')
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
             add_user.set_password(user_form.cleaned_data['password1'])
             add_user.save()
+            messages.success(request, 'Booked successfully.')
             return  redirect('onsite_booking') 
     else:
         form = BookingForm()
         views.customadmin
         user_form = AddUserForm()
+        messages.success(request, 'Booked successfully.')
     return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users, 'unit':unit})
 
 @login_required(login_url='login')
@@ -100,6 +103,7 @@ def delete_unit(request,unit_name):
     unit = Unit.objects.get(name=unit_name)
     if unit:
         Unit.delete_unit(unit_name)
+        messages.success(request, 'Deleted successfully')
     return redirect('units')
 
 @login_required(login_url='login')
