@@ -51,18 +51,20 @@ def onsite_booking(request, unit_name):
         profile_obj = Profile.objects.get(user=user_obj)
 
         if form.is_valid():
-            book_unit = form.save(commit=False)
-            book_unit.proofile = profile_obj
-            book_unit.unit = unit
+            form.instance.profile = profile_obj
+            form.instance.unit = unit
+            
+            Unit.update_unit(unit.id, occupied=True)
+
+            form.save()
 
             # payment process
             payment = form.cleaned_data['payment_mode']
             accountnumber = form.cleaned_data['account_number']
             Booking.lipa_booking(request, unit.id, accountnumber, payment)
 
-            book_unit.save()
             messages.success(request, 'Booked Successfully.')
-            return redirect('')
+            return redirect('units')
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
