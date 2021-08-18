@@ -13,8 +13,10 @@
         <link href="{% static 'js/jquery.datetimepicker.min.css' %}" rel="stylesheet">
 
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/> 
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         {% bootstrap_css %}
@@ -109,10 +111,12 @@
         <script src="{% static 'js/datatables.js' %}"></script>
         <script src="{% static 'js/scripts.js' %}"></script>
         <script>
-            // {% for msg in messages %}
-            //     alertify.set('notifier','position', 'top-center');
-            //     alertify.success('{{msg}}');
-            // {% endfor %}
+            {% if messages %}
+                {% for message in messages %}
+                    alertify.set('notifier','position', 'top-center');
+                    alertify.success('{{message}}');
+                {% endfor %}
+            {% endif %}
         </script>
     </body>
 </html>

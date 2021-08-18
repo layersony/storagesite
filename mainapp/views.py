@@ -172,6 +172,7 @@ class BookingItem(APIView):
     def delete(self, request, booking_id, format=None):
         booking = self.get_booking(booking_id)
         booking.delete()
+        messages.success(request, 'Delated successfully')
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @login_required(login_url='login')
@@ -259,6 +260,7 @@ def deleteuser(request, id):
   userto = User.objects.get(id=id)
   if request.method == 'POST':
     userto.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -282,6 +284,7 @@ def deleteprofile(request, id):
   userto = Profile.objects.get(id=id)
   if request.method == 'POST':
     userto.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -291,6 +294,7 @@ def mainadminupdateunit(request, id):
     addunit = AddUnitForm(request.POST, instance=unit)
     if addunit.is_valid():
       addunit.save()
+      messages.success(request, 'Updated successfully')
       return redirect('customadmin')
   
   addunit = AddUnitForm(instance=unit)
@@ -305,6 +309,7 @@ def deleteunit(request, id):
   unit = Unit.objects.get(id=id)
   if request.method == 'POST':
     unit.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -372,4 +377,5 @@ class OneUnit(APIView):
   def delete(self, request, id, format=None):
     one_unit = Unit.view_one_unit(id)
     one_unit.delete()
+    messages.success(request, 'Delated successfully')
     return Response(status=status.HTTP_204_NO_CONTENT)
