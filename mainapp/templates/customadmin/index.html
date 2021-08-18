@@ -353,6 +353,53 @@
             </div>
         </div>
 
+        <div class="card mb-4 mt-5" id="booklist">
+            <div class="card-header bg-dark text-center tableheaders d-flex justify-content-between align-items-center">
+                <span class="text-white"><i class="far fa-money-bill-alt"></i><span>Payments</span></span>
+                <span><a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalPayment"></a></span>
+            </div>
+            <div class="card-body">
+                <table id="datatablesPayment">
+                    <thead>
+                        <tr>
+                            <th>Paid Date</th>
+                            <th>Checkout Request ID</th>
+                            <th>Merchant Request ID</th>
+                            <th>Amount</th>
+                            <th>Mpesa Receipt Number</th>
+                            <th>Phone Number</th>
+                                  
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Paid Date</th>
+                            <th>Checkout Request ID</th>
+                            <th>Merchant Request ID</th>
+                            <th>Amount</th>
+                            <th>Mpesa Receipt Number</th>
+                            <th>Phone Number</th>
+                            
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for payment in allPayments %}
+                        <tr>
+                            <td>{{payment.created_at}}</td>
+                            <td>{{payment.checkoutRequestID}}</td>
+                            <td>{{payment.merchantRequestID}}</td>
+                            <td>{{payment.amount}}</td>
+                            <td>{{payment.mpesaReceiptNumber}}</td>
+                            <td>{{payment.phoneNumber}}</td>
+                            
+                        </tr>
+                        {% empty %}
+                        <p class="alert alert-info text-center">No Payments in the Database</p>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 {% endblock %}

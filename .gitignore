@@ -1,7 +1,6 @@
 envprodev/
 .env
 virtual/
-migrations/
 *.pyc
 requirements.txtsource
 
