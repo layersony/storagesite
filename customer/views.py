@@ -84,6 +84,7 @@ def book(request, pk):
                   payment = form.cleaned_data['payment_mode']
 
                   Booking.lipa_booking(request, unit.id, account_number, payment)
+                  
                   bkunit.save()
                   return redirect('profile')
 

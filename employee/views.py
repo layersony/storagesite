@@ -54,6 +54,12 @@ def onsite_booking(request, unit_name):
             book_unit = form.save(commit=False)
             book_unit.proofile = profile_obj
             book_unit.unit = unit
+
+            # payment process
+            payment = form.cleaned_data['payment_mode']
+            accountnumber = form.cleaned_data['account_number']
+            Booking.lipa_booking(request, unit.id, accountnumber, payment)
+
             book_unit.save()
             return redirect('')
 
