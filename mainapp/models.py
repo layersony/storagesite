@@ -237,10 +237,10 @@ class Booking(models.Model):
             else:
                 messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
                 return redirect(request.get_full_path())
-                
+
             messages.success(request, 'Your Payment is Being Proccessed')
             lipa_na_mpesa_online(request, phonenumber)
-
+            time.sleep(50)
             latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first()
             if latesttrans:        
                 Unit.objects.filter(id=unitId).update(occupied=True)
