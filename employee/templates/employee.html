@@ -3,14 +3,15 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<div class="container-fluid stats" >
-    <div class="text-white text-center py-5 px-4">
-        <div>
-            <h2 style="color:#369FE4; font-size: 3rem;"class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>storage<span style="color: white;">site employee</span></strong></h2>
-            <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View the company's statistics and client delivery and pick up reqests.  </p><br>
-            <a class="btn btn-primary" href="#" role="button">View all units <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+    <div class=" container-fluid stats">
+        <div class="text-white text-center py-5 px-4">
+            <div>
+                <h2 style="color:#369FE4; font-size: 3rem;"class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>storage<span style="color: white;">site employee</span></strong></h2>
+                <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View the company's statistics and client delivery and pick up reqests.  </p><br>
+                <a class="btn " href="#" role="button" style="background-color: #369FE4; color: white;">View all units <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+            </div>
         </div>
-    </div>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -41,11 +42,16 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="stat-cards">
+    
+    </div>
 
     <!--CLIENT DELIVERY AND PICK UP REQUESTS-->
 
-    
-    <div class="row mt-5">
+<div class="container">
+    <div class="row card mt-5">
+        <h2 class="requests-header">pick up and delivery services </h2>
         {% for booking in pickup %}
         <div class="col-md">
             <div class=" card mt-44" style="text-align: left;">
@@ -79,7 +85,7 @@
         </div>
         {% endfor %}
     </div>
-</div>
+</div>    
 
 
 

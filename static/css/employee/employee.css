@@ -240,11 +240,12 @@ input::placeholder {
 /***********STATISTICS PAGE**********/
 
 .units-no {
-  padding: 5rem;
-  margin-top: 5rem;
+  padding: 2rem;
+  margin-top: 9rem;
   text-align: center;
   color:rgb(19, 18, 18);
-  height:23rem;
+  height:19rem;
+  background-color: beige;
 
 }
 
@@ -254,12 +255,22 @@ input::placeholder {
 }
 
 .stats{
-  background-image: url('/static/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg'); 
+  background-image: url('/static/images/carlos-muza-hpjSkU2UYSU-unsplash\ \(3\).jpg'); 
   background-size: cover; 
   background-repeat: no-repeat; 
-  height:33rem;
+  height:38rem;
   background-color: rgba(0, 0, 0, 0.616); 
   background-blend-mode: darken;
   
+}
+
+.stat-cards{
+  background-color:#2e2e2e1c;
+  height: 20rem;
+}
+
+.requests-header{
+  text-align: center;
+  font-weight: 500;
 }
 
