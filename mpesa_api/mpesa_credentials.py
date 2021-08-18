@@ -20,6 +20,7 @@ class MpesaAccessToken:
 class LipanaMpesaPassword:
     lipa_time = datetime.now().strftime('%Y%m%d%H%M%S')
     Business_short_code = "174379"
+    Test_c2b_shortcode = "600986"
     passkey = config('PASSKEY')
     data_to_encode = Business_short_code + passkey + lipa_time
     online_password = base64.b64encode(data_to_encode.encode())

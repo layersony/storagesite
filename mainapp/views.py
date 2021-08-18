@@ -1,3 +1,4 @@
+from mpesa_api.models import Payment
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
@@ -172,6 +173,7 @@ class BookingItem(APIView):
     def delete(self, request, booking_id, format=None):
         booking = self.get_booking(booking_id)
         booking.delete()
+        messages.success(request, 'Delated successfully')
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @login_required(login_url='login')
@@ -199,6 +201,9 @@ def customadmin(request):
 
       if addbook.is_valid():      
         if Unit.objects.get(id=addbook.cleaned_data['unit'].id).occupied == False:
+          accountnumber = addbook.cleaned_data['account_number']
+          payment = addbook.cleaned_data['payment_mode']
+          Booking.lipa_booking(request, addbook.cleaned_data['unit'].id, accountnumber, payment)
           Unit.objects.filter(id=addbook.cleaned_data['unit'].id).update(occupied=True)
           addbook.save()
           messages.success(request, 'Booking Added successfully')
@@ -210,6 +215,7 @@ def customadmin(request):
     allprofiles = Profile.objects.all()
     allunits = Unit.objects.all()
     allBooking = Booking.objects.all()
+    allPayments = Payment.objects.all()
 
     available_units = Unit.objects.filter(occupied=False)
     occupied_units = Unit.objects.filter(occupied=True)
@@ -230,6 +236,7 @@ def customadmin(request):
       'addpro':addpro,
       'addunit':addunit,
       'addbook':addbook,
+      'allPayments':allPayments,
     }
     return render(request, 'customadmin/index.html', params)
   else:
@@ -259,6 +266,7 @@ def deleteuser(request, id):
   userto = User.objects.get(id=id)
   if request.method == 'POST':
     userto.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -282,6 +290,7 @@ def deleteprofile(request, id):
   userto = Profile.objects.get(id=id)
   if request.method == 'POST':
     userto.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -291,6 +300,7 @@ def mainadminupdateunit(request, id):
     addunit = AddUnitForm(request.POST, instance=unit)
     if addunit.is_valid():
       addunit.save()
+      messages.success(request, 'Updated successfully')
       return redirect('customadmin')
   
   addunit = AddUnitForm(instance=unit)
@@ -305,6 +315,7 @@ def deleteunit(request, id):
   unit = Unit.objects.get(id=id)
   if request.method == 'POST':
     unit.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -372,4 +383,5 @@ class OneUnit(APIView):
   def delete(self, request, id, format=None):
     one_unit = Unit.view_one_unit(id)
     one_unit.delete()
+    messages.success(request, 'Delated successfully')
     return Response(status=status.HTTP_204_NO_CONTENT)

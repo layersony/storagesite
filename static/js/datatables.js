@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', event => {
     const datatablesSimpleuser = document.getElementById('datatablesSimpleusers');
     const datatablesSimpleprofile = document.getElementById('datatablesSimpleprofile');
     const datatablesSimpleBooking = document.getElementById('datatablesSimpleBooking');
+    const datatablesPayment = document.getElementById('datatablesPayment');
+
 
     if (datatablesSimple) {
         new simpleDatatables.DataTable(datatablesSimple);
@@ -16,5 +18,8 @@ window.addEventListener('DOMContentLoaded', event => {
     }
     if (datatablesSimpleBooking) {
         new simpleDatatables.DataTable(datatablesSimpleBooking);
+    }
+    if (datatablesPayment) {
+        new simpleDatatables.DataTable(datatablesPayment);
     }
 });

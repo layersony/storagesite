@@ -12,6 +12,7 @@
 
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    
     {% if title %}
     <title>{{title}} | StorageSite</title>
     {% else %}
@@ -24,7 +25,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css" />
     <link rel="stylesheet" href="{% static 'css/employee/employee.css'%}">
-    
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
     {% endblock %}
 </head>
 
@@ -45,7 +49,16 @@
     </script>
 
     <script src="https://kit.fontawesome.com/f853836380.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                alertify.set('notifier','position', 'top-center');
+                alertify.success('{{message}}');
+            {% endfor %}
+        {% endif %}
+    </script>
 
     {% bootstrap_javascript %}
 

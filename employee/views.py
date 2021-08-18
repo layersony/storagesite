@@ -4,8 +4,16 @@ from django.http import HttpResponseRedirect
 from . forms import BookingForm,AddUserForm
 from .models import User ,Profile,Booking,Unit
 from mainapp import views
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def employee(request):
+    user_type = request.user.user_type
+    if user_type != 'employee':
+        messages.error(request, 'Please log in as an employee to access this view.')
+        return redirect('login')
+
     pickup=Booking.objects.filter(pickup=True)
     delivery=Booking.objects.filter(delivery=True)
     available=Unit.objects.filter(occupied=False)
@@ -13,12 +21,22 @@ def employee(request):
     users=User.objects.filter(user_type='client')
     return render(request,'employee.html' ,{'pickup' :pickup,'delivery' :delivery, 'available' :available, 'occupied_units' :occupied_units, 'users' :users}) 
 
+@login_required(login_url='login')
 def units(request):
+    user_type = request.user.user_type
+    if user_type != 'employee':
+        messages.error(request, 'Please log in as an employee to access this view.')
+        return redirect('login')
     units = Unit.objects.all()
     return render (request,'employee/units.html' ,{'units':units})
 
-
+@login_required(login_url='login')
 def onsite_booking(request, unit_name):
+    user_type = request.user.user_type
+    if user_type != 'employee':
+        messages.error(request, 'Please log in as an employee to access this view.')
+        return redirect('login')
+
     users = User.objects.exclude(id=request.user.id)
     unit = Unit.objects.get(name=unit_name)
 
@@ -33,25 +51,41 @@ def onsite_booking(request, unit_name):
         profile_obj = Profile.objects.get(user=user_obj)
 
         if form.is_valid():
-            book_unit = form.save(commit=False)
-            book_unit.proofile = profile_obj
-            book_unit.unit = unit
-            book_unit.save()
-            return redirect('')
+            form.instance.profile = profile_obj
+            form.instance.unit = unit
+            
+            Unit.update_unit(unit.id, occupied=True)
+
+            form.save()
+
+            # payment process
+            payment = form.cleaned_data['payment_mode']
+            accountnumber = form.cleaned_data['account_number']
+            Booking.lipa_booking(request, unit.id, accountnumber, payment)
+
+            messages.success(request, 'Booked Successfully.')
+            return redirect('units')
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
             add_user.set_password(user_form.cleaned_data['password1'])
             add_user.save()
+            messages.success(request, 'Booked successfully.')
             return  redirect('onsite_booking') 
     else:
         form = BookingForm()
         views.customadmin
         user_form = AddUserForm()
+        messages.success(request, 'Booked successfully.')
     return render(request, 'employee/onsite_booking.html', { 'user_form': user_form, 'form': form,'users': users, 'unit':unit})
 
-
+@login_required(login_url='login')
 def search(request):
+    user_type = request.user.user_type
+    if user_type != 'employee':
+        messages.error(request, 'Please log in as an employee to access this view.')
+        return redirect('login')
+
     current_user = request.user
     if request.method == "POST":
         parameter = request.POST.get('search')
@@ -61,15 +95,26 @@ def search(request):
 
     return render(request,'employee/search_result.html',{'current_user':current_user,'units':[]})
 
-
+@login_required(login_url='login')
 def delete_unit(request,unit_name):
-    current_user = request.user
+    user_type = request.user.user_type
+    if user_type != 'employee':
+        messages.error(request, 'Please log in as an employee to access this view.')
+        return redirect('login')
+
     unit = Unit.objects.get(name=unit_name)
     if unit:
         Unit.delete_unit(unit_name)
+        messages.success(request, 'Deleted successfully')
     return redirect('units')
 
+@login_required(login_url='login')
 def search_client(request):
+    user_type = request.user.user_type
+    if user_type != 'employee':
+        messages.error(request, 'Please log in as an employee to access this view.')
+        return redirect('login')
+
     client = request.GET.get('client')
 
     payload = []
