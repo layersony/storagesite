@@ -70,40 +70,88 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   var $j = jQuery.noConflict();
 
   $j('#checkout').click(function(){
   bookingdetails = $j('#booking_id').html()
   unitdetails = $j('#unit_id').html()
-  let leave = prompt('Are you sure you want to Move Out? (yes/no)').toLowerCase()
 
-  if (leave == 'yes'){
-    let delivery = prompt('Do you Want Your Luggages to Be Delivered (yes/no)').toLowerCase()
+  Swal.fire({
+  title: 'Are you sure You want to Move Out?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  cancelButtonColor: '#d33',
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'Yes, Move Out!'
+  }).then((result) => {
 
-    if (delivery == 'yes'){
+    if (result.isConfirmed) {
+      (async () => {
 
-    }else{
-      
-    }
+        const { value: text } = await Swal.fire({
+          input: 'textarea',
+          inputLabel: 'Delivery Address',
+          text: "Cancel if you dont want to be delivered",
+          inputPlaceholder: 'Enter your Delivery Address here...',
+          inputAttributes: {
+            'aria-label': 'Enter your Delivery Address here...'
+          },
+          showCancelButton: true
+        })
 
-    $j.ajax({
-      'url': '{% url "checkout" %}',
-      'type':'GET',
-      'data':{
-        'booking':bookingdetails,
-        'unit':unitdetails
-      },
-      'dataType': 'json',
-      'success': function(data){
-        console.log(data)
+      if (text) {
+        Swal.fire(
+        'Moved Out!',
+        'You Have Successfully Moved Out, Your Goods will be delivered',
+        'success'
+        )
+        $j.ajax({
+          'url': '{% url "checkout" %}',
+          'type':'GET',
+          'data':{
+            'booking':bookingdetails,
+            'unit':unitdetails,
+            'deliadd':text,
+            'deliaddstatus': True,
+          },
+          'dataType': 'json',
+          'success': function(data){
+            console.log(data)
+          }
+        })
+        $j('.swal2-confirm').click(function(){
+          location.reload();
+        }) 
+      }else{
+        Swal.fire(
+        'Moved Out!',
+        'You Have Successfully Moved Out',
+        'success'
+        )
+        $j.ajax({
+          'url': '{% url "checkout" %}',
+          'type':'GET',
+          'data':{
+            'booking':bookingdetails,
+            'unit':unitdetails
+          },
+          'dataType': 'json',
+          'success': function(data){
+            console.log(data)
+          }
+        })
+        $j('.swal2-confirm').click(function(){
+          location.reload();
+        })
       }
-    })
-  }else if( leave == 'no'){
-    console.log('stays')
-  }else{
-    alert('Invalid!, Enter Yes or No')
-  }
+        
+
+    })()
+    }
+  })
   })
 </script>
 {%endblock%}

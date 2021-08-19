@@ -34,7 +34,10 @@ def update_profile(request):
         userform = UpdateUserForm(request.POST, instance=request.user)
         form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid() and userform.is_valid():
-            form.save()
+            pform = form.save(commit=False)
+            address = f'Business/House Number: {request.POST.get("bhn")}, Estate/Street Name: {request.POST.get("street-name")}, Town: {request.POST.get("town")}, City: {request.POST.get("city")}, County: {request.POST.get("county")}  '
+            pform.address = address
+            pform.save()
             userform.save()
             messages.success(request, 'Profile details updated.')
             return redirect('profile')
@@ -52,7 +55,7 @@ def booking_details(request, id):
       book = Booking.objects.get(id=id)
       return render(request, 'all_customer/bookingdetails.html', {'book':book})
 
-@login_required
+
 def available(request):
       units=Unit.objects.all()
       return render(request, 'all_customer/available_units.html', {"units":units})
@@ -101,9 +104,14 @@ def book(request, pk):
       return render(request, 'all_customer/book.html',  context)
 
 def checkout(request):
+      print(request.GET)
       unit_id = request.GET.get('unit')
       book_id = request.GET.get('booking')
+      deliadd = request.GET.get('deliadd')
+      deliaddstatus = request.GET.get('deliaddstatus')
+
       Unit.objects.filter(id=unit_id).update(occupied=False)
+      
       Booking.delete_booking(book_id)
       message = messages.success(request ,f'You have Successfully Moved Out of unit {Unit.objects.get(id=unit_id).name}')
       data = {

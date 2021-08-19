@@ -46,40 +46,46 @@
     
     <!--CLIENT DELIVERY AND PICK UP REQUESTS-->
 
-<div class="container requests">
-    <h2 class="requests-header">pick up and delivery services </h2>
-    <div class="row ">
-        <div class="col-md-4" style="background-color: grey;">
+<div class="container requests mb-5">
+    <h2 class="requests-header" style="color: #369FE4;">Pick up and Delivery Services </h2>
+    <div class="row text-left">
+        <div class="col-md-4 text-dark p-2" >
+            <h3>PICKUP REQUEST</h3>
             {% if pickup %}
             {% for booking in pickup %}
-            <div class="">
-                <h3>Pickup requests</h3>
-                <p>Username:{{booking.profile.user.username}}</p>
-                <p>Location:{{booking.profile.location}}</p>
-                <p>Address:{{booking.profile.address}}</p>
-                <p>Contact:{{booking.profile.phone_number}}</p>
-                <p>Date:{{booking.stat_date}}</p>
+            <div class="text-white p-2" style="background-color: rgb(88, 88, 88);">
+                
+                <p>Username: {{booking.profile.user.username|capfirst}}</p>
+                <p>Location: {{booking.profile.location}}</p>
+                <p>Address: {{booking.profile.address}}</p>
+                <p>Contact: {{booking.profile.phone_number}}</p>
+                
             </div>
             {% endfor %}
             {% else %}
+            <div class="text-white p-2" style="background-color: #66a7d3;">
             <h4>No pickup requests</h4>
+            </div>
             {% endif %}
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-4" style="background-color: grey;">
+        <div class="col-md-4 text-dark">
+            <h3>DELIVERY REQUEST</h3>
             {% if delivery %}
             {% for booking in delivery %}
-            <div class="delivery">
-                <h3>Delivery requests</h3>
-                <p>Username:{{booking.profile.user.username}}</p>
+            <div class="text-white p-2" style="background-color: rgb(88, 88, 88);">
+                
+                <p>Username:{{booking.profile.user.username|capfirst}}</p>
                 <p>Location:{{booking.profile.location}}</p>
                 <p>Address:{{booking.profile.address}}</p>
                 <p>Contact:{{booking.profile.phone_number}}</p>
-                <p>Date:{{booking.stat_date}}</p>
+                
             </div>
             {% endfor %}
             {% else %}
+            <div class="text-white p-2" style="background-color: #66a7d3;">
             <h4>No delivery requests</h4>
+            </div>
             {% endif %}
         </div>
     </div>

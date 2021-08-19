@@ -13,19 +13,23 @@
 <div class="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-sm-11">
-            <div class="card border-0">
+            <div class="card p-2 border-0">
                 <div class="text-center">
                     <h2>BOOK UNIT {{ unit.name }}</h2>
                 </div>
-                <div class="row">
-                    <div class="col-sm-5 text-sm-left justify-content-center pt-4 pb-4">
-                        <h5 class="mb-5">Name: {{ unit.name }}</h5>
-                        <h5 class="mb-5">Width: {{ unit.width }}</h5>
-                        <h5 class="mb-5">Height: {{ unit.height }}</h5>
-                        <h5 class="mb-5">Length: {{ unit.length }}</h5>
-                        <h5 class="mb-5">Daily Charge: <span id="daily">{{ unit.daily_charge }}</span></h5>
-                        <h5 class="mb-5">Weekly Charge: <span id="weekly">{{ unit.weekly_charge }}</span></h5>
-                        <h5 class="mb-5">Monthly Charge: <span id="monthly">{{ unit.monthly_charge }}</span></h5>
+                <div class="row p-3">
+                    <div class="col-sm-5 unitdet text-sm-left justify-content-center pt-4 pb-4">
+                        <h5 class="mb-5">Name: <span class="textp"> {{ unit.name }}</span></h5>
+                        <h5 class="mb-5">Width: <span class="textp"> {{ unit.width }} (m)</span></h5>
+                        <h5 class="mb-5">Height: <span class="textp"> {{ unit.height }} (m)</span></h5>
+                        <h5 class="mb-5">Length: <span class="textp"> {{ unit.length }} (m)</span></h5>
+                        <h5 class="mb-5">Daily Charge: <span class="textp" id="daily">{{ unit.daily_charge }}</span></h5>
+                        <h5 class="mb-5">Weekly Charge: <span class="textp" id="weekly">{{ unit.weekly_charge }}</span></h5>
+                        <h5 class="mb-5">Monthly Charge: <span class="textp" id="monthly">{{ unit.monthly_charge }}</span></h5>
+                        <div class="text-center">
+                          <p class="addition" >Most suitable goods to be stored are <span id="property" class="textp">{{ unit.suitable_property }}</span> in an average temperatures of  <span id="temp" class="textp">{{ unit.average_temperature }}</span><span>&#8451;</span>
+                          </p>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                                 <div class="mb-3">

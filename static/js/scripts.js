@@ -70,8 +70,7 @@ $(document).ready(function(){
     }else{
       alert('unchecked')
     }
-  });
-    
+  });    
 });
     
 
