@@ -71,7 +71,7 @@ def onsite_booking(request, unit_name):
             add_user.set_password(user_form.cleaned_data['password1'])
             add_user.save()
             messages.success(request, 'User Added successfully.')
-            return  redirect('onsite_booking') 
+            return  redirect('onsite_booking', unit_name) 
     else:
         form = BookingForm()
         views.customadmin

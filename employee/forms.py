@@ -14,4 +14,4 @@ class AddUserForm(forms.ModelForm):
     password1 = forms.CharField(label = "Password", required=True, widget=forms.TextInput(attrs={'placeholder':'Password', 'class': 'form-control', 'type':'password'}))
     class Meta:
         model = User
-        fields = ['username', 'email', 'name', 'user_type', 'is_staff', 'is_superuser', 'is_active', 'password1']
+        fields = ['username', 'email', 'name', 'user_type', 'password1']

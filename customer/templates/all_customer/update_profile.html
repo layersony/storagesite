@@ -7,13 +7,15 @@
 
     <div class="wrapper container pt-4">
         
-        <div class="updateForm text-left">
+        <div class="updateForm text-left p-3">
             <h2>Update Profile:</h2>
-            <div class="col-md-7">
+            <div class="col-md-12">
             <form action="{% url 'update_profile'%}" enctype="multipart/form-data" method="post">
                 {%csrf_token%}
-                {%bootstrap_form userform%}
-                {%bootstrap_form form%}
+                <div class="row w-100">
+                    <div class="col-md-6">{%bootstrap_form userform%}</div>
+                    <div class="col-md-6">{%bootstrap_form form%}</div>
+                </div>                
                 <div class="text-center">
                     <button type="submit" class='btn btn-success'>Update</button>
                 </div>
