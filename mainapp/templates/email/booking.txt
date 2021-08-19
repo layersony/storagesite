@@ -1,0 +1,6 @@
+Hi {{name}},
+
+You have successfully booked unit {{unit.name}}. Please go to your account on the website if you'd like to view the details about the booked unit.
+
+Regards,
+StorageSite Team.

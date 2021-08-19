@@ -5,6 +5,10 @@ from decouple import config, Csv
 
 from django.contrib.messages import constants as messages
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
@@ -155,3 +159,9 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_HOST_USER=config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+
+cloudinary.config( 
+  cloud_name = config('CLOUD_NAME'), 
+  api_key = config('API_KEY'), 
+  api_secret = config('API_SECRET') 
+)

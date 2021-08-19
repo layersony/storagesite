@@ -1,3 +1,4 @@
+from mainapp.models import User_Types
 from django.http.response import JsonResponse
 from django.shortcuts import render ,redirect,get_object_or_404
 from django.http import HttpResponseRedirect

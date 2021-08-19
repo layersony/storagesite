@@ -6,19 +6,8 @@
 <div class="p-4">
   <div class="container">
     <div class="text-center mt-2">
-      {% for message in messages %}
-      <div class="container-fluid p-0">
-        <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          {{ message }}
-        </div>
-      </div>
-      {% endfor %}
     </div>
-    
-    <div class="row">
+  <div class="row">
       <div class="col-md-6">
         <h1 class="modalhead text-center">Update Booking</h1>
         <form method="post" enctype="multipart/form-data" action="{% url 'mainadminupdatebook' book.id %}">

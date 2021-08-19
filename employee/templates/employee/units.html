@@ -5,12 +5,12 @@
 
 <div class="container-fluid" >
   <hr>
-    <div class="jumbotron card card-image" style=" background-image: url('/static/images/marvin-meyer-SYTO3xs06fU-unsplash.jpg'); background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.616); background-blend-mode: darken;">
+    <div class="jumbotron card card-image" style=" background-image: url('/static/images/units-page.jpg'); background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.616); background-blend-mode: darken;">
         <div class="text-white text-center py-5 px-4">
             <div>
                 <h2 style="color:#369FE4; font-size: 3rem;"class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>storage<span style="color: white;">site employee</span></strong></h2>
-                <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View a list of all available units and help a walk-in client book storage</p><br>
-                <a class="btn btn-info" href="#" role="button">View Statistics and Client Requests</i></a>
+                <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View a list of all available units and Help an onsite client book storage</p><br>
+                <a class="btn btn-success" href="{% url 'employee' %}" role="button">View Statistics and Client Requests <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
               <td>{{ unit.daily_charge}}</td>
               <td>{{ unit.weekly_charge}}</td>
               <td>{{ unit.monthly_charge}}</td>
-              <td><button class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
+              <td><a class="btn btn-outline-success btn-sm view_unit" style="font-weight:900;" data-toggle="modal"
                       data-target="#myModalunit" data-unitname="{{ unit.name }}" data-monthly="{{ unit.monthly_charge }}"
                       data-unitwidth="{{ unit.width }}" data-daily="{{ unit.daily_charge }}"
                       data-unitheight="{{ unit.height }}" data-weekly="{{ unit.weekly_charge }}"
@@ -75,19 +75,19 @@
                         </div>
                         <div class="col-md-6">
                           <p>Availability status: <span style="color:#369FE4 ; font-weight: 700;"id="status"></span> </p><hr>
-                          <p>Charges per day: <span style="color:#369FE4; font-weight: 700;"><span id="dailyCharge"></span></span></p><hr>
-                          <p>Charges per week: <span style="color:#369FE4;font-weight: 700;"><span id="weeklyCharge"></span></span> </p><hr>
-                          <p>Charges per month: <span style="color:#369FE4; font-weight: 700;"><span id="monthlyCharge"></span></span> </p>
+                          <p>Charges per day: <span style="color:#369FE4; font-weight: 700;">KES<span id="dailyCharge"></span>.00</span></p><hr>
+                          <p>Charges per week: <span style="color:#369FE4;font-weight: 700;">KES<span id="weeklyCharge"></span>.00</span> </p><hr>
+                          <p>Charges per month: <span style="color:#369FE4; font-weight: 700;">KES<span id="monthlyCharge"></span>.00</span> </p>
                           <hr>
                         </div>
 
-                          <p class="addition mx-4">Most suitable goods to be stored are <span id="property"></span> in
-                              the average temperatures of <span id="temp"></span>&#8451;</p>
+                          <p class="addition" >Most suitable goods to be stored are <span id="property"></span> in an average temperatures of  <span id="temp"></span><span>&#8451;</span>
+                          </p>
                           
                       </div>
-                      
+                    
                       <a  href=" " id="onsiteBooking" class="btn btn-outline"
-                          style="background-color: #79C54E; color: white; " >Book Unit</a>
+                          style="background-color: #79C54E; color: white; ">Book Unit <span id="url"></span> </a>
                       <a href="" id="deleteUnit" class="btn btn-danger" style="background-color: #369FE4; color: white; " >Delete Unit</a>  
                   </div>
               </div>

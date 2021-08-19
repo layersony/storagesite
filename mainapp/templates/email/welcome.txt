@@ -1,0 +1,6 @@
+Hello {{name}},
+
+You have successfully signed up to StorageSite. We look forward to working with you.
+
+Regards,
+Management, StorageSite.

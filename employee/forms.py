@@ -7,11 +7,12 @@ from mainapp.views import AddProfileForm
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        exclude = ['unit', 'profile']   
+        exclude = ['unit', 'profile','end_date','delivery','delivery_address', 'access_code', 'cost','total_cost']   
 
 
 class AddUserForm(forms.ModelForm):
     password1 = forms.CharField(label = "Password", required=True, widget=forms.TextInput(attrs={'placeholder':'Password', 'class': 'form-control', 'type':'password'}))
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'name', 'user_type', 'password1']

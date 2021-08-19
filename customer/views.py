@@ -17,6 +17,8 @@ from mainapp.views import lipa_booking
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView
 
+from mainapp.emails import booking_email
+
 
 from . import views
 from django.conf import settings
@@ -94,6 +96,8 @@ def book(request, pk):
                   
                   
                   bkunit.save()
+
+                  booking_email(request.user.name, request.user.email, unit)
                   return redirect('profile')
 
       context = {'form': form, "unit":unit}
