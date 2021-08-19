@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    pic = CloudinaryField('images', default='image/upload/v1626430054/default_zogkvr.png')
+    pic = CloudinaryField('images', default='image/upload/v1629405499/default_zogkvr.png')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     address = models.TextField(max_length=200, blank=True, null=True)
