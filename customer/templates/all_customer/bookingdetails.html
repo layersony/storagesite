@@ -2,41 +2,58 @@
 {% load static %}
 {% load bootstrap4 %} 
 
-{% block content %}
+{% block content %} 
 
-<link rel="stylesheet" href="/static/css/customer/customer.css">
-    <div class="wrapper container pt-5">
-        
-        <div class="booking_data">
-            <h2>BOOKING DETAILS: {{book.unit}}</h2><br>
-            
-                <p>width: {{book.unit.width}}</p>
-                <p>height: {{book.unit.height}}</p>
-                <p>length: {{book.unit.length}}</p>
-                <p>Size: {{book.unit.size}}</p><br>
-                
-                <h5>Price:</h5>
-                {% if weekly_charge %}
-                    Weekly: {{book.unit.weekly_charge}}
-                {% elif monthly_charge %}
-                    Monthly: {{book.unit.monthly_charge}}
-                {% else %}
-                <p>Daily: {{book.unit.daily_charge}}</p>
-                {% endif %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-                <p>Address:{{book.address}}</p>
-                <p>Suitable Property: {{book.unit.suitable_property}}</p>
-                <p>Average Temperature: {{book.unit.average_temperature}}</p>
-                <p>Start Date: {{book.start_date}}</p>
-                <p>End Date: {{book.end_date}}</p>
-                <p>Description: {{book.description}}</p>
-                <p>Billing Cycle: {{book.billing_Cycle}}</p>
-                <p>Cost: {{book.cost}}</p>
-                <P>Total Price: {{book.total_cost}}</P>
+        <div class="container bg-info mt-5">
+            <h2 class="text-center pt-3 text-white">BOOKING DETAILS:</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card mt-3">
+                        <!-- <img class="card-img-top" src="" alt=""> -->
+      
+                        <div class="card-body">
+                            <p class="text-primary">width: {{book.unit.width}}</p>
+                            <p class="text-primary">height: {{book.unit.height}}</p>
+                            <p class="text-primary">length: {{book.unit.length}}</p>
+                            <p class="text-primary">Size: {{book.unit.size}}</p>
+                            
+                            <p class="text-primary">Price:</p>
+                            {% if weekly_charge %}
+                            <p class="text-primary"> Weekly: {{book.unit.weekly_charge}} </p>
+                            {% elif monthly_charge %}
+                            <p class="text-primary"> Monthly: {{book.unit.monthly_charge}}</p>
+                            {% else %}
+                            <p class="text-primary">Daily: {{book.unit.daily_charge}}</p>
+                            {% endif %}
+
+                            <p class="text-primary">Address: {{book.address}}</p>
+                            <p class="text-primary">Suitable Property: {{book.unit.suitable_property}}</p>
+                            <p class="text-primary">Average Temperature: {{book.unit.average_temperature}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card mt-3">
+                        <!-- <img class="card-img-top" src="" alt=""> -->
+      
+                        <div class="card-body">
+                            <p class="text-primary">Start Date: {{book.start_date}}</p>
+                            <p class="text-primary">End Date: {{book.end_date}}</p>
+                            <p class="text-primary">Description: {{book.description}}</p>
+                            <p class="text-primary">Billing Cycle: {{book.billing_Cycle}}</p>
+                            <p class="text-primary">Cost: {{book.cost}}</p>
+                            <P class="text-primary">Total Price: {{book.total_cost}}</P>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    
         <div class="text-center mt-2 mb-5">
-            <a href="/profile-url"><button type="button" class="btn btn-info">Go Back</button></a>
+            <a href="/profile-url"><button type="button" class="btn btn-success">Go Back</button></a>
         </div>
     </div>
 
-{%endblock%}
+{%endblock%} 
