@@ -69,6 +69,7 @@ def onsite_booking(request, unit_name):
 
         if user_form.is_valid():
             add_user = user_form.save(commit=False)
+            add_user.user_type = 'client'
             add_user.set_password(user_form.cleaned_data['password1'])
             add_user.save()
             messages.success(request, 'User Added successfully.')

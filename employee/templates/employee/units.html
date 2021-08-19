@@ -46,7 +46,11 @@
               <td>{{ unit.height}}</td>
               <td>{{ unit.length}}</td>
               <td>{{ unit.size}}</td>
-              <td>{{ unit.occupied}}</td>
+              {% if unit.occupied %}
+              <td><span class="text-danger">Occupied</span></td>
+              {% else %}
+              <td><span class="text-success">Available</span></td>
+            {% endif %}
               <td>{{ unit.daily_charge}}</td>
               <td>{{ unit.weekly_charge}}</td>
               <td>{{ unit.monthly_charge}}</td>
@@ -55,7 +59,7 @@
                       data-unitwidth="{{ unit.width }}" data-daily="{{ unit.daily_charge }}"
                       data-unitheight="{{ unit.height }}" data-weekly="{{ unit.weekly_charge }}"
                       data-unitlength="{{ unit.length }}" data-unitsize="{{ unit.size }}" data-occupied="{{ unit.occupied }}"
-                      data-property="{{ unit.suitable_property }}" data-temp="{{ unit.average_temperature }}">View</button></td>
+                      data-property="{{ unit.suitable_property }}" data-temp="{{ unit.average_temperature }}">View</a></td>
             </tr>
             {% endfor %}
             {% endif %}
@@ -75,9 +79,9 @@
                         </div>
                         <div class="col-md-6">
                           <p>Availability status: <span style="color:#369FE4 ; font-weight: 700;"id="status"></span> </p><hr>
-                          <p>Charges per day: <span style="color:#369FE4; font-weight: 700;">KES<span id="dailyCharge"></span>.00</span></p><hr>
-                          <p>Charges per week: <span style="color:#369FE4;font-weight: 700;">KES<span id="weeklyCharge"></span>.00</span> </p><hr>
-                          <p>Charges per month: <span style="color:#369FE4; font-weight: 700;">KES<span id="monthlyCharge"></span>.00</span> </p>
+                          <p>Charges per day: <span style="color:#369FE4; font-weight: 700;"><span id="dailyCharge"></span>.00</span></p><hr>
+                          <p>Charges per week: <span style="color:#369FE4;font-weight: 700;"><span id="weeklyCharge"></span>.00</span> </p><hr>
+                          <p>Charges per month: <span style="color:#369FE4; font-weight: 700;"><span id="monthlyCharge"></span>.00</span> </p>
                           <hr>
                         </div>
 
