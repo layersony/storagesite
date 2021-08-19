@@ -19,14 +19,14 @@ h1, h2, h3, h4, h5, h6{
 body{
     background:#ffffff;
 }
-.wrapper 
+/* .wrapper 
 {
     width: 85%;
     min-height: 70vh;
-}
+} */
 .prof{
     margin-top: 100px;
-    width: 95%;
+    width: 95%; 
 }
 
 .fa
@@ -37,7 +37,7 @@ body{
 }
 
 .addressinfo{
-    height: 13vh;
+    min-height: 13vh;
 }
 
 .table1
@@ -75,6 +75,10 @@ body{
     padding-bottom: 50px;
     
 }
+.updatesec{
+    background: rgba(0, 0, 0, 0.26);
+    border-radius: 4px;
+}
 
 input[type=text], select, textarea {
     width: 100%; /* Full width */
@@ -104,6 +108,7 @@ input[type=text], select, textarea {
     border-radius: 4px;
 }
 
+
 @media  screen and (max-width:500px) {
     .prof{
         margin-top: 100px;
@@ -115,3 +120,4 @@ input[type=text], select, textarea {
     min-height: 70vh;
 }
 }
+

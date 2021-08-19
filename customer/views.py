@@ -32,7 +32,10 @@ def update_profile(request):
         userform = UpdateUserForm(request.POST, instance=request.user)
         form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid() and userform.is_valid():
-            form.save()
+            pform = form.save(commit=False)
+            address = f'Business/House Number: {request.POST.get("bhn")}, Estate/Street Name: {request.POST.get("street-name")}, Town: {request.POST.get("town")}, City: {request.POST.get("city")}, County: {request.POST.get("county")}  '
+            pform.address = address
+            pform.save()
             userform.save()
             messages.success(request, 'Profile details updated.')
             return redirect('profile')
