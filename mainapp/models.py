@@ -14,6 +14,7 @@ from django.shortcuts import redirect
 from mpesa_api.models import Payment
 import time
 from djmoney.models.fields import MoneyField
+from cloudinary.models import CloudinaryField
 
 
 
@@ -73,7 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
+    pic = CloudinaryField('images', default='image/upload/v1627343010/neighborhood1_cj2fyx.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
