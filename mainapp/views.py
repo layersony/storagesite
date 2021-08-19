@@ -1,3 +1,4 @@
+from mpesa_api.models import Payment
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
@@ -18,6 +19,9 @@ from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
 from django.contrib.auth.decorators import login_required
 from .emails import send_feedback
+from mpesa_api.models import Payment
+import time
+from mpesa_api.views import call_back, lipa_na_mpesa_online
 
 
 def index(request):
@@ -35,6 +39,7 @@ def contact(request):
         message = request.POST.get('message')
 
         send_feedback(full_name, message, email)
+        messages.success(request, 'Feedback sent successfully.')
         
     return render(request, 'contact.html')
 
@@ -172,6 +177,7 @@ class BookingItem(APIView):
     def delete(self, request, booking_id, format=None):
         booking = self.get_booking(booking_id)
         booking.delete()
+        messages.success(request, 'Delated successfully')
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @login_required(login_url='login')
@@ -199,6 +205,9 @@ def customadmin(request):
 
       if addbook.is_valid():      
         if Unit.objects.get(id=addbook.cleaned_data['unit'].id).occupied == False:
+          accountnumber = addbook.cleaned_data['account_number']
+          payment = addbook.cleaned_data['payment_mode']
+          lipa_booking(request, addbook.cleaned_data['unit'].id, accountnumber, payment)
           Unit.objects.filter(id=addbook.cleaned_data['unit'].id).update(occupied=True)
           addbook.save()
           messages.success(request, 'Booking Added successfully')
@@ -210,6 +219,7 @@ def customadmin(request):
     allprofiles = Profile.objects.all()
     allunits = Unit.objects.all()
     allBooking = Booking.objects.all()
+    allPayments = Payment.objects.all()
 
     available_units = Unit.objects.filter(occupied=False)
     occupied_units = Unit.objects.filter(occupied=True)
@@ -230,6 +240,7 @@ def customadmin(request):
       'addpro':addpro,
       'addunit':addunit,
       'addbook':addbook,
+      'allPayments':allPayments,
     }
     return render(request, 'customadmin/index.html', params)
   else:
@@ -259,6 +270,7 @@ def deleteuser(request, id):
   userto = User.objects.get(id=id)
   if request.method == 'POST':
     userto.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -282,6 +294,7 @@ def deleteprofile(request, id):
   userto = Profile.objects.get(id=id)
   if request.method == 'POST':
     userto.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -291,6 +304,7 @@ def mainadminupdateunit(request, id):
     addunit = AddUnitForm(request.POST, instance=unit)
     if addunit.is_valid():
       addunit.save()
+      messages.success(request, 'Updated successfully')
       return redirect('customadmin')
   
   addunit = AddUnitForm(instance=unit)
@@ -305,6 +319,7 @@ def deleteunit(request, id):
   unit = Unit.objects.get(id=id)
   if request.method == 'POST':
     unit.delete()
+    messages.success(request, 'Delated successfully')
     return redirect('customadmin')
 
 @login_required(login_url='login')
@@ -372,4 +387,36 @@ class OneUnit(APIView):
   def delete(self, request, id, format=None):
     one_unit = Unit.view_one_unit(id)
     one_unit.delete()
+    messages.success(request, 'Delated successfully')
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# lipa na mpesa
+def lipa_booking(request, unitId, accountNumber, paymentMode):
+    unit = Unit.objects.get(id=unitId)
+    phonenumber = None
+
+        
+    if paymentMode == 'Mpesa':
+        if accountNumber[0] == '0':
+            phonenumber = '254'+ accountNumber[1:]
+        elif accountNumber[0:2] == '254':
+            phonenumber = accountNumber
+        else:
+            messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
+            return redirect(request.get_full_path())
+
+        
+
+        lipa_na_mpesa_online(request, phonenumber)
+        
+        time.sleep(20)
+
+        Unit.objects.filter(id=unitId).update(occupied=True)
+        messages.success(request, f'You Have Booked Unit {unit}')
+
+    
+    else:
+        time.sleep(7)
+        Unit.objects.filter(id=unitId).update(occupied=True)
+        messages.success(request, f'You Have Booked Unit {unit}')

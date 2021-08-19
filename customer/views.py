@@ -13,6 +13,7 @@ from .forms import UpdateProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from mainapp.models import Profile, User
+from mainapp.views import lipa_booking
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView
 
@@ -22,6 +23,7 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 
 from mpesa_api.views import lipa_na_mpesa_online
+from django.contrib import messages
 
 def update_profile(request):
     user = request.user
@@ -32,10 +34,12 @@ def update_profile(request):
         if form.is_valid() and userform.is_valid():
             form.save()
             userform.save()
+            messages.success(request, 'Profile details updated.')
             return redirect('profile')
     else:
       userform = UpdateUserForm(instance=request.user)
       form = UpdateProfileForm(instance=request.user.profile)
+      
     return render(request, 'all_customer/update_profile.html', { 'form': form, 'userform': userform})
 
 def profile(request):
@@ -63,28 +67,30 @@ def book(request, pk):
 
       if request.method == 'POST':
             form = BookingForm(request.POST)
-            print(form)
             if form.is_valid():
                   cycle = form.cleaned_data['billing_Cycle']
                   bkunit = form.save(commit=False)
                   bkunit.profile = request.user.profile
                   if cycle == 'Daily':
                         bkunit.cost = unit.daily_charge
-                        bkunit.total_cost = int(unit.daily_charge) + 200
+                        bkunit.total_cost = int(unit.daily_charge.amount) + 200
                   elif cycle == 'Weekly':
                         bkunit.cost = unit.weekly_charge 
-                        bkunit.total_cost = int(unit.weekly_charge) + 200
+                        bkunit.total_cost = int(unit.weekly_charge.amount) + 200
                   else:
                         bkunit.cost = unit.monthly_charge
-                        bkunit.total_cost = int(unit.monthly_charge) + 200
+                        bkunit.total_cost = int(unit.monthly_charge.amount) + 200
 
                   bkunit.unit = unit
-                  bkunit.save()
+                  
 
                   account_number = form.cleaned_data['account_number']
                   payment = form.cleaned_data['payment_mode']
 
-                  Booking.lipa_booking(request, unit.id, account_number, payment)
+                  lipa_booking(request, unit.id, account_number, payment)
+                  
+                  
+                  bkunit.save()
                   return redirect('profile')
 
       context = {'form': form, "unit":unit}

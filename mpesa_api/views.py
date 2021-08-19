@@ -4,11 +4,12 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from decouple import config
+from django.contrib import messages
 
 #mpesa_cred
 from . mpesa_credentials import MpesaAccessToken, LipanaMpesaPassword
 from django.views.decorators.csrf import csrf_exempt
-from .models import MpesaPayment
+from .models import MpesaPayment, Payment
 
 def getAccessToken(request):
     consumer_key = config('CONSUMER_KEY')
@@ -33,11 +34,13 @@ def lipa_na_mpesa_online(request, namber):
         "PartyA": int(namber),  # replace with your phone number to get stk push
         "PartyB": LipanaMpesaPassword.Business_short_code,
         "PhoneNumber": int(namber),  # replace with your phone number to get stk push
-        "CallBackURL": "http://29f0b3481c82.ngrok.io",
+        "CallBackURL": "https://storagesite.herokuapp.com/api/v1/c2b/callback",
         "AccountReference": "Storagesite",
         "TransactionDesc": "Testing stk push StorageSite"
     }
     response = requests.post(api_url, json=request, headers=headers)
+    print('lipa na mpesa online')
+    print(response.text)
     return HttpResponse('success')
 
 @csrf_exempt
@@ -45,17 +48,43 @@ def register_urls(request):
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"
     headers = {"Authorization": "Bearer %s" % access_token}
-    options = {"ShortCode": LipanaMpesaPassword.Business_short_code,
+    options = {"ShortCode": LipanaMpesaPassword.Test_c2b_shortcode,
                "ResponseType": "Completed",
-               "ConfirmationURL": "https://29f0b3481c82.ngrok.io/api/v1/c2b/confirmation",
-               "ValidationURL": "https://29f0b3481c82.ngrok.io/api/v1/c2b/validation"}
+               "ConfirmationURL": "https://storagesite.herokuapp.com/api/v1/c2b/confirmation",
+               "ValidationURL": "https://storagesite.herokuapp.com/api/v1/c2b/validation"}
     response = requests.post(api_url, json=options, headers=headers)
     return HttpResponse(response.text)
 
 @csrf_exempt
 def call_back(request):
-    #you can capture the mpesa calls.
-    pass
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    print(request.text)
+    print('from call back')
+
+    if body['Body']['stkCallback']['ResultCode'] == 0:
+        payment = Payment(
+            checkoutRequestID = body['Body']['stkCallback']['CheckoutRequestID'],
+            merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
+            amount = body['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
+            mpesaReceiptNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
+            phoneNumber = body['Body']['stkCallback']['CallbackMetadata']['Item'][-1]["Value"],
+        )
+        payment.save()
+        print('saved response')
+        messages.success(request, 'Successfully Paid') 
+        return 'successfully'   
+    else:
+        payment = Payment(
+            checkoutRequestID = body['Body']['stkCallback']['CheckoutRequestID'],
+            merchantRequestID = body['Body']['stkCallback']['MerchantRequestID'],
+            amount = 0.00,
+            mpesaReceiptNumber = 'Cancelled',
+            phoneNumber = '07xxxxxxxx',
+        )
+        payment.save()
+        messages.error(request, 'Transcation Declined By User')
+        return 'declined'
 
 @csrf_exempt
 def validation(request):
@@ -63,27 +92,45 @@ def validation(request):
         "ResultCode": 0,
         "ResultDesc": "Accepted"
     }
+    with open('paymnt.txt', 'a+') as f:
+        f.write(request.body.decode('utf-8'))
+        f.close
+
     return JsonResponse(dict(context))
 
 @csrf_exempt
 def confirmation(request):
     mpesa_body =request.body.decode('utf-8')
     mpesa_payment = json.loads(mpesa_body)
-    print(mpesa_payment)
-    payment = MpesaPayment(
-        first_name=mpesa_payment['FirstName'],
-        last_name=mpesa_payment['LastName'],
-        middle_name=mpesa_payment['MiddleName'],
-        description=mpesa_payment['TransID'],
-        phone_number=mpesa_payment['MSISDN'],
-        amount=mpesa_payment['TransAmount'],
-        reference=mpesa_payment['BillRefNumber'],
-        organization_balance=mpesa_payment['OrgAccountBalance'],
-        type=mpesa_payment['TransactionType'],
-    )
-    payment.save()
+    
+    print('from confirmation')
     context = {
         "ResultCode": 0,
         "ResultDesc": "Accepted"
     }
+
+    if mpesa_payment['Body']['stkCallback']['ResultCode'] == 0:
+        payment = Payment(
+            checkoutRequestID = mpesa_payment['Body']['stkCallback']['CheckoutRequestID'],
+            merchantRequestID = mpesa_payment['Body']['stkCallback']['MerchantRequestID'],
+            amount = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][0]["Value"],
+            mpesaReceiptNumber = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][1]["Value"],
+            transaction_date = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][3]["Value"],
+            phoneNumber = mpesa_payment['Body']['stkCallback']['CallbackMetadata']['Item'][4]["Value"],
+        )
+        payment.save()
+        print('saved response')
+        messages.success('Payment Successfully')
+        
+    else:
+        payment = Payment(
+            checkoutRequestID = mpesa_payment['Body']['stkCallback']['CheckoutRequestID'],
+            merchantRequestID = mpesa_payment['Body']['stkCallback']['MerchantRequestID'],
+            amount = 'Cancelled',
+            mpesaReceiptNumber = 'Cancelled',
+            transaction_date = 'Cancelled',
+            phoneNumber = 'Cancelled',
+        )
+        payment.save()
+        messages.error('Transcation Declined By User')
     return JsonResponse(dict(context))

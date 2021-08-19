@@ -1,16 +1,23 @@
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.http.response import HttpResponseRedirect
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.http import Http404
 from django.contrib.auth.hashers import make_password
-from mpesa_api.views import lipa_na_mpesa_online
+from mpesa_api.views import lipa_na_mpesa_online, call_back
 from django.contrib import messages
 from django.shortcuts import redirect
+from mpesa_api.models import Payment
+import time
+from djmoney.models.fields import MoneyField
+from cloudinary.models import CloudinaryField
 
+from djmoney.models.fields import MoneyField
 
 
 class UserManager(BaseUserManager):
@@ -69,10 +76,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
+    pic = CloudinaryField('images', default='image/upload/v1627343010/neighborhood1_cj2fyx.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    address = models.CharField(max_length=200, blank=True, null=True)
+    address = models.TextField(max_length=200, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
     nok_number = models.CharField(max_length=100, blank=True, null=True)
@@ -109,33 +116,37 @@ class Profile(models.Model):
         one_profile = self.objects.filter(id=id)
         return one_profile
 
-Unit_sizes = (
-    ('-----','-----'),
-    ('Small','Small'),
-    ('Medium', 'Medium'),
-    ('Large', 'Large'),
-    ('X-large', 'X-large'),
-    ('2X-large', '2X-large'),
-    ('3X=large', '3X-large'),
-)
-
 class Unit(models.Model):
     name = models.CharField(max_length=200)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     length = models.PositiveIntegerField()
-    size = models.CharField(max_length=100, choices=Unit_sizes, default='-----')
     occupied = models.BooleanField(default=False, null=True)
-    daily_charge = models.PositiveIntegerField()
-    weekly_charge = models.PositiveIntegerField()
-    monthly_charge = models.PositiveIntegerField()
-    access_code = models.PositiveIntegerField()
+    daily_charge = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    weekly_charge = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    monthly_charge = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
     suitable_property =models.CharField(max_length=400)
     average_temperature = models.IntegerField()
 
     @property
     def volume(self):
         return self.width * self.length * self.height
+
+    @property
+    def size(self):
+        if self.volume:
+            if self.volume in range(1,1000):
+                return 'Small'
+            elif self.volume in range(1000, 2000):
+                return 'Medium'
+            elif self.volume in range(2000, 3000):
+                return 'Large'
+            elif self.volume in range(3000, 4000):
+                return 'X-Large'
+            elif self.volume in range(4000, 6000):
+                return '2X-Large'
+            else:
+                return '3X-Large +'
 
     def __str__(self):
         return self.name
@@ -196,8 +207,9 @@ class Booking(models.Model):
     billing_Cycle = models.CharField(max_length=100, choices=BillingCycle, default='-----')
     payment_mode = models.CharField(max_length=50, choices=ModePayment, default='-----')
     account_number = models.CharField(max_length=50, null=True, blank=True)
-    cost = models.PositiveIntegerField(null=True)
-    total_cost = models.PositiveIntegerField(null=True)
+    access_code = models.PositiveIntegerField(default=0000)
+    cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    total_cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
 
     def __str__(self) :
         return f'{self.unit.name} Booked By {self.profile.user.username}'
@@ -222,25 +234,5 @@ class Booking(models.Model):
         abooking = cls.objects.get(id=id)
         return abooking
 
-    @classmethod
-    def lipa_booking(cls, request, unitId, accountNumber, paymentMode):
-        unit = Unit.objects.get(id=unitId)
-        phonenumber = None
-        if accountNumber[0] == '0':
-            phonenumber = '254'+ accountNumber[1:]
-        elif accountNumber[0:2] == '254':
-            phonenumber = accountNumber
-        else:
-            messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
-            return redirect(request.META['HTTP_REFERER'])
-            
-        if paymentMode == 'Mpesa':
-            lipa_na_mpesa_online(request, phonenumber)
-            messages.success(request, 'Your Payment is Being Proccessed')
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
-            
-        else:
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
+
             
