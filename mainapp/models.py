@@ -208,8 +208,8 @@ class Booking(models.Model):
     payment_mode = models.CharField(max_length=50, choices=ModePayment, default='-----')
     account_number = models.CharField(max_length=50, null=True, blank=True)
     access_code = models.PositiveIntegerField(default=0000)
-    cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
-    total_cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
+    cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES',default=0)
+    total_cost = MoneyField(max_digits=14, decimal_places=2, default_currency='KES',default=0)
 
     def __str__(self) :
         return f'{self.unit.name} Booked By {self.profile.user.username}'
