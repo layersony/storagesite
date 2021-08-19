@@ -52,7 +52,10 @@ $(document).ready(function(){
         $('#temp').text(temp);
         $('#onsiteBooking').attr('href', onsite_booking_url);
         $('#deleteUnit').attr('href', delete_url);
-    })
+
+    });
+
+
   $("#id_end_date").datetimepicker(
     {
       format: 'Y-m-d H:i:i',
