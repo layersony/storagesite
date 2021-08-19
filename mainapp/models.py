@@ -1,3 +1,4 @@
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -15,6 +16,7 @@ from mpesa_api.models import Payment
 import time
 from djmoney.models.fields import MoneyField
 
+from djmoney.models.fields import MoneyField
 
 
 class UserManager(BaseUserManager):
@@ -72,11 +74,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 			return self.email
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True )
     pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    address = models.CharField(max_length=200, blank=True, null=True)
+    address = models.TextField(max_length=200, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
     nok_number = models.CharField(max_length=100, blank=True, null=True)
@@ -142,8 +144,8 @@ class Unit(models.Model):
                 return 'X-Large'
             elif self.volume in range(4000, 6000):
                 return '2X-Large'
-            elif self.volume in range(6000, 8000):
-                return '3X-Large'
+            else:
+                return '3X-Large +'
 
     def __str__(self):
         return self.name
@@ -231,38 +233,5 @@ class Booking(models.Model):
         abooking = cls.objects.get(id=id)
         return abooking
 
-    @classmethod
-    def lipa_booking(cls, request, unitId, accountNumber, paymentMode):
-        unit = Unit.objects.get(id=unitId)
-        phonenumber = None
 
-            
-        if paymentMode == 'Mpesa':
-            if accountNumber[0] == '0':
-                phonenumber = '254'+ accountNumber[1:]
-            elif accountNumber[0:2] == '254':
-                phonenumber = accountNumber
-            else:
-                messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
-                return redirect(request.get_full_path())
-
-            messages.success(request, 'Your Payment is Being Proccessed')
-
-            lipa_na_mpesa_online(request, phonenumber)
-
-            time.sleep(27)
-
-            latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first() # get latest transcation
-
-            if latesttrans:        
-                Unit.objects.filter(id=unitId).update(occupied=True)
-                messages.success(request, f'You Have Booked Unit {unit}')
-            else:
-                messages.error(request, 'Transaction Failed')
-                return redirect(request.get_full_path())
-        
-        else:
-            time.sleep(10)
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
             

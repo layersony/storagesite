@@ -8,8 +8,8 @@
   <div class="text-center mt-2">
 </div>
 <div class="row prof">
-  <div class="col-md-3 p-5">
-    <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.pic.url }}"
+  <div class="col-md-3 p-4">
+    <img class="rounded-1 account-img d-block me-auto" src="{{ user.profile.pic.url }}"
     height="200px" width="200px" class="img-fluid">
       <h2 class="font-weight-bold mt-5">{{user.name}}</h2>
       <h5>@{{ user.username }}</h5>
@@ -20,7 +20,7 @@
   </div>
   <div class="col-md-8 d-flex flex-column p-3">
   <div class="addressinfo">
-      <div class="info text-center">
+      <div class="info text-left">
           <h3 class="font-weight-bold">Address</h3>
           <div class="info-data">
            {{user.profile.address}}
@@ -29,10 +29,10 @@
   </div>
 
   <div class="table-responsive mt-2 flex-column">
-    <h3 class="text-center font-weight-bold">My Units</h3>
-      <table class="table table-striped">
+    <h3 class="text-left font-weight-bold">My Units</h3>
+      <table class="table">
 
-          <thead>
+          <thead class="thead-dark">
             <tr>
               <th scope="col">no:</th>
               <th scope="col">Units</th>
@@ -79,6 +79,14 @@
   let leave = prompt('Are you sure you want to Move Out? (yes/no)').toLowerCase()
 
   if (leave == 'yes'){
+    let delivery = prompt('Do you Want Your Luggages to Be Delivered (yes/no)').toLowerCase()
+
+    if (delivery == 'yes'){
+
+    }else{
+      
+    }
+
     $j.ajax({
       'url': '{% url "checkout" %}',
       'type':'GET',
