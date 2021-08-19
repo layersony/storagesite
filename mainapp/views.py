@@ -22,6 +22,7 @@ from .emails import send_feedback
 from mpesa_api.models import Payment
 import time
 from mpesa_api.views import call_back, lipa_na_mpesa_online
+from .emails import send_welcome_email
 
 
 def index(request):
@@ -58,6 +59,8 @@ def signup(request):
       regform.user_type='client'
       regform.save()
 
+      send_welcome_email(request.POST.get('name'), temail)
+
       user = authenticate(request, email=temail, password=password)
 
       if user is not None:
@@ -67,12 +70,12 @@ def signup(request):
 
       return redirect('home')
 
-    else:
-      messages.info(request, 'Error Processing Your Request')
-      params = {
-        'form': form
-      }
-      return render(request, 'registration/register.html', params)
+    # else:
+    #   messages.info(request, 'Error Processing Your Request')
+    #   params = {
+    #     'form': form
+    #   }
+    #   return render(request, 'registration/register.html', params)
 
   form = RegistrationForm()
   params = {
