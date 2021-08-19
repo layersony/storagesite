@@ -221,6 +221,7 @@ input::placeholder {
 }
 
 .addition {
+  padding:2rem ;
   font-style: italic;
   font-weight: 700;
 }
@@ -235,4 +236,46 @@ input::placeholder {
 }
 
 
+
+/***********STATISTICS PAGE**********/
+
+.units-no {
+  padding: 2rem;
+  margin-top: 9rem;
+  text-align: center;
+  color: #343334;
+  height:19rem;
+
+}
+
+.number{
+  font-size: 5rem;
+  font-weight: 1800;
+}
+
+.stats{
+  background-image: url('/static/images/stats-page.jpg'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  height:38rem;
+  background-color: rgba(0, 0, 0, 0.616); 
+  background-blend-mode: darken;
+  
+}
+
+.stat-cards{
+  background-color:#2e2e2e11;
+  height: 18rem;
+}
+
+.requests-header{
+  text-align: center;
+  font-weight: 500;
+  margin-top: 18rem;
+  padding: 3rem;
+}
+
+.requests{
+  text-align: center;
+}
 
