@@ -36,6 +36,7 @@ def contact(request):
         message = request.POST.get('message')
 
         send_feedback(full_name, message, email)
+        messages.success(request, 'Feedback sent successfully.')
         
     return render(request, 'contact.html')
 
