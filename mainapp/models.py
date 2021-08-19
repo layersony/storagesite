@@ -8,11 +8,6 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.http import Http404
-<<<<<<< HEAD
-
-from djmoney.models.fields import MoneyField
-=======
->>>>>>> 6f8a02ca2e8408c8e8dc7c6746cc0432760bdba5
 
 from djmoney.models.fields import MoneyField
 
