@@ -8,6 +8,14 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.http import Http404
+from django.contrib.auth.hashers import make_password
+from mpesa_api.views import lipa_na_mpesa_online, call_back
+from django.contrib import messages
+from django.shortcuts import redirect
+from mpesa_api.models import Payment
+import time
+from djmoney.models.fields import MoneyField
+from cloudinary.models import CloudinaryField
 
 from djmoney.models.fields import MoneyField
 
@@ -67,8 +75,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 			return self.email
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True )
-    pic = models.ImageField(upload_to='profiles/', default='profiles/default.jpg')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    pic = CloudinaryField('images', default='image/upload/v1627343010/neighborhood1_cj2fyx.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     address = models.TextField(max_length=200, blank=True, null=True)
