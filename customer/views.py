@@ -50,7 +50,7 @@ def booking_details(request, id):
       book = Booking.objects.get(id=id)
       return render(request, 'all_customer/bookingdetails.html', {'book':book})
 
-@login_required
+
 def available(request):
       units=Unit.objects.all()
       return render(request, 'all_customer/available_units.html', {"units":units})
@@ -97,9 +97,14 @@ def book(request, pk):
       return render(request, 'all_customer/book.html',  context)
 
 def checkout(request):
+      print(request.GET)
       unit_id = request.GET.get('unit')
       book_id = request.GET.get('booking')
+      deliadd = request.GET.get('deliadd')
+      deliaddstatus = request.GET.get('deliaddstatus')
+
       Unit.objects.filter(id=unit_id).update(occupied=False)
+      
       Booking.delete_booking(book_id)
       message = messages.success(request ,f'You have Successfully Moved Out of unit {Unit.objects.get(id=unit_id).name}')
       data = {
