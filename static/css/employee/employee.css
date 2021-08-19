@@ -243,9 +243,8 @@ input::placeholder {
   padding: 2rem;
   margin-top: 9rem;
   text-align: center;
-  color:rgb(19, 18, 18);
+  color: #343334;
   height:19rem;
-  background-color: beige;
 
 }
 
@@ -265,12 +264,18 @@ input::placeholder {
 }
 
 .stat-cards{
-  background-color:#2e2e2e1c;
-  height: 20rem;
+  background-color:#2e2e2e11;
+  height: 18rem;
 }
 
 .requests-header{
   text-align: center;
   font-weight: 500;
+  margin-top: 18rem;
+  padding: 3rem;
+}
+
+.requests{
+  text-align: center;
 }
 

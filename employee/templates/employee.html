@@ -8,7 +8,7 @@
             <div>
                 <h2 style="color:#369FE4; font-size: 3rem;"class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>storage<span style="color: white;">site employee</span></strong></h2>
                 <p style="color:white; font-size: 20px; font-weight: 600;"class="mx-5 mb-5">View the company's statistics and client delivery and pick up reqests.  </p><br>
-                <a class="btn " href="#" role="button" style="background-color: #369FE4; color: white;">View all units <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
+                <a class="btn " href="{% url 'units' %}" role="button" style="background-color: #369FE4; color: white;">View all units <i class="fa fa-long-arrow-right"aria-hidden="true"></i></a>
             </div>
         </div>
     
@@ -43,50 +43,47 @@
         </div>
     </div>
     </div>
-    <div class="stat-cards">
     
-    </div>
-
     <!--CLIENT DELIVERY AND PICK UP REQUESTS-->
 
-<div class="container">
-    <div class="row card mt-5">
-        <h2 class="requests-header">pick up and delivery services </h2>
-        {% for booking in pickup %}
-        <div class="col-md">
-            <div class=" card mt-44" style="text-align: left;">
-                    <div class="delivery" style="background-color: azure;">
-                        <h3>Pickup requests</h3>
-                        <p>Username:{{booking.profile.user.username}}</p>
-                        <p>Location:{{booking.profile.location}}</p>
-                        <p>Address:{{booking.profile.address}}</p>
-                        <p>Contact:{{booking.profile.phone_number}}</p>
-                        <p>Date:{{booking.stat_date}}</p>
-                        
-                        <hr>
-                    </div>
+<div class="container requests">
+    <h2 class="requests-header">pick up and delivery services </h2>
+    <div class="row ">
+        <div class="col-md-4" style="background-color: grey;">
+            {% if pickup %}
+            {% for booking in pickup %}
+            <div class="">
+                <h3>Pickup requests</h3>
+                <p>Username:{{booking.profile.user.username}}</p>
+                <p>Location:{{booking.profile.location}}</p>
+                <p>Address:{{booking.profile.address}}</p>
+                <p>Contact:{{booking.profile.phone_number}}</p>
+                <p>Date:{{booking.stat_date}}</p>
             </div>
+            {% endfor %}
+            {% else %}
+            <h4>No pickup requests</h4>
+            {% endif %}
         </div>
-        {% endfor %}
-        {% for booking in delivery %}
-        <div class="col-md">
-            <div class="card mt-4  " style="text-align: left;">
-                <div class="delivery" style="background-color: azure;">
-                    <h3>Delivery requests</h3>
-                    <p>Username:{{booking.profile.user.username}}</p>
-                        <p>Location:{{booking.profile.location}}</p>
-                        <p>Address:{{booking.profile.address}}</p>
-                        <p>Contact:{{booking.profile.phone_number}}</p>
-                        <p>Date:{{booking.stat_date}}</p>
-                    <hr>
-                </div>
-                <hr>
+        <div class="col-md-2"></div>
+        <div class="col-md-4" style="background-color: grey;">
+            {% if delivery %}
+            {% for booking in delivery %}
+            <div class="delivery">
+                <h3>Delivery requests</h3>
+                <p>Username:{{booking.profile.user.username}}</p>
+                <p>Location:{{booking.profile.location}}</p>
+                <p>Address:{{booking.profile.address}}</p>
+                <p>Contact:{{booking.profile.phone_number}}</p>
+                <p>Date:{{booking.stat_date}}</p>
             </div>
+            {% endfor %}
+            {% else %}
+            <h4>No delivery requests</h4>
+            {% endif %}
         </div>
-        {% endfor %}
     </div>
+    </div>
+
 </div>    
-
-
-
 {% endblock %}
