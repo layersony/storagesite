@@ -60,7 +60,11 @@ class Migration(migrations.Migration):
             name='Profile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+<<<<<<< HEAD
                 ('pic', cloudinary.models.CloudinaryField(default='image/upload/v1626430054/default_zogkvr.png', max_length=255, verbose_name='images')),
+=======
+                ('pic', cloudinary.models.CloudinaryField(default='image/upload/v1627343010/neighborhood1_cj2fyx.jpg', max_length=255, verbose_name='images')),
+>>>>>>> 12f365a804e4a5b67ab661a8444ddc9ee4e5f918
                 ('phone_number', models.CharField(blank=True, max_length=20, null=True)),
                 ('location', models.CharField(blank=True, max_length=200, null=True)),
                 ('address', models.TextField(blank=True, max_length=200, null=True)),
