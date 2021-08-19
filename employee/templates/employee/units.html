@@ -26,13 +26,14 @@
     </div>
     <hr>
 
-  <div class=" container-fluid">
-    <div class="col-md-12">  
+  <div class=" container-fluid mb-5">
+    <div class="">  
       <h2 class="allunits-header">ALL STORAGE UNITS </h2> 
-      <div  class="d-flex justify-content-center">
-        <table class="content-table">
+      <div  class="table-responsive">
+        <table class="content-table table">
           <thead>
             <tr>
+              <th>No:</th>
               <th>UNIT</th>
               <th>WIDTH (m)</th>
               <th>HEIGHT (m)</th>
@@ -49,6 +50,7 @@
           {% if units %}
           {% for unit in units %}
             <tr>
+              <td>{{ forloop.counter }}</td>
               <td>{{ unit.name}}</td>
               <td>{{ unit.width}}</td>
               <td>{{ unit.height}}</td>

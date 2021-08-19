@@ -3,13 +3,13 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<div class=" container-fluid">
-  <div class="col-md-12">  
-    <h2 class="allunits-header">All storagesite units </h2>
-    
-    <table class="content-table">
-      <thead>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+  <h2 class="allunits-header mt-4 mb-4">All storagesite units </h2>
+  <div class="container-fluid table-responsive text-center table-striped">  
+    <table class="table">
+      <thead class="table-dark">
         <tr>
+          <th>No:</th>
           <th>UNIT</th>
           <th>WIDTH (m)</th>
           <th>HEIGHT (m)</th>
@@ -28,6 +28,7 @@
       {% for unit in units %}
       <tbody>
         <tr>
+          <td>{{ forloop.counter }}</td>
           <td>{{ unit.name}}</td>
           <td>{{ unit.width}}</td>
           <td>{{ unit.height}}</td>

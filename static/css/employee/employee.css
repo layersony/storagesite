@@ -120,10 +120,8 @@ table{
   border-collapse: collapse;
   margin: 25px 0;
   
-  font-size: 0.9em;
-  min-width: 400px;
+  font-size: 20px;
   border-radius: 5px 5px 0 0;
-  overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -144,11 +142,12 @@ table{
   border-bottom: 1px solid #dddddd;
 }
 .content-table tbody tr{
-  background-color: rgb(114, 113, 113);
+  background-color: rgb(173, 172, 172);
+  color:#000;
 }
-.content-table tbody tr:nth-of-type(even) {
-  background-color: #2e2e2e;
-  color: #ffffff;
+.content-table tbody tr:nth-of-type(odd) {
+  color: #2e2e2e;
+  background-color: #ffffff;
 }
 
 .content-table tbody tr:last-of-type {
@@ -179,8 +178,9 @@ input,textarea {
 }
 
 .allunits-header {
-  font-weight: 400;
+  font-weight: 800;
   text-align: center;
+  color: #369FE4;
 }
 
 .unit-search {

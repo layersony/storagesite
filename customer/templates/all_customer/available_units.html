@@ -7,33 +7,38 @@
 {% block content %}
 
 
+<div class="pt-5 "></div>
+<div class="available pt-5 mb-5">
+  <h1 class="text-center pt-3 pb-3">Storage Site Units</h1>
+  <div class="table-responsive">
 
-    <div class="available">
-        <table class="container table table-active ">
-          <br>
-          <br>
-          <br>
-          <br>
-      <thead>
+  
+    <table class="container table table-striped">
+    <thead class="table-dark text-white">
     <tr>
+      <th scope="col">No:</th>
       <th scope="col">Name</th>
       <th scope="col">Width</th>
       <th scope="col">Height</th>
       <th scope="col">Length</th>
+      <th scope="col">Size</th>
       <th scope="col">Daily Charge</th>
       <th scope="col">Weekly Charge</th>
       <th scope="col">Monthly Charge</th>
       <th scope="col">Status</th>
+      <th scope="col"></th>
     </tr>
   </thead>
       
   <tbody>
     {% for unit in units %}
     <tr>
+      <td>{{ forloop.counter }}.</td>
       <th scope="row">{{ unit.name }}</th>
       <td>{{ unit.width }}</td>
       <td>{{ unit.height }}</td>
       <td>{{ unit.length }}</td>
+      <td>{{ unit.size }}</td>
       <td>{{ unit.daily_charge }}</td>
       <td>{{ unit.weekly_charge }}</td>
       <td>{{ unit.monthly_charge }}</td>
@@ -49,6 +54,7 @@
     </tbody>
   
   </table>
+</div>
 </div>
 
 
