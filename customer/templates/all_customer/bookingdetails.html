@@ -14,15 +14,28 @@
                 <p>height: {{book.unit.height}}</p>
                 <p>length: {{book.unit.length}}</p>
                 <p>Size: {{book.unit.size}}</p><br>
+                
                 <h5>Price:</h5>
-                <p>Weekly: {{book.unit.weekly_charge}}</p>
-                <p>monthly: {{book.unit.monthly_charge}}</p>
-                <h5>Description: {{book.description}}</h5>
+                {% if weekly_charge %}
+                    Weekly: {{book.unit.weekly_charge}}
+                {% elif monthly_charge %}
+                    Monthly: {{book.unit.monthly_charge}}
+                {% else %}
+                <p>Daily: {{book.unit.daily_charge}}</p>
+                {% endif %}
+
+                <p>Address:{{book.address}}</p>
+                <p>Suitable Property: {{book.unit.suitable_property}}</p>
+                <p>Average Temperature: {{book.unit.average_temperature}}</p>
+                <p>Start Date: {{book.start_date}}</p>
+                <p>End Date: {{book.end_date}}</p>
+                <p>Description: {{book.description}}</p>
                 <p>Billing Cycle: {{book.billing_Cycle}}</p>
+                <p>Cost: {{book.cost}}</p>
                 <P>Total Price: {{book.total_cost}}</P>
         </div>
         <div class="text-center mt-2 mb-5">
-            <button class="exit btn btn-info">Go Back</button>
+            <a href="/profile-url"><button type="button" class="btn btn-info">Go Back</button></a>
         </div>
     </div>
 

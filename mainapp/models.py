@@ -1,3 +1,4 @@
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -16,6 +17,7 @@ import time
 from djmoney.models.fields import MoneyField
 from cloudinary.models import CloudinaryField
 
+from djmoney.models.fields import MoneyField
 
 
 class UserManager(BaseUserManager):
@@ -77,7 +79,7 @@ class Profile(models.Model):
     pic = CloudinaryField('images', default='image/upload/v1627343010/neighborhood1_cj2fyx.jpg')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    address = models.CharField(max_length=200, blank=True, null=True)
+    address = models.TextField(max_length=200, blank=True, null=True)
     nok_fullname = models.CharField(max_length=100, blank=True, null=True)
     nok_email = models.EmailField(blank=True, null=True)
     nok_number = models.CharField(max_length=100, blank=True, null=True)
@@ -232,38 +234,5 @@ class Booking(models.Model):
         abooking = cls.objects.get(id=id)
         return abooking
 
-    @classmethod
-    def lipa_booking(cls, request, unitId, accountNumber, paymentMode):
-        unit = Unit.objects.get(id=unitId)
-        phonenumber = None
 
-            
-        if paymentMode == 'Mpesa':
-            if accountNumber[0] == '0':
-                phonenumber = '254'+ accountNumber[1:]
-            elif accountNumber[0:2] == '254':
-                phonenumber = accountNumber
-            else:
-                messages.error(request, 'Check you Phone Number format 2547xxxxxxxx')
-                return redirect(request.get_full_path())
-
-            messages.success(request, 'Your Payment is Being Proccessed')
-
-            lipa_na_mpesa_online(request, phonenumber)
-
-            time.sleep(27)
-
-            latesttrans = Payment.objects.filter(phoneNumber=phonenumber).first() # get latest transcation
-
-            if latesttrans:        
-                Unit.objects.filter(id=unitId).update(occupied=True)
-                messages.success(request, f'You Have Booked Unit {unit}')
-            else:
-                messages.error(request, 'Transaction Failed')
-                return redirect(request.get_full_path())
-        
-        else:
-            time.sleep(10)
-            Unit.objects.filter(id=unitId).update(occupied=True)
-            messages.success(request, f'You Have Booked Unit {unit}')
             
