@@ -21,6 +21,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/employee/employee.css'%}">
     {% endblock %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 </head>
 
 <body>
@@ -41,7 +45,14 @@
 
     <script src="https://kit.fontawesome.com/f853836380.js" crossorigin="anonymous"></script>
 
-
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                alertify.set('notifier','position', 'top-center');
+                alertify.success('{{message}}');
+            {% endfor %}
+        {% endif %}
+    </script>
 
     <script src="{% static 'js/scripts.js'%}"></script>
 </body>

@@ -40,7 +40,6 @@ def lipa_na_mpesa_online(request, namber):
     }
     response = requests.post(api_url, json=request, headers=headers)
     print('lipa na mpesa online')
-    print(response.text)
     return HttpResponse('success')
 
 @csrf_exempt
