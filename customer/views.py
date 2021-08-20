@@ -73,6 +73,10 @@ def book(request, pk):
       form_class = BookingForm()
       form = BookingForm()
 
+      if unit.occupied:
+        messages.error(request, 'This unit is currently unavailable, please book an available unit.')
+        return redirect('units')
+
       if request.method == 'POST':
             form = BookingForm(request.POST)
             if form.is_valid():
