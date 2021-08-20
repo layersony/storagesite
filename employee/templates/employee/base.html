@@ -52,7 +52,12 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <script>
-        
+        {% if messages %}
+            {% for message in messages %}
+                alertify.set('notifier','position', 'top-center');
+                alertify.success('{{message}}');
+            {% endfor %}
+        {% endif %}
     </script>
     {% bootstrap_javascript %}
 
