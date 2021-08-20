@@ -372,7 +372,7 @@ class AllUnits(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class OneUnit(APIView):
-  permission_classes = (IsAuthenticated,)
+  permission_classes = (IsAuthenticatedOrReadOnly,)
   def get(self, request, id, format=None):
     one_unit = Unit.view_one_unit(id)
     serializer = UnitSerializer(one_unit, many=False)
