@@ -122,3 +122,15 @@ input[type=text], select, textarea {
 }
 }
 
+.profile-pic{
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 200px;
+    width: 200px;
+}
+.profile-pic img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
