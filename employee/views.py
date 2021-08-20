@@ -41,6 +41,11 @@ def onsite_booking(request, unit_name):
     users = User.objects.exclude(id=request.user.id)
     unit = Unit.objects.get(name=unit_name)
 
+    if unit.occupied:
+        messages.error(request, 'This unit is currently unavailable, please book an available unit.')
+        return redirect('units')
+        
+
     if request.method == 'POST':
         form = BookingForm(request.POST, request.FILES)
         user_form = AddUserForm(request.POST)
@@ -50,6 +55,14 @@ def onsite_booking(request, unit_name):
         user_obj = User.objects.get(name=user_full_name)
 
         profile_obj = Profile.objects.get(user=user_obj)
+
+        if user_form.is_valid():
+            add_user = user_form.save(commit=False)
+            add_user.user_type = 'client'
+            add_user.set_password(user_form.cleaned_data['password1'])
+            add_user.save()
+            messages.success(request, 'User added successfully.')
+            return  redirect('onsite_booking', unit_name) 
 
         if form.is_valid():
             form.instance.profile = profile_obj
@@ -64,16 +77,9 @@ def onsite_booking(request, unit_name):
             accountnumber = form.cleaned_data['account_number']
             views.lipa_booking(request, unit.id, accountnumber, payment)
 
-            messages.success(request, 'Booked Successfully.')
+            messages.success(request, 'Booked successfully.')
             return redirect('units')
 
-        if user_form.is_valid():
-            add_user = user_form.save(commit=False)
-            add_user.user_type = 'client'
-            add_user.set_password(user_form.cleaned_data['password1'])
-            add_user.save()
-            messages.success(request, 'User Added successfully.')
-            return  redirect('onsite_booking', unit_name) 
     else:
         form = BookingForm()
         views.customadmin

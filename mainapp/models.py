@@ -197,7 +197,7 @@ ModePayment = (
 class Booking(models.Model):
     profile = models.ForeignKey(Profile, related_name='profile', on_delete=CASCADE)
     unit = models.ForeignKey(Unit, related_name='unit', on_delete=CASCADE)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, null=True, blank=True)
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField(null=True)
     address = models.CharField(max_length=200, null=True, blank=True)

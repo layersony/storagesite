@@ -1,24 +1,37 @@
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Booking
+from .models import Booking, Unit
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.hashers import make_password
+
 
 from rest_framework import serializers
 
 class BookingSerializer(serializers.ModelSerializer):
+    
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        help_text='',
+        style={'input_type': 'password', 'placeholder': 'Password'}
+    )
+
     class Meta:
         model = Booking
         fields = '__all__'
-from rest_framework import serializers
-from .models import Unit
+
+    def create(self, validated_data):
+        validated_data['access_code'] = make_password(validated_data.get('access_code'))
+        return super(BookingSerializer, self).create(validated_data)
+
 
 class UnitSerializer(serializers.ModelSerializer):
-  access_code = serializers.CharField(style = {'type': 'password'})
+#   access_code = serializers.CharField(style = {'type': 'password'})
   class Meta:
     model = Unit
     fields = ('id', 'width', 'height','length', 'size', 'occupied', 'daily_charge', 'weekly_charge', 'monthly_charge',)
-    write_fields = ('password')
+    # write_fields = ('password')
 
 
 class MyAuthTokenSerializer(serializers.Serializer):

@@ -9,8 +9,11 @@
 </div>
 <div class="row prof">
   <div class="col-md-3 p-4">
-    <img class="rounded-1 account-img d-block me-auto" src="{{ user.profile.pic.url }}"
-    height="200px" width="200px" class="img-fluid">
+      <div class="profile-pic">
+          <img src="{{ user.profile.pic.url }}" alt="Profile Pic" class="img-fluid">
+      </div>
+    <!-- <img class="rounded-1 account-img d-block me-auto" src="{{ user.profile.pic.url }}"
+    height="200px" width="200px" class="img-fluid"> -->
       <h2 class="font-weight-bold mt-5">{{user.name}}</h2>
       <h5>@{{ user.username }}</h5>
       <p><i class="fa fa-phone mt-2"></i>{{user.profile.phone_number}}</p>
@@ -59,7 +62,7 @@
               <p id='booking_id' style='display:none'>{{detail.id}}</p>
             </tr>
             {% empty %}
-            <p class="alert alert-info text-center"> No Booked Units Available</p>
+            <p class="alert alert-info text-center"> No booked units yet.</p>
             {% endfor %}
           </tbody>
         </table>
@@ -79,7 +82,7 @@
   unitdetails = $j('#unit_id').html()
 
   Swal.fire({
-  title: 'Are you sure You want to Move Out?',
+  title: 'Are you sure you want to move out?',
   text: "You won't be able to revert this!",
   icon: 'warning',
   showCancelButton: true,
@@ -94,10 +97,10 @@
         const { value: text } = await Swal.fire({
           input: 'textarea',
           inputLabel: 'Delivery Address',
-          text: "Cancel if you dont want to be delivered",
-          inputPlaceholder: 'Enter your Delivery Address here...',
+          text: "Cancel if you don't want delivery",
+          inputPlaceholder: 'Enter your delivery address here...',
           inputAttributes: {
-            'aria-label': 'Enter your Delivery Address here...'
+            'aria-label': 'Enter your delivery address here...'
           },
           showCancelButton: true
         })
@@ -105,7 +108,7 @@
       if (text) {
         Swal.fire(
         'Moved Out!',
-        'You Have Successfully Moved Out, Your Goods will be delivered',
+        'You have successfully moved out, Your goods will be delivered.',
         'success'
         )
         $j.ajax({
