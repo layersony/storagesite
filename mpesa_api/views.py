@@ -58,7 +58,6 @@ def register_urls(request):
 def call_back(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
-    print(request.text)
     print('from call back')
 
     if body['Body']['stkCallback']['ResultCode'] == 0:
