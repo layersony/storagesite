@@ -100,8 +100,9 @@ h2, h3.heading {
   margin-bottom: 20px;
 }
 h2.heading {
-  font-size: 22px;
+  font-size: 30px;
   border-bottom: none;
+  font-weight: 700;
 }
 
 .controls {

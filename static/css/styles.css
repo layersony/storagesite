@@ -37,11 +37,35 @@ html {
 }
 
 .card {
-    padding: 30px 25px 35px 50px;
-    border-radius: .5rem;
-    box-shadow: 0px 4px 8px 0px white;
-    margin-top: 50px;
-    margin-bottom: 50px
+  padding:10px 10px 10px 10px;
+  /* border-radius: .5rem; */
+  /* box-shadow: 0px 4px 8px 0px white; */
+  margin-top: 50px;
+  /* margin-bottom: 50px;*/
+  min-height: 40vh;
+  font-size: 20px;
+  line-height: 1.8em;
+  text-transform: capitalize;
+  border: none;
+}
+
+.card-body{
+  color: #000
+}
+.card-body .textp{
+  color: #369FE4
+}
+.unitdet .mb-5{
+  color: #000;
+}
+.unitdet .textp{
+  color: #369FE4
+}
+.detailswapper{
+  border: 1px solid #343334cc;
+  border-radius: 2px;
+  box-shadow: 0px 2px 5px #343334;
+  border-top: none;
 }
 
 .border-line {

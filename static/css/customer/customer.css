@@ -19,11 +19,12 @@ h1, h2, h3, h4, h5, h6{
 body{
     background:#ffffff;
 }
-/* .wrapper 
+.wrapper 
 {
+    padding-top: 100px;
     width: 85%;
     min-height: 70vh;
-} */
+}
 .prof{
     margin-top: 100px;
     width: 95%; 

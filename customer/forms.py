@@ -25,7 +25,7 @@ class BookingForm(ModelForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
-    pic = forms.ImageField(required = True, widget=forms.TextInput(attrs={'class':'floatLabel'}))
+    pic = forms.ImageField(required = True)
     phone_number = forms.CharField(required = True, widget=forms.TextInput(attrs={'class':'floatLabel'}))
     location = forms.CharField(required = True, widget=forms.TextInput(attrs={'class':'floatLabel'}))
     nok_fullname = forms.CharField(required = True, widget=forms.TextInput(attrs={'class':'floatLabel'}))
