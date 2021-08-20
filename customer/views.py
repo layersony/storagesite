@@ -27,6 +27,7 @@ from django.contrib.auth.forms import UserCreationForm
 from mpesa_api.views import lipa_na_mpesa_online
 from django.contrib import messages
 
+@login_required
 def update_profile(request):
     user = request.user
 
@@ -47,10 +48,12 @@ def update_profile(request):
       
     return render(request, 'all_customer/update_profile.html', { 'form': form, 'userform': userform})
 
+@login_required
 def profile(request):
       units = Booking.objects.filter(profile=request.user.profile)
       return render(request, 'all_customer/profile.html', {'details':units})
-    
+
+@login_required  
 def booking_details(request, id):
       book = Booking.objects.get(id=id)
       return render(request, 'all_customer/bookingdetails.html', {'book':book})
@@ -102,6 +105,7 @@ def book(request, pk):
 
       context = {'form': form, "unit":unit}
       return render(request, 'all_customer/book.html',  context)
+
 
 def checkout(request):
       print(request.GET)
